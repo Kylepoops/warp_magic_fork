@@ -5,3 +5,7 @@ api-version: 1.13
 authors: [sword]
 description: A teleportation management plugin
 website: eclipsekingdom.com
+
+commands:
+  warp:
+  warpstone:

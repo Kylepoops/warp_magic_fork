@@ -1,16 +1,27 @@
 package com.eclipsekingdom.warpmagic;
 
-import com.eclipsekingdom.warpmagic.data.PluginConfig;
 import com.eclipsekingdom.warpmagic.data.PluginData;
+import com.eclipsekingdom.warpmagic.warp.CommandWarp;
+import com.eclipsekingdom.warpmagic.warp.stone.CommandWarpStone;
+import com.eclipsekingdom.warpmagic.warp.stone.WarpStoneListener;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class WarpMagic extends JavaPlugin {
+
+    public static final ChatColor themeDark = ChatColor.DARK_GREEN;
+    public static final ChatColor themeLight = ChatColor.GREEN;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         pluginConfig.load();
         pluginData.load();
+
+        new WarpStoneListener(this);
+
+        this.getCommand("warp").setExecutor(new CommandWarp());
+        this.getCommand("warpstone").setExecutor(new CommandWarpStone());
     }
 
     @Override

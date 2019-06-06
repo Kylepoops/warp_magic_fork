@@ -1,6 +1,6 @@
 package com.eclipsekingdom.warpmagic.warp.data;
 
-import com.eclipsekingdom.warpmagic.data.PluginConfig;
+import com.eclipsekingdom.warpmagic.PluginConfig;
 import com.eclipsekingdom.warpmagic.data.DataType;
 import org.bukkit.configuration.file.FileConfiguration;
 

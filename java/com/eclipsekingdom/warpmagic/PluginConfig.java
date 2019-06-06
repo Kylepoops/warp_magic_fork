@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.data;
+package com.eclipsekingdom.warpmagic;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;

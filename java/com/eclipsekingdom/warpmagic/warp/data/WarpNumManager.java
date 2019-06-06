@@ -21,6 +21,31 @@ public class WarpNumManager extends Manager<UUID,Integer> {
     }
 
 
+    public int getUnlockedWarpNum(Player player){
+        UUID playerID =  player.getUniqueId();
+        if(keyToData.containsKey(playerID)){
+            return keyToData.get(playerID);
+        }else{
+            return defaultData;
+        }
+    }
+
+    public void incrementWarpCapacity(Player player){
+        UUID playerID = player.getUniqueId();
+
+        int currentWarpCap = defaultData;
+
+        if(keyToData.containsKey(playerID)){
+            currentWarpCap = keyToData.get(playerID);
+        }else{
+            registerNewDataName(playerID, player.getDisplayName());
+        }
+
+        keyToData.put(playerID, currentWarpCap + 1);
+
+        trackUnsavedData(playerID);
+    }
+
     @Override
     public void load() {
         for(Player player: Bukkit.getOnlinePlayers()){
