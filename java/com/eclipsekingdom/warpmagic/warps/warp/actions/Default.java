@@ -32,7 +32,7 @@ public class Default extends CommandAction {
 
     @Override
     protected String initID() {
-        return null;
+        return "";
     }
 
     private final WarpManager warpManager = WarpManager.getInstance();

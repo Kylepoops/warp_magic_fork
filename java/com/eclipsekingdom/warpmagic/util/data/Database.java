@@ -60,10 +60,6 @@ public class Database<KEY, DATA> {
         return dataSet;
     }
 
-    public void addName(KEY key, String name){
-        dataConfig.set(getPath(key)+".name", name);
-    }
-
 
     /* --- implementation ---*/
 
@@ -82,7 +78,7 @@ public class Database<KEY, DATA> {
 
     private final String header;
     private final String getPath(KEY key){
-        return (header + key.toString());
+        return (key.toString());
     }
 
 

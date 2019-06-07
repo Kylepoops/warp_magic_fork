@@ -1,6 +1,7 @@
 package com.eclipsekingdom.warpmagic;
 
 import com.eclipsekingdom.warpmagic.util.commands.SummonLootCommand;
+import com.eclipsekingdom.warpmagic.util.data.CacheListener;
 import com.eclipsekingdom.warpmagic.util.data.PluginData;
 import com.eclipsekingdom.warpmagic.util.loot.Loot;
 import com.eclipsekingdom.warpmagic.warps.warp.CommandWarp;
@@ -20,6 +21,7 @@ public final class WarpMagic extends JavaPlugin {
         pluginData.load();
 
         new LootListener(this);
+        new CacheListener(this);
 
         this.getCommand("warp").setExecutor(CommandWarp.getInstance());
         this.getCommand("warpstone").setExecutor(new SummonLootCommand() {

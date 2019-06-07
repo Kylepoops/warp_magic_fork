@@ -33,9 +33,9 @@ public class PluginData {
         }
     }
 
-    public void cash(Player player){
+    public void cache(Player player){
         for(Manager manager: PLAYER_MANAGERS){
-            manager.cash(player.getUniqueId());
+            manager.cache(player.getUniqueId());
         }
     }
 

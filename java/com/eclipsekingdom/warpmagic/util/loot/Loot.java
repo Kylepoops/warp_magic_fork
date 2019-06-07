@@ -6,11 +6,6 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class Loot {
 
-
-    public Loot(String uniqueLore){
-        this.uniqueLore = uniqueLore;
-    }
-
     public ItemStack asItem(){
         return itemStack.clone();
     }
@@ -25,10 +20,11 @@ public abstract class Loot {
 
     public abstract void use(Player player, ItemStack itemStack);
 
-    protected final String uniqueLore;
+    protected abstract String initUniqueLore();
+    protected final String uniqueLore = initUniqueLore();
 
-    protected abstract ItemStack buildItemStack();
-    private final ItemStack itemStack = buildItemStack();
+    protected abstract ItemStack buildItemStack(String uniqueLore);
+    private final ItemStack itemStack = buildItemStack(uniqueLore);
 
 
 

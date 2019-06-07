@@ -18,11 +18,6 @@ import java.util.*;
 
 public class WarpStone extends Loot {
 
-
-    private WarpStone() {
-        super(ChatColor.GREEN + "it is only partly grounded in this dimension");
-    }
-
     private static final WarpStone WARP_STONE = new WarpStone();
 
     public static final WarpStone getInstance(){
@@ -42,7 +37,12 @@ public class WarpStone extends Loot {
     }
 
     @Override
-    protected ItemStack buildItemStack() {
+    protected String initUniqueLore() {
+        return ChatColor.GREEN + "it is only partly grounded in this dimension";
+    }
+
+    @Override
+    protected ItemStack buildItemStack(String uniqueLore) {
         ItemStack warpStone = new ItemStack(Material.EMERALD);
         ItemMeta meta = warpStone.getItemMeta();
 

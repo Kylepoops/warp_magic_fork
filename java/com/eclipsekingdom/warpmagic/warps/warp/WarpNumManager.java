@@ -41,7 +41,7 @@ public class WarpNumManager extends Manager<UUID,Integer> {
     @Override
     public void load() {
         for(Player player: Bukkit.getOnlinePlayers()){
-            cash(player.getUniqueId());
+            cache(player.getUniqueId());
         }
     }
 
@@ -61,8 +61,6 @@ public class WarpNumManager extends Manager<UUID,Integer> {
 
         if(keyToData.containsKey(playerID)){
             currentWarpCap = keyToData.get(playerID);
-        }else{
-            registerNewDataName(playerID, player.getDisplayName());
         }
 
         keyToData.put(playerID, currentWarpCap + 1);

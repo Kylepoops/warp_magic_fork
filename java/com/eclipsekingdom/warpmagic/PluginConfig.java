@@ -14,12 +14,13 @@ public class PluginConfig {
 
     /* --- constructors --- */
 
-    private PluginConfig() {
-        load();
-    }
+    private PluginConfig() {}
 
     public static PluginConfig getInstance(){
-        return PLUGIN_CONFIG_INSTANCE;
+        if(!PLUGIN_CONFIG.isLoaded()){
+            PLUGIN_CONFIG.load();
+        }
+        return PLUGIN_CONFIG;
     }
 
 
@@ -40,8 +41,12 @@ public class PluginConfig {
             loadDefaults();
             createDefault();
         }
+        loaded = true;
     }
 
+    public boolean isLoaded(){
+        return loaded;
+    }
 
     public int getStartingWarpNum(){
         return startingWarpNum;
@@ -56,9 +61,12 @@ public class PluginConfig {
     }
 
 
+
     /* --- implementation --- */
 
-    private static final PluginConfig PLUGIN_CONFIG_INSTANCE = new PluginConfig();
+    private boolean loaded = false;
+
+    private static final PluginConfig PLUGIN_CONFIG = new PluginConfig();
 
     private static final String PLUGIN_CONFIG_HEADER = "Magic Options";
 

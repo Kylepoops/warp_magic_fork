@@ -22,13 +22,13 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
                 for(Warp warp: warps){
                     String warpPath = path + "." + warp.getName();
                     Location location = warp.getLocation();
-                    config.set(warpPath+"world", location.getWorld().getName());
-                    config.set(warpPath+"x", location.getX());
-                    config.set(warpPath+"y", location.getY());
-                    config.set(warpPath+"z", location.getY());
-                    config.set(warpPath+"yaw", location.getYaw());
-                    config.set(warpPath+"pitch", location.getPitch());
-                    config.set(warpPath+"world", location.getWorld().getName());
+                    config.set(warpPath+".world", location.getWorld().getName());
+                    config.set(warpPath+".x", location.getX());
+                    config.set(warpPath+".y", location.getY());
+                    config.set(warpPath+".z", location.getY());
+                    config.set(warpPath+".yaw", location.getYaw());
+                    config.set(warpPath+".pitch", location.getPitch());
+                    config.set(warpPath+".world", location.getWorld().getName());
                 }
             }
 
@@ -65,15 +65,12 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
     @Override
     public void load() {
         for(Player player: Bukkit.getOnlinePlayers()){
-            cash(player.getUniqueId());
+            cache(player.getUniqueId());
         }
     }
 
     public void registerWarp(Player player, Warp warp){
         UUID playerID = player.getUniqueId();
-        if(!keyToData.containsKey(playerID)){
-            registerNewDataName(playerID, player.getDisplayName());
-        }
         MapOperations.addItemToList(keyToData, playerID, warp);
         trackUnsavedData(playerID);
     }

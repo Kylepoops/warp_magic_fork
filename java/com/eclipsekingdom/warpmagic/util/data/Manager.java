@@ -19,40 +19,26 @@ public abstract class Manager<KEY, DATA> {
 
     public void save(){
 
-        for(Map.Entry<KEY,String> entry: newDataToName.entrySet()){
-            database.addName(entry.getKey(), entry.getValue());
-        }
-
         for(KEY key: unsavedData){
             DATA data = keyToData.get(key);
             database.store(key, data);
         }
 
         database.save();
-
-        newDataToName.clear();
         unsavedData.clear();
     }
 
-    public void cash(KEY key){
+    public void cache(KEY key){
         cashOne(key);
-        List<KEY> requiredDataKeys = getRequirements(key);
-        for(KEY requiredDataKey: requiredDataKeys){
-            cashOne(key);
+        for(KEY requiredDataKey: getRequirements(key)){
+            cashOne(requiredDataKey);
         }
     }
 
     public void forget(KEY key){
-        if(inCash(key)){
-            if(!stillNeeded(key)){
-                if(unsavedData.contains(key)){
-                    DATA data = keyToData.get(key);
-                    database.store(key, keyToData.get(data)); //store even if trivial (to clear out old values)
-                    database.save();
-                    resolveUnsavedData(key);
-                }
-                keyToData.remove(key);
-            }
+        forgetOne(key);
+        for(KEY requiredDataKey: getRequirements(key)){
+            forgetOne(requiredDataKey);
         }
     }
 
@@ -74,16 +60,8 @@ public abstract class Manager<KEY, DATA> {
     protected abstract boolean stillNeeded(KEY key);
     protected abstract List<KEY> getRequirements(KEY key);
 
-    protected void registerNewDataName(KEY key, String name){
-        if(!newDataToName.containsKey(key)){
-            newDataToName.put(key, name);
-        }
-    }
-
 
     /* --- secret --- */
-
-    private final HashMap<KEY, String> newDataToName = new HashMap<>();
 
     private final List<KEY> unsavedData = new ArrayList<>();
 
@@ -101,6 +79,17 @@ public abstract class Manager<KEY, DATA> {
                     keyToData.put(key, data);
                 }
             }
+        }
+    }
+
+    private void forgetOne(KEY key){
+        if(!stillNeeded(key)){
+            if(unsavedData.contains(key)){
+                database.store(key, keyToData.get(key)); //store even if trivial (to clear out old values)
+                database.save();
+                resolveUnsavedData(key);
+            }
+            keyToData.remove(key);
         }
     }
 

@@ -6,15 +6,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class CashListener implements Listener {
+public class CacheListener implements Listener {
 
-    public CashListener(WarpMagic plugin){
+    public CacheListener(WarpMagic plugin){
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler (ignoreCancelled = true)
     public void onJoin(PlayerJoinEvent e){
-        pluginData.cash(e.getPlayer());
+        pluginData.cache(e.getPlayer());
     }
 
     @EventHandler (ignoreCancelled = true)
