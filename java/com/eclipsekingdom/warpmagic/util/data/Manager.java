@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.data;
+package com.eclipsekingdom.warpmagic.util.data;
 
 import java.util.*;
 
@@ -6,9 +6,9 @@ public abstract class Manager<KEY, DATA> {
 
     /* --- constructors --- */
 
-    protected Manager(DataType dataType, String fileName, String dirPath){
-        this.dataType =  dataType;
-        this.defaultData = (DATA) dataType.getDefaultValue();
+    protected Manager(DataType<DATA> dataType, String fileName, String dirPath){
+        this.dataType = dataType;
+        this.defaultData = dataType.getDefaultValue();
         this.database = new Database(dataType,fileName,dirPath);
     }
 

@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.util;
+package com.eclipsekingdom.warpmagic.util.operations;
 
 import org.bukkit.inventory.ItemStack;
 

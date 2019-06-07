@@ -1,8 +1,8 @@
 package com.eclipsekingdom.warpmagic.warps.warp;
 
 import com.eclipsekingdom.warpmagic.PluginConfig;
-import com.eclipsekingdom.warpmagic.data.DataType;
-import com.eclipsekingdom.warpmagic.data.Manager;
+import com.eclipsekingdom.warpmagic.util.data.DataType;
+import com.eclipsekingdom.warpmagic.util.data.Manager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

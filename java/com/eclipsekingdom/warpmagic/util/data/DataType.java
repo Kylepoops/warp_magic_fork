@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.data;
+package com.eclipsekingdom.warpmagic.util.data;
 
 import org.bukkit.configuration.file.FileConfiguration;
 

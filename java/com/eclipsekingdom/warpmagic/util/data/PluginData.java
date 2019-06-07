@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.data;
+package com.eclipsekingdom.warpmagic.util.data;
 
 import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;

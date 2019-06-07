@@ -1,12 +1,13 @@
 package com.eclipsekingdom.warpmagic.warps.warp;
 
-import com.eclipsekingdom.warpmagic.data.DataType;
-import com.eclipsekingdom.warpmagic.data.Manager;
-import com.eclipsekingdom.warpmagic.util.MapOperations;
+import com.eclipsekingdom.warpmagic.util.data.DataType;
+import com.eclipsekingdom.warpmagic.util.data.Manager;
+import com.eclipsekingdom.warpmagic.util.operations.MapOperations;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.World;
 
 import java.util.*;
 
@@ -15,15 +16,39 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
     /* --- constructors --- */
 
     private WarpManager() {
-        super(new DataType<Location>(null) {
+        super(new DataType<List<Warp>>(Collections.emptyList()) {
             @Override
-            public void writeTo(String path, Location data, FileConfiguration config) {
-
+            public void writeTo(String path, List<Warp> warps, FileConfiguration config) {
+                for(Warp warp: warps){
+                    String warpPath = path + "." + warp.getName();
+                    Location location = warp.getLocation();
+                    config.set(warpPath+"world", location.getWorld().getName());
+                    config.set(warpPath+"x", location.getX());
+                    config.set(warpPath+"y", location.getY());
+                    config.set(warpPath+"z", location.getY());
+                    config.set(warpPath+"yaw", location.getYaw());
+                    config.set(warpPath+"pitch", location.getPitch());
+                    config.set(warpPath+"world", location.getWorld().getName());
+                }
             }
 
             @Override
-            public Location readFrom(String path, FileConfiguration config) {
-                return null;
+            public List<Warp> readFrom(String path, FileConfiguration config) {
+                List<Warp> warps = new ArrayList<>();
+                for(String warpName: config.getConfigurationSection(path).getKeys(false)){
+                    String warpPath = path + "." + warpName;
+                    World world = Bukkit.getWorld(config.getString(warpPath+".world"));
+                    double x = config.getDouble(warpPath+".x");
+                    double y = config.getDouble(warpPath+".y");
+                    double z = config.getDouble(warpPath+".z");
+                    float yaw = (float)config.getDouble(warpPath+".yaw");
+                    float pitch = (float)config.getDouble(warpPath+".pitch");
+                    Location location = new Location(world, x, y, z, yaw, pitch);
+                    if(location != null){
+                        warps.add(new Warp(warpName, location));
+                    }
+                }
+                return warps;
             }
         },"warps", "/data/warp");
     }

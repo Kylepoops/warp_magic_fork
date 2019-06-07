@@ -1,10 +1,9 @@
-package com.eclipsekingdom.warpmagic.data;
+package com.eclipsekingdom.warpmagic.util.data;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ public class Database<KEY, DATA> {
         this.dataType = dataType;
         this.header = fileName.toUpperCase().charAt(0) + fileName.toLowerCase().substring(1);
         this.fileName = fileName;
-        this.dirName = dirName;
         this.dataFile = new File("plugins/WarpMagic"+dirName, fileName+".yml");
         this.dataConfig = YamlConfiguration.loadConfiguration(dataFile);
     }
@@ -71,7 +69,6 @@ public class Database<KEY, DATA> {
 
     private final DataType dataType;
     private final String fileName;
-    private final String dirName;
     private final File dataFile;
     private final FileConfiguration dataConfig;
 

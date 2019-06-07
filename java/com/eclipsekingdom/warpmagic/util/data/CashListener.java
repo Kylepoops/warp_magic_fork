@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.data;
+package com.eclipsekingdom.warpmagic.util.data;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import org.bukkit.event.EventHandler;
