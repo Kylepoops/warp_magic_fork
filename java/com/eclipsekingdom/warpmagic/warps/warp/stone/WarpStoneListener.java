@@ -5,7 +5,7 @@ import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.PluginConfig;
 import com.eclipsekingdom.warpmagic.util.ItemOperations;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpNumManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

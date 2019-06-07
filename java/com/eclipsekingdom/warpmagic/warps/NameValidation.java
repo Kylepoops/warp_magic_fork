@@ -1,7 +1,7 @@
-package com.eclipsekingdom.warpmagic.warps.validation;
+package com.eclipsekingdom.warpmagic.warps;
 
 import com.eclipsekingdom.warpmagic.warps.warp.Warp;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -9,13 +9,29 @@ import java.util.List;
 
 public class NameValidation {
 
-    public static NameStatus clean(Player player, String name){
+    public enum Status {
+
+        VALID("success"),
+        SPECIAL_CHARACTERS("Plot names must consist of only a-z, A-Z, 0-9, _, and -"),
+        TOO_LONG("Plot names must be 20 characters or less"),
+        NAME_TAKEN("You already have a plot with that name"),
+        RESERVED_WORD("The name you selected is reserved by WarpMagic");
+
+        Status(String message){
+            this.message = message;
+        }
+
+        public final String message;
+
+    }
+
+    public static Status clean(Player player, String name){
         if (!name.matches("^[a-zA-Z0-9\\_\\-]+$")) {
-            return NameStatus.SPECIAL_CHARACTERS;
+            return Status.SPECIAL_CHARACTERS;
         }else if(name.length() > 20){
-            return NameStatus.TOO_LONG;
+            return Status.TOO_LONG;
         }else if(reservedWords.contains(name)) {
-            return NameStatus.RESERVED_WORD;
+            return Status.RESERVED_WORD;
         }else{
             boolean foundMatch = false;
             for(Warp warp: warpManager.getWarps(player)){
@@ -25,9 +41,9 @@ public class NameValidation {
                 }
             }
             if(foundMatch){
-                return NameStatus.NAME_TAKEN;
+                return Status.NAME_TAKEN;
             }else{
-                return NameStatus.VALID;
+                return Status.VALID;
             }
         }
     }

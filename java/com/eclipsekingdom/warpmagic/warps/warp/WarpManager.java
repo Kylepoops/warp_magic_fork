@@ -1,23 +1,41 @@
-package com.eclipsekingdom.warpmagic.warps.warp.data;
+package com.eclipsekingdom.warpmagic.warps.warp;
 
-import com.eclipsekingdom.warpmagic.data.Database;
+import com.eclipsekingdom.warpmagic.data.DataType;
 import com.eclipsekingdom.warpmagic.data.Manager;
 import com.eclipsekingdom.warpmagic.util.MapOperations;
-import com.eclipsekingdom.warpmagic.warps.warp.Warp;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.*;
 
 public class WarpManager extends Manager<UUID, List<Warp>> {
 
+    /* --- constructors --- */
+
     private WarpManager() {
-        super(WarpDataType.getInstance(), new Database(WarpDataType.getInstance(), "Warps", "warps", "/data/warp"));
+        super(new DataType<Location>(null) {
+            @Override
+            public void writeTo(String path, Location data, FileConfiguration config) {
+
+            }
+
+            @Override
+            public Location readFrom(String path, FileConfiguration config) {
+                return null;
+            }
+        },"warps", "/data/warp");
     }
+
+    private static final WarpManager WARP_MANAGER = new WarpManager();
 
     public static final WarpManager getInstance(){
         return WARP_MANAGER;
     }
+
+
+    /* --- interface --- */
 
     @Override
     public void load() {
@@ -79,6 +97,9 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
         }
     }
 
+
+    /* --- implementation --- */
+
     @Override
     protected boolean stillNeeded(UUID uuid) {
         return false;
@@ -89,5 +110,4 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
         return Collections.emptyList();
     }
 
-    private static final WarpManager WARP_MANAGER = new WarpManager();
 }

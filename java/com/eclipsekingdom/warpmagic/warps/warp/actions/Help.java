@@ -5,8 +5,8 @@ import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.communication.PluginHelp;
 import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
 import com.eclipsekingdom.warpmagic.warps.warp.CommandWarp;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpManager;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpNumManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

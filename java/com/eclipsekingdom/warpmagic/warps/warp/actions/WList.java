@@ -5,8 +5,8 @@ import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.communication.InfoList;
 import com.eclipsekingdom.warpmagic.warps.warp.Warp;
 import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpManager;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpNumManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

@@ -13,9 +13,9 @@ public class Database<KEY, DATA> {
 
     /* --- constructors ---*/
 
-    public Database(DataType dataType, String header, String fileName, String dirName) {
+    public Database(DataType dataType, String fileName, String dirName) {
         this.dataType = dataType;
-        this.header = header;
+        this.header = fileName.toUpperCase().charAt(0) + fileName.toLowerCase().substring(1);
         this.fileName = fileName;
         this.dirName = dirName;
         this.dataFile = new File("plugins/WarpMagic"+dirName, fileName+".yml");

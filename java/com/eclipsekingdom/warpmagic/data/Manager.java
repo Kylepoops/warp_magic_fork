@@ -6,10 +6,10 @@ public abstract class Manager<KEY, DATA> {
 
     /* --- constructors --- */
 
-    protected Manager(DataType dataType, Database database){
+    protected Manager(DataType dataType, String fileName, String dirPath){
         this.dataType =  dataType;
         this.defaultData = (DATA) dataType.getDefaultValue();
-        this.database = database;
+        this.database = new Database(dataType,fileName,dirPath);
     }
 
 

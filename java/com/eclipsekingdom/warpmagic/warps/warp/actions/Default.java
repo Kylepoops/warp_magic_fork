@@ -1,11 +1,11 @@
 package com.eclipsekingdom.warpmagic.warps.warp.actions;
 
-import com.eclipsekingdom.warpmagic.teleport.Teleportation;
+import com.eclipsekingdom.warpmagic.Teleportation;
 import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.warps.warp.Warp;
 import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
 import org.bukkit.entity.Player;
 
 public class Default extends CommandAction {

@@ -3,14 +3,12 @@ package com.eclipsekingdom.warpmagic.warps.warp.actions;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
-import com.eclipsekingdom.warpmagic.warps.validation.LocationStatus;
-import com.eclipsekingdom.warpmagic.warps.validation.LocationValidation;
-import com.eclipsekingdom.warpmagic.warps.validation.NameStatus;
-import com.eclipsekingdom.warpmagic.warps.validation.NameValidation;
+import com.eclipsekingdom.warpmagic.warps.LocationValidation;
+import com.eclipsekingdom.warpmagic.warps.NameValidation;
 import com.eclipsekingdom.warpmagic.warps.warp.Warp;
 import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpManager;
-import com.eclipsekingdom.warpmagic.warps.warp.data.WarpNumManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
 import org.bukkit.entity.Player;
 
 public class Set extends CommandAction {
@@ -21,27 +19,27 @@ public class Set extends CommandAction {
         if(args.length > 1){
             if(warpManager.getUsedWarpCount(player) < warpNumManager.getUnlockedWarpNum(player)) {
                 String warpName = args[1];
-                NameStatus nameStatus = NameValidation.clean(player, warpName);
-                if(nameStatus == NameStatus.VALID){
-                    LocationStatus locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
-                    if(locationStatus == LocationStatus.VALID){
+                NameValidation.Status nameStatus = NameValidation.clean(player, warpName);
+                if(nameStatus == NameValidation.Status.VALID){
+                    LocationValidation.Status locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
+                    if(locationStatus == LocationValidation.Status.VALID){
                         Warp warp = new Warp(warpName, player.getLocation());
                         warpManager.registerWarp(player, warp);
                         player.sendMessage(SUCCESSFUL_CLAIM_MESSAGE(warp.getName()));
                     }else{
-                        Notifications.sendWarning(player, locationStatus.getMessage());
+                        Notifications.sendWarning(player, locationStatus.message);
                     }
-                }else if(nameStatus == NameStatus.NAME_TAKEN) {
-                    LocationStatus locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
-                    if(locationStatus == LocationStatus.VALID){
+                }else if(nameStatus == NameValidation.Status.NAME_TAKEN) {
+                    LocationValidation.Status locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
+                    if(locationStatus == LocationValidation.Status.VALID){
                         Warp warp = warpManager.getWarp(player, warpName);
                         warp.updateLocation(player.getLocation());
                         player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(warp.getName()));
                     }else{
-                        Notifications.sendWarning(player, locationStatus.getMessage());
+                        Notifications.sendWarning(player, locationStatus.message);
                     }
                 }else{
-                    Notifications.sendWarning(player, nameStatus.getMessage());
+                    Notifications.sendWarning(player, nameStatus.message);
                 }
             }else{
                 Notifications.sendWarning(player, WARP_LIMIT_ERROR);
