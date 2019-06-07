@@ -1,11 +1,11 @@
-package com.eclipsekingdom.warpmagic.warp.stone;
+package com.eclipsekingdom.warpmagic.warps.warp.stone;
 
 import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.WarpMagic;
-import com.eclipsekingdom.warpmagic.communication.Notifications;
+import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.PluginConfig;
 import com.eclipsekingdom.warpmagic.util.ItemOperations;
-import com.eclipsekingdom.warpmagic.warp.data.WarpNumManager;
+import com.eclipsekingdom.warpmagic.warps.warp.data.WarpNumManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

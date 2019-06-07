@@ -38,23 +38,35 @@ public class PluginConfig {
             loadDefaults();
             createDefault();
         }
+        loaded = true;
     }
 
 
     public int getStartingWarpNum(){
+        if(!loaded){
+            load();
+        }
         return startingWarpNum;
     }
 
     public int getMaxWarpNum(){
+        if(!loaded){
+            load();
+        }
         return maxWarpNum;
     }
 
     public List<String> getValidWorlds(){
+        if(!loaded){
+            load();
+        }
         return validWorlds;
     }
 
 
     /* --- implementation --- */
+
+    private boolean loaded = false;
 
     private static final PluginConfig PLUGIN_CONFIG_INSTANCE = new PluginConfig();
 

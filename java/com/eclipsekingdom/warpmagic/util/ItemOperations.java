@@ -9,12 +9,11 @@ public class ItemOperations {
     }
 
     public static boolean hasLoreID(ItemStack itemStack){
-        return (
-                itemStack != null
-                        && itemStack.hasItemMeta()
-                        && itemStack.getItemMeta().hasLore()
-                        && itemStack.getItemMeta().getLore().size() > 0
-                        && itemStack.getItemMeta().getLore().get(0) != null
+        return (itemStack != null
+                && itemStack.hasItemMeta()
+                && itemStack.getItemMeta().hasLore()
+                && itemStack.getItemMeta().getLore().size() > 0
+                && itemStack.getItemMeta().getLore().get(0) != null
         );
     }
 

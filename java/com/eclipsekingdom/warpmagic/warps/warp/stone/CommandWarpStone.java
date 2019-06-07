@@ -1,7 +1,7 @@
-package com.eclipsekingdom.warpmagic.warp.stone;
+package com.eclipsekingdom.warpmagic.warps.warp.stone;
 
 import com.eclipsekingdom.warpmagic.Permissions;
-import com.eclipsekingdom.warpmagic.communication.Notifications;
+import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

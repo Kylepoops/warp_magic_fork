@@ -1,6 +1,6 @@
 package com.eclipsekingdom.warpmagic.teleport;
 
-import com.eclipsekingdom.warpmagic.communication.Notifications;
+import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.effect.EffectManager;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

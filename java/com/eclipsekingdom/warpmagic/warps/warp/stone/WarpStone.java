@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.warp.stone;
+package com.eclipsekingdom.warpmagic.warps.warp.stone;
 
 import com.eclipsekingdom.warpmagic.util.ItemOperations;
 import org.bukkit.ChatColor;

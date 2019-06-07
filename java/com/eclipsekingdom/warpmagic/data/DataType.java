@@ -2,21 +2,21 @@ package com.eclipsekingdom.warpmagic.data;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-public abstract class DataType<VALUE> {
+public abstract class DataType<T> {
 
-    protected DataType(VALUE defaultValue){
-        this.defaultValue = defaultValue;
+    protected DataType(T defaultT){
+        this.defaultValue = defaultT;
     }
 
-    public VALUE getDefaultValue(){
+    public T getDefaultValue(){
         return defaultValue;
     }
 
-    public abstract boolean isTrivial(VALUE value);
+    public abstract boolean isTrivial(T T);
 
-    public abstract void writeTo(String path, VALUE data, FileConfiguration config);
-    public abstract VALUE readFrom(String path, FileConfiguration config);
+    public abstract void writeTo(String path, T data, FileConfiguration config);
+    public abstract T readFrom(String path, FileConfiguration config);
 
-    private final VALUE defaultValue;
+    private final T defaultValue;
 
 }

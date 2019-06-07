@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.communication;
+package com.eclipsekingdom.warpmagic.util.communication;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import org.bukkit.ChatColor;

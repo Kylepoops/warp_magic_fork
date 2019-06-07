@@ -1,12 +1,14 @@
-package com.eclipsekingdom.warpmagic.warp;
+package com.eclipsekingdom.warpmagic.warps.warp;
 
-import com.eclipsekingdom.warpmagic.warp.actions.Error;
-import com.eclipsekingdom.warpmagic.warp.actions.Set;
+import com.eclipsekingdom.warpmagic.warps.warp.actions.Error;
+import com.eclipsekingdom.warpmagic.warps.warp.actions.Set;
+import com.eclipsekingdom.warpmagic.warps.warp.actions.WList;
 import org.bukkit.entity.Player;
 
 public enum WarpRequest {
     UNKNOWN(new Error()),
-    SET(new Set());
+    SET(new Set()),
+    LIST(new WList());
 
     WarpRequest(WarpAction warpAction){
         this.warpAction = warpAction;

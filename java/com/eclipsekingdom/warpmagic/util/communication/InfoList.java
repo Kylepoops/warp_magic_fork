@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.communication;
+package com.eclipsekingdom.warpmagic.util.communication;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -41,7 +41,7 @@ public class InfoList {
     private final String command;
 
     private static final String buildNextPageTip(String command, int page){
-        return (ChatColor.DARK_GRAY + "Use" + ChatColor.GRAY +" /" + command + ChatColor.DARK_GRAY +" " + (page + 1) + " for the next page");
+        return (ChatColor.DARK_GRAY + "Use" + ChatColor.GRAY +" /" + command + " " + (page + 1) + ChatColor.DARK_GRAY + " for the next page");
     }
 
 }
