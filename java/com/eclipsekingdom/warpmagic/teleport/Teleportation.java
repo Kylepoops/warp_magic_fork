@@ -5,9 +5,9 @@ import com.eclipsekingdom.warpmagic.effect.EffectManager;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-public class TeleportAction {
+public class Teleportation {
 
-    public TeleportAction(Player player, Location location){
+    public static void sendTo(Player player, Location location){
         TeleportStatus status = teleportValidation.getStatus(player, location);
         if(status == TeleportStatus.VALID){
             effectManager.playEffect(player);
@@ -21,7 +21,7 @@ public class TeleportAction {
     }
 
 
-    private TeleportValidation teleportValidation = TeleportValidation.getInstance();
-    private EffectManager effectManager = EffectManager.getInstance();
+    private static final TeleportValidation teleportValidation = TeleportValidation.getInstance();
+    private static final EffectManager effectManager = EffectManager.getInstance();
 
 }

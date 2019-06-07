@@ -14,7 +14,9 @@ public class PluginConfig {
 
     /* --- constructors --- */
 
-    private PluginConfig() {}
+    private PluginConfig() {
+        load();
+    }
 
     public static PluginConfig getInstance(){
         return PLUGIN_CONFIG_INSTANCE;
@@ -38,35 +40,23 @@ public class PluginConfig {
             loadDefaults();
             createDefault();
         }
-        loaded = true;
     }
 
 
     public int getStartingWarpNum(){
-        if(!loaded){
-            load();
-        }
         return startingWarpNum;
     }
 
     public int getMaxWarpNum(){
-        if(!loaded){
-            load();
-        }
         return maxWarpNum;
     }
 
     public List<String> getValidWorlds(){
-        if(!loaded){
-            load();
-        }
         return validWorlds;
     }
 
 
     /* --- implementation --- */
-
-    private boolean loaded = false;
 
     private static final PluginConfig PLUGIN_CONFIG_INSTANCE = new PluginConfig();
 

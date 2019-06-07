@@ -1,6 +1,5 @@
 package com.eclipsekingdom.warpmagic.warps.warp.data;
 
-import com.eclipsekingdom.warpmagic.data.DataType;
 import com.eclipsekingdom.warpmagic.data.Database;
 import com.eclipsekingdom.warpmagic.data.Manager;
 import org.bukkit.Bukkit;
@@ -12,8 +11,8 @@ import java.util.UUID;
 
 public class WarpNumManager extends Manager<UUID,Integer> {
 
-    protected WarpNumManager(DataType dataType, Database database) {
-        super(dataType, database);
+    private WarpNumManager() {
+        super(WarpNumDataType.getInstance(), new Database(WarpNumDataType.getInstance(), "Warp Number", "warpNum", "/data/warp"));
     }
 
     public static final WarpNumManager getInstance(){
@@ -64,5 +63,5 @@ public class WarpNumManager extends Manager<UUID,Integer> {
     }
 
 
-    private static final WarpNumManager WARP_NUM_MANAGER_INSTANCE = new WarpNumManager(WarpNumDataType.getInstance(), WarpNumDatabase.getInstance());
+    private static final WarpNumManager WARP_NUM_MANAGER_INSTANCE = new WarpNumManager();
 }

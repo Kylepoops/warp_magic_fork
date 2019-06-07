@@ -1,12 +1,14 @@
 package com.eclipsekingdom.warpmagic.warps.warp.actions;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
+import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.warps.warp.Warp;
-import com.eclipsekingdom.warpmagic.warps.warp.WarpAction;
+import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
+import com.eclipsekingdom.warpmagic.warps.warp.data.WarpManager;
 import org.bukkit.entity.Player;
 
-public class Del extends WarpAction {
+public class Del extends CommandAction {
 
     @Override
     public void run(Player player, String[] args) {
@@ -24,6 +26,16 @@ public class Del extends WarpAction {
         }
     }
 
+    @Override
+    protected CommandInfo initCommandInfo() {
+        return new CommandInfo("warp del [name]", "remove warp");
+    }
+
+    @Override
+    protected String initID() {
+        return "del";
+    }
+
     private static final String SUCCESSFUL_DELETE_MESSAGE(String warpName){
         return (WarpMagic.themeLight + "Warp "
                 + WarpMagic.themeDark + warpName
@@ -31,4 +43,6 @@ public class Del extends WarpAction {
         );
     }
 
+
+    private final WarpManager warpManager = WarpManager.getInstance();
 }

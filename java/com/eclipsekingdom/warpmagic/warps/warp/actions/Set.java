@@ -1,16 +1,19 @@
 package com.eclipsekingdom.warpmagic.warps.warp.actions;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
+import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.warps.validation.LocationStatus;
 import com.eclipsekingdom.warpmagic.warps.validation.LocationValidation;
 import com.eclipsekingdom.warpmagic.warps.validation.NameStatus;
 import com.eclipsekingdom.warpmagic.warps.validation.NameValidation;
 import com.eclipsekingdom.warpmagic.warps.warp.Warp;
-import com.eclipsekingdom.warpmagic.warps.warp.WarpAction;
+import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
+import com.eclipsekingdom.warpmagic.warps.warp.data.WarpManager;
+import com.eclipsekingdom.warpmagic.warps.warp.data.WarpNumManager;
 import org.bukkit.entity.Player;
 
-public class Set extends WarpAction {
+public class Set extends CommandAction {
 
     @Override
     public void run(Player player, String[] args) {
@@ -52,6 +55,16 @@ public class Set extends WarpAction {
 
     }
 
+    @Override
+    protected CommandInfo initCommandInfo() {
+        return new CommandInfo("warp set [name]", "set warp at location");
+    }
+
+    @Override
+    protected String initID() {
+        return "set";
+    }
+
     private static final String WARP_LIMIT_ERROR = "Warp limit reached";
 
     private static final String SUCCESSFUL_CLAIM_MESSAGE(String warpName){
@@ -67,4 +80,10 @@ public class Set extends WarpAction {
                 + WarpMagic.themeLight + " updated"
         );
     }
+
+
+    private final WarpNumManager warpNumManager = WarpNumManager.getInstance();
+    private final WarpManager warpManager = WarpManager.getInstance();
+
+
 }

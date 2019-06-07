@@ -4,22 +4,22 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Database<KEY, DATA> {
+public class Database<KEY, DATA> {
 
     /* --- constructors ---*/
 
-    protected Database(DataType dataType, String header, String fileName, String dirName) {
+    public Database(DataType dataType, String header, String fileName, String dirName) {
         this.dataType = dataType;
         this.header = header;
         this.fileName = fileName;
         this.dirName = dirName;
         this.dataFile = new File("plugins/WarpMagic"+dirName, fileName+".yml");
         this.dataConfig = YamlConfiguration.loadConfiguration(dataFile);
-        this.defaultValue = (DATA) dataType.getDefaultValue();
     }
 
 
@@ -43,28 +43,23 @@ public abstract class Database<KEY, DATA> {
         String path = getPath(key);
         if(dataConfig.contains(path)){
             DATA data = (DATA) dataType.readFrom(path, dataConfig);
-            if(data != null){
-                if(!dataType.isTrivial(data)){
-                    return data;
-                }else{
-                    return defaultValue;
-                }
-            }else{
-                return defaultValue;
-            }
+            return data;
         }else{
-            return defaultValue;
+            return null;
         }
     }
 
-    public List<KEY> getKeyList(){
-        List<KEY> keys = new ArrayList<>();
+    public List<DATA> getDataSet(){
+        List<DATA> dataSet = new ArrayList<>();
         if(dataConfig.contains(header)){
             for(String path: dataConfig.getConfigurationSection(header).getKeys(false)){
-                keys.add(convertPathToKey(path));
+                DATA data = (DATA) dataType.readFrom(path, dataConfig);
+                if(data != null){
+                    dataSet.add(data);
+                }
             }
         }
-        return keys;
+        return dataSet;
     }
 
     public void addName(KEY key, String name){
@@ -74,23 +69,11 @@ public abstract class Database<KEY, DATA> {
 
     /* --- implementation ---*/
 
-    protected abstract KEY convertPathToKey(String path);
-
-    protected void cleanSection(String path){
-        if(dataConfig.contains(path)){
-            dataConfig.set(path, null);
-        }
-    }
-
-
-    /* --- secret ---*/
-
     private final DataType dataType;
     private final String fileName;
     private final String dirName;
     private final File dataFile;
     private final FileConfiguration dataConfig;
-    private final DATA defaultValue;
 
     private void saveDataConfig(){
         try{
@@ -104,4 +87,12 @@ public abstract class Database<KEY, DATA> {
     private final String getPath(KEY key){
         return (header + key.toString());
     }
+
+
+    private void cleanSection(String path){
+        if(dataConfig.contains(path)){
+            dataConfig.set(path, null);
+        }
+    }
+
 }

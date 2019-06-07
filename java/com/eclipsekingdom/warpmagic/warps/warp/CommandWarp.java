@@ -1,28 +1,42 @@
 package com.eclipsekingdom.warpmagic.warps.warp;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
+import com.eclipsekingdom.warpmagic.util.commands.RootCommand;
+import com.eclipsekingdom.warpmagic.warps.warp.actions.*;
 
-public class CommandWarp implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+import java.util.ArrayList;
+import java.util.List;
 
+public class CommandWarp extends RootCommand {
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            if (args.length == 0) {
-                WarpRequest request = WarpRequest.DEFAULT;
-                request.process(player, args);
-            } else {
-                WarpRequest request = WarpRequest.fromString(args[0]);
-                request.process(player, args);
-            }
-        }
+    /* --- constructors --- */
 
+    private CommandWarp(){}
 
-        return false;
+    private static final CommandWarp COMMAND_WARP = new CommandWarp();
+
+    public static final CommandWarp getInstance(){
+        return COMMAND_WARP;
     }
+
+
+    /* --- implementation --- */
+
+    @Override
+    protected List<CommandAction> initCommandActions() {
+        List<CommandAction> actions = new ArrayList<>();
+        actions.add(new Default());
+        actions.add(new Help());
+        actions.add(new Set());
+        actions.add(new Del());
+        actions.add(new WList());
+        return actions;
+    }
+
+    @Override
+    protected CommandAction initDefaultAction() {
+        return new Default();
+    }
+
 
 }

@@ -1,6 +1,5 @@
 package com.eclipsekingdom.warpmagic.warps.warp.data;
 
-import com.eclipsekingdom.warpmagic.data.DataType;
 import com.eclipsekingdom.warpmagic.data.Database;
 import com.eclipsekingdom.warpmagic.data.Manager;
 import com.eclipsekingdom.warpmagic.util.MapOperations;
@@ -12,8 +11,8 @@ import java.util.*;
 
 public class WarpManager extends Manager<UUID, List<Warp>> {
 
-    private WarpManager(DataType dataType, Database database) {
-        super(dataType, database);
+    private WarpManager() {
+        super(WarpDataType.getInstance(), new Database(WarpDataType.getInstance(), "Warps", "warps", "/data/warp"));
     }
 
     public static final WarpManager getInstance(){
@@ -90,5 +89,5 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
         return Collections.emptyList();
     }
 
-    private static final WarpManager WARP_MANAGER = new WarpManager(WarpDataType.getInstance(), WarpDatabase.getInstance());
+    private static final WarpManager WARP_MANAGER = new WarpManager();
 }

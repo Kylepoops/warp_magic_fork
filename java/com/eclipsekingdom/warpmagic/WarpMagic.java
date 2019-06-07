@@ -15,12 +15,11 @@ public final class WarpMagic extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        pluginConfig.load();
         pluginData.load();
 
         new WarpStoneListener(this);
 
-        this.getCommand("warp").setExecutor(new CommandWarp());
+        this.getCommand("warp").setExecutor(CommandWarp.getInstance());
         this.getCommand("warpstone").setExecutor(new CommandWarpStone());
     }
 
@@ -31,7 +30,6 @@ public final class WarpMagic extends JavaPlugin {
     }
 
     private final PluginData pluginData = PluginData.getInstance();
-    private final PluginConfig pluginConfig = PluginConfig.getInstance();
 
 
 }
