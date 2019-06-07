@@ -28,6 +28,15 @@ public class Set extends WarpAction {
                     }else{
                         Notifications.sendWarning(player, locationStatus.getMessage());
                     }
+                }else if(nameStatus == NameStatus.NAME_TAKEN) {
+                    LocationStatus locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
+                    if(locationStatus == LocationStatus.VALID){
+                        Warp warp = warpManager.getWarp(player, warpName);
+                        warp.updateLocation(player.getLocation());
+                        player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(warp.getName()));
+                    }else{
+                        Notifications.sendWarning(player, locationStatus.getMessage());
+                    }
                 }else{
                     Notifications.sendWarning(player, nameStatus.getMessage());
                 }
@@ -49,6 +58,13 @@ public class Set extends WarpAction {
         return (WarpMagic.themeLight + "Warp "
                 + WarpMagic.themeDark + warpName
                 + WarpMagic.themeLight + " set"
+        );
+    }
+
+    private static final String SUCCESSFUL_UPDATE_MESSAGE(String warpName){
+        return (WarpMagic.themeLight + "Warp "
+                + WarpMagic.themeDark + warpName
+                + WarpMagic.themeLight + " updated"
         );
     }
 }

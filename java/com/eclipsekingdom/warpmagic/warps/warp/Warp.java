@@ -13,6 +13,10 @@ public class Warp {
         return location;
     }
 
+    public void updateLocation(Location location){
+        this.location = location;
+    }
+
     public String getName(){
         return name;
     }
@@ -27,6 +31,6 @@ public class Warp {
     }
 
     private final String name;
-    private final Location location;
+    private Location location;
 
 }
