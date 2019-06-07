@@ -47,17 +47,14 @@ public class Database<KEY, DATA> {
         }
     }
 
-    public List<DATA> getDataSet(){
-        List<DATA> dataSet = new ArrayList<>();
+    public List<String> getAllKeyPaths(){
+        List<String> paths = new ArrayList<>();
         if(dataConfig.contains(header)){
             for(String path: dataConfig.getConfigurationSection(header).getKeys(false)){
-                DATA data = (DATA) dataType.readFrom(path, dataConfig);
-                if(data != null){
-                    dataSet.add(data);
-                }
+                paths.add(path);
             }
         }
-        return dataSet;
+        return paths;
     }
 
 

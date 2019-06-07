@@ -14,7 +14,6 @@ public class NameValidation {
         VALID("success"),
         SPECIAL_CHARACTERS("Plot names must consist of only a-z, A-Z, 0-9, _, and -"),
         TOO_LONG("Plot names must be 20 characters or less"),
-        NAME_TAKEN("You already have a plot with that name"),
         RESERVED_WORD("The name you selected is reserved by WarpMagic");
 
         Status(String message){
@@ -33,22 +32,9 @@ public class NameValidation {
         }else if(reservedWords.contains(name)) {
             return Status.RESERVED_WORD;
         }else{
-            boolean foundMatch = false;
-            for(Warp warp: warpManager.getWarps(player)){
-                if(warp.getName().equalsIgnoreCase(name)){
-                    foundMatch = true;
-                    break;
-                }
-            }
-            if(foundMatch){
-                return Status.NAME_TAKEN;
-            }else{
-                return Status.VALID;
-            }
+            return Status.VALID;
         }
     }
-
-    private static WarpManager warpManager = WarpManager.getInstance();
 
     private static List<String> reservedWords = buildReservedWordList();
 

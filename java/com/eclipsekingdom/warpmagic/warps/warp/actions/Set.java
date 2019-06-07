@@ -23,18 +23,15 @@ public class Set extends CommandAction {
                 if(nameStatus == NameValidation.Status.VALID){
                     LocationValidation.Status locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
                     if(locationStatus == LocationValidation.Status.VALID){
-                        Warp warp = new Warp(warpName, player.getLocation());
-                        warpManager.registerWarp(player, warp);
-                        player.sendMessage(SUCCESSFUL_CLAIM_MESSAGE(warp.getName()));
-                    }else{
-                        Notifications.sendWarning(player, locationStatus.message);
-                    }
-                }else if(nameStatus == NameValidation.Status.NAME_TAKEN) {
-                    LocationValidation.Status locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
-                    if(locationStatus == LocationValidation.Status.VALID){
-                        Warp warp = warpManager.getWarp(player, warpName);
-                        warp.updateLocation(player.getLocation());
-                        player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(warp.getName()));
+                        if(!warpAlreadySet(player, warpName)){
+                            Warp warp = new Warp(warpName, player.getLocation());
+                            warpManager.registerWarp(player, warp);
+                            player.sendMessage(SUCCESSFUL_CLAIM_MESSAGE(warp.getName()));
+                        }else{
+                            Warp warp = warpManager.getWarp(player, warpName);
+                            warp.updateLocation(player.getLocation());
+                            player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(warp.getName()));
+                        }
                     }else{
                         Notifications.sendWarning(player, locationStatus.message);
                     }
@@ -55,7 +52,7 @@ public class Set extends CommandAction {
 
     @Override
     protected CommandInfo initCommandInfo() {
-        return new CommandInfo("warp set [name]", "set warp at location");
+        return new CommandInfo("warp set [warp-name]", "set warp at location");
     }
 
     @Override
@@ -83,5 +80,13 @@ public class Set extends CommandAction {
     private final WarpNumManager warpNumManager = WarpNumManager.getInstance();
     private final WarpManager warpManager = WarpManager.getInstance();
 
+    private boolean warpAlreadySet(Player player, String name){
+        for(Warp warp: warpManager.getWarps(player)){
+            if(warp.getName().equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

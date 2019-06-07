@@ -28,7 +28,7 @@ public class Del extends CommandAction {
 
     @Override
     protected CommandInfo initCommandInfo() {
-        return new CommandInfo("warp del [name]", "remove warp");
+        return new CommandInfo("warp del [warp-name]", "remove warp");
     }
 
     @Override

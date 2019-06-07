@@ -32,6 +32,8 @@ public class PluginConfig {
                 String key = PLUGIN_CONFIG_HEADER;
                 startingWarpNum = config.getInt(key+"."+STARTING_WARP_NUM_SETTING);
                 maxWarpNum = config.getInt(key+"."+MAX_WARP_NUM_SETTING);
+                startingVortexNum = config.getInt(key+"."+STARTING_VORTEX_NUM_SETTING);
+                maxVortexNum = config.getInt(key+"."+MAX_VORTEX_NUM_SETTING);
                 validWorlds = config.getStringList(key+"."+VALID_WORLDS_SETTING);
                 loadWorlds(validWorlds);
             }catch (Exception e){
@@ -54,6 +56,14 @@ public class PluginConfig {
 
     public int getMaxWarpNum(){
         return maxWarpNum;
+    }
+
+    public int getStartingVortexNum(){
+        return startingVortexNum;
+    }
+    
+    public int getMaxVortexNum(){
+        return maxVortexNum;
     }
 
     public List<String> getValidWorlds(){
@@ -80,6 +90,14 @@ public class PluginConfig {
     private static final String MAX_WARP_NUM_SETTING = "Maximum Plot Amount";
     private static final int MAX_WARP_NUM_DEFAULT = 18;
     private static int maxWarpNum;
+    
+    private static final String STARTING_VORTEX_NUM_SETTING = "Starting Vortex Amount";
+    private static final int STARTING_VORTEX_NUM_DEFAULT = 0;
+    private static int startingVortexNum;
+
+    private static final String MAX_VORTEX_NUM_SETTING = "Maximum Plot Amount";
+    private static final int MAX_VORTEX_NUM_DEFAULT = 3;
+    private static int maxVortexNum;
 
     private static final String VALID_WORLDS_SETTING = "Valid Worlds";
     private static final List<String> VALID_WORLDS_DEFAULT = buildWorldDefaults();
@@ -99,6 +117,8 @@ public class PluginConfig {
         String key = PLUGIN_CONFIG_HEADER;
         config.set(key+"."+STARTING_WARP_NUM_SETTING, STARTING_WARP_NUM_DEFAULT);
         config.set(key+"."+MAX_WARP_NUM_SETTING, MAX_WARP_NUM_DEFAULT);
+        config.set(key+"."+STARTING_VORTEX_NUM_SETTING, STARTING_VORTEX_NUM_DEFAULT);
+        config.set(key+"."+MAX_VORTEX_NUM_SETTING, MAX_VORTEX_NUM_DEFAULT);
         config.set(key+"."+VALID_WORLDS_SETTING, VALID_WORLDS_DEFAULT);
         saveConfig();
     }
@@ -106,6 +126,8 @@ public class PluginConfig {
     private static void loadDefaults(){
         startingWarpNum = STARTING_WARP_NUM_DEFAULT;
         maxWarpNum = MAX_WARP_NUM_DEFAULT;
+        startingVortexNum = STARTING_VORTEX_NUM_DEFAULT;
+        maxVortexNum = MAX_VORTEX_NUM_DEFAULT;
         validWorlds = VALID_WORLDS_DEFAULT;
     }
 

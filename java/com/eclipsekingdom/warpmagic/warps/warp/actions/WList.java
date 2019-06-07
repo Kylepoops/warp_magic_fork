@@ -47,9 +47,9 @@ public class WList extends CommandAction {
 
 
     private static final String LIST_TITLE(Player player){
-        int plotsUsed = warpManager.getUsedWarpCount(player);
-        int plotsMax = warpNumManager.getUnlockedWarpNum(player);
-        return (WarpMagic.themeLight + "Your Warps (" + plotsUsed + "/" + plotsMax + "):");
+        int warpsUsed = warpManager.getUsedWarpCount(player);
+        int warpsMax = warpNumManager.getUnlockedWarpNum(player);
+        return (WarpMagic.themeLight + "Your Warps (" + warpsUsed + "/" + warpsMax + "):");
     }
 
     private static final WarpManager warpManager = WarpManager.getInstance();
