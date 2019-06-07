@@ -22,9 +22,9 @@ public class WList extends WarpAction {
         }
         InfoList infoList = new InfoList(LIST_TITLE(player),items, 7, "warp list");
 
-        if(args.length == 1){ //  /pp PList
+        if(args.length == 1){
             infoList.displayTo(player, 1);
-        }else{ //  /pp PList [page]
+        }else{
             int pageNum = 1;
             try{
                 pageNum = Integer.parseInt(args[1]);

@@ -13,7 +13,8 @@ public class CommandWarp implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length == 0) {
-                WarpHelp.showTo(player);
+                WarpRequest request = WarpRequest.DEFAULT;
+                request.process(player, args);
             } else {
                 WarpRequest request = WarpRequest.fromString(args[0]);
                 request.process(player, args);

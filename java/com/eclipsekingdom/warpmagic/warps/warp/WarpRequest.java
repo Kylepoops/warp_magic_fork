@@ -1,13 +1,13 @@
 package com.eclipsekingdom.warpmagic.warps.warp;
 
-import com.eclipsekingdom.warpmagic.warps.warp.actions.Error;
-import com.eclipsekingdom.warpmagic.warps.warp.actions.Set;
-import com.eclipsekingdom.warpmagic.warps.warp.actions.WList;
+import com.eclipsekingdom.warpmagic.warps.warp.actions.*;
 import org.bukkit.entity.Player;
 
 public enum WarpRequest {
-    UNKNOWN(new Error()),
+    DEFAULT(new Default()),
+    HELP(new Help()),
     SET(new Set()),
+    DEL(new Del()),
     LIST(new WList());
 
     WarpRequest(WarpAction warpAction){
@@ -20,7 +20,7 @@ public enum WarpRequest {
                 return request;
             }
         }
-        return UNKNOWN;
+        return DEFAULT;
     }
 
     public void process(Player player, String[] args) {

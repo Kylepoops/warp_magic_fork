@@ -93,7 +93,7 @@ public class PluginConfig {
         try{
             config.save(configFile);
         } catch (Exception e){
-            Bukkit.getConsoleSender().sendMessage("[PlayerPlot] Error saving config.yml");
+            Bukkit.getConsoleSender().sendMessage("[PlayerPlot] Help saving config.yml");
         }
     }
 

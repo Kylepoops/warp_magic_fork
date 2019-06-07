@@ -96,7 +96,7 @@ public abstract class Database<KEY, DATA> {
         try{
             dataConfig.save(dataFile);
         } catch (Exception e){
-            Bukkit.getConsoleSender().sendMessage("Error saving "+fileName+".yml");
+            Bukkit.getConsoleSender().sendMessage("Help saving "+fileName+".yml");
         }
     }
 

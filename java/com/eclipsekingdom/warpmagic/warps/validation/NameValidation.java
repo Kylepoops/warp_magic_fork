@@ -43,6 +43,7 @@ public class NameValidation {
         reservedWords.add("set");
         reservedWords.add("del");
         reservedWords.add("uninvite");
+        reservedWords.add("help");
         return reservedWords;
     }
 

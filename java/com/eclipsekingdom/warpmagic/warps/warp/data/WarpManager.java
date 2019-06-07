@@ -51,6 +51,21 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
         }
     }
 
+    public Warp getWarp(Player player, String warpName){
+        UUID playerID = player.getUniqueId();
+        if(keyToData.containsKey(playerID)){
+            List<Warp> warps = keyToData.get(playerID);
+            for(Warp warp: warps){
+                if(warp.getName().equalsIgnoreCase(warpName)){
+                    return warp;
+                }
+            }
+            return null;
+        }else{
+            return null;
+        }
+    }
+
     public int getUsedWarpCount(Player player){
         UUID playerID = player.getUniqueId();
         if(keyToData.containsKey(playerID)){
