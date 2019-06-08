@@ -26,13 +26,14 @@ public class CommandHome extends RootCommand {
     protected List<CommandAction> initCommandActions() {
         List<CommandAction> actions = new ArrayList<>();
         actions.add(new Default());
+        actions.add(new FHome());
         actions.add(new Help());
         actions.add(new Set());
         actions.add(new Del());
-        //actions.add(new Invite()); - track unsavedData
-        //actions.add(new Uninvite()); - track unsavedData
-        //actions.add(new FList());
-        //actions.add(new FClear());
+        actions.add(new Invite());
+        actions.add(new Uninvite());
+        actions.add(new FList());
+        actions.add(new FClear());
         return actions;
     }
 

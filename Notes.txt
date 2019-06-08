@@ -1,2 +1,3 @@
 * respawn at home?
 * those with command perm sees command in help list
+* jump/top/bottom

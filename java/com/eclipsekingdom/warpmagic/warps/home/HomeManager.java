@@ -83,6 +83,10 @@ public class HomeManager extends Manager<String,Home> {
         return keyToData.get(playerName);
     }
 
+    public Home getHome(String playerName){
+        return keyToData.get(playerName);
+    }
+
 
     /* --- implementation --- */
 

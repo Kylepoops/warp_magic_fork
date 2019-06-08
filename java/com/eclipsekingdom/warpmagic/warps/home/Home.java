@@ -26,6 +26,10 @@ public class Home {
         return friends;
     }
 
+    public boolean trusts(String friendName){
+        return friends.contains(friendName);
+    }
+
     public void addFriend(String friendName){
         if(!friends.contains(friendName)){
             friends.add(friendName);
