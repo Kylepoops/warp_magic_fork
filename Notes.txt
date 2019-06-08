@@ -1,3 +1,7 @@
 * respawn at home?
 * those with command perm sees command in help list
 * jump/top/bottom
+* command to see homes you are invited to
+* notify player when invited
+* command to reset locations
+* change location format to world_x_y_z_yaw_pitch

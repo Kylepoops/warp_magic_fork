@@ -1,7 +1,4 @@
 package com.eclipsekingdom.warpmagic.warps;
-
-import com.eclipsekingdom.warpmagic.warps.warp.Warp;
-import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

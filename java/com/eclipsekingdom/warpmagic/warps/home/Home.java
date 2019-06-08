@@ -1,7 +1,8 @@
 package com.eclipsekingdom.warpmagic.warps.home;
 
 import org.bukkit.Location;
-import java.util.Collections;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Home {
@@ -45,5 +46,5 @@ public class Home {
 
 
     private Location location;
-    private List<String> friends = Collections.emptyList();
+    private List<String> friends = new ArrayList<>();
 }

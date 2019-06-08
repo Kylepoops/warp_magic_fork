@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class PluginData {
 
@@ -20,38 +21,37 @@ public class PluginData {
     }
 
     public void load(){
-        for(Manager manager: PLAYER_MANAGERS){
-            manager.load();
-        }
-        for(Manager manager: GLOBAL_MANAGERS){
+        for(Manager manager: MANAGERS){
             manager.load();
         }
     }
 
     public void save(){
-        for(Manager manager: PLAYER_MANAGERS){
-            manager.save();
-        }
-        for(Manager manager: GLOBAL_MANAGERS){
+        for(Manager manager: MANAGERS){
             manager.save();
         }
     }
 
     public void cache(Player player){
-        for(Manager manager: PLAYER_MANAGERS){
-            manager.cache(player.getUniqueId());
-        }
+        UUID playerID = player.getUniqueId();
+        String playerName = player.getDisplayName();
+        WarpNumManager.getInstance().cache(playerID);
+        WarpManager.getInstance().cache(playerID);
+        VortexNumManager.getInstance().cache(playerID);
+        HomeManager.getInstance().cache(playerName);
     }
 
     public void forget(Player player){
-        for(Manager manager: PLAYER_MANAGERS){
-            manager.forget(player.getUniqueId());
-        }
+        UUID playerID = player.getUniqueId();
+        String playerName = player.getDisplayName();
+        WarpNumManager.getInstance().forget(playerID);
+        WarpManager.getInstance().forget(playerID);
+        VortexNumManager.getInstance().forget(playerID);
+        HomeManager.getInstance().forget(playerName);
     }
 
     private static final PluginData PLUGIN_DATA_INSTANCE = new PluginData();
-    private static final List<Manager> PLAYER_MANAGERS = buildPlayerManagerList();
-    private static final List<Manager> GLOBAL_MANAGERS = buildGlobalManagerList();
+    private static final List<Manager> MANAGERS = buildPlayerManagerList();
 
     private static List<Manager> buildPlayerManagerList(){
         List<Manager> managers = new ArrayList<>();
@@ -59,15 +59,8 @@ public class PluginData {
         managers.add(WarpManager.getInstance());
         managers.add(VortexNumManager.getInstance());
         managers.add(HomeManager.getInstance());
-        return managers;
-    }
-
-    private static List<Manager> buildGlobalManagerList(){
-        List<Manager> managers = new ArrayList<>();
         managers.add(VortexManager.getInstance());
         managers.add(RelationsManager.getInstance());
         return managers;
     }
-
-
 }

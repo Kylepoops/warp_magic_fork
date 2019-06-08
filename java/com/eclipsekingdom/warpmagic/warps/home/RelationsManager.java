@@ -3,8 +3,6 @@ package com.eclipsekingdom.warpmagic.warps.home;
 import com.eclipsekingdom.warpmagic.util.data.DataType;
 import com.eclipsekingdom.warpmagic.util.data.Manager;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -65,7 +63,7 @@ public class RelationsManager extends Manager<String, RelationShips> {
 
         RelationShips hostRelationships = keyToData.get(hostName);
         if(hostRelationships != null){
-            guestRelationships.addDependant(hostName);
+            hostRelationships.addDependant(guestName);
         }else{
             RelationShips relationShips = new RelationShips();
             relationShips.addDependant(guestName);
@@ -85,7 +83,7 @@ public class RelationsManager extends Manager<String, RelationShips> {
 
         RelationShips hostRelationships = keyToData.get(hostName);
         if(hostRelationships != null){
-            guestRelationships.remDependant(hostName);
+            hostRelationships.remDependant(guestName);
             trackUnsavedData(hostName);
         }
 

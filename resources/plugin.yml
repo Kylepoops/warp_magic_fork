@@ -7,6 +7,8 @@ description: A teleportation management plugin
 website: eclipsekingdom.com
 
 commands:
+  home:
+  fhome:
   warp:
   warpstone:
   vortex:

@@ -26,5 +26,22 @@ public class PluginHelp {
         }
     }
 
+    public static void showSubList(Player player, List<CommandInfo> commandInfoList){
+
+        player.sendMessage(ChatColor.GOLD + "- - - - - - -");
+
+        for(CommandInfo commandInfo: commandInfoList){
+            String cmdComponent = ChatColor.GOLD + "/" + commandInfo.getCommand();
+            cmdComponent = cmdComponent.replace("[", ChatColor.RED +"[");
+            cmdComponent = cmdComponent.replace("]", "]" + ChatColor.GOLD);
+
+            String descriptComponent = ChatColor.RESET + commandInfo.getDescription();
+            descriptComponent= descriptComponent.replace("[", ChatColor.RED + "[");
+            descriptComponent = descriptComponent.replace("]", "]" + ChatColor.RESET);
+
+            player.sendMessage(cmdComponent + ": " + descriptComponent);
+        }
+    }
+
 
 }

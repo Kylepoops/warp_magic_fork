@@ -14,15 +14,20 @@ public class FHome extends CommandAction {
     public void run(Player player, String[] args) {
         if(args.length > 0){
             String friendName = args[0];
-            Home friendHome = homeManager.getHome(friendName);
-            if(friendHome != null){
-                if(friendHome.trusts(player.getDisplayName())){
-                    Teleportation.sendTo(player, friendHome.getLocation());
+            if(!player.getDisplayName().equalsIgnoreCase(friendName)){
+                Home friendHome = homeManager.getHome(friendName);
+                if(friendHome != null){
+                    if(friendHome.trusts(player.getDisplayName())){
+                        Teleportation.sendTo(player, friendHome.getLocation());
+                    }else{
+                        player.sendMessage(NOT_INVITED(friendName));
+                    }
                 }else{
                     player.sendMessage(NOT_INVITED(friendName));
                 }
             }else{
-                player.sendMessage(HOME_UNSET_ERROR(friendName));
+                Notifications.sendWarning(player, NOT_FHOME_ERROR);
+                Notifications.sendTip(player, "home", "to teleport home");
             }
         }else{
             Notifications.sendFormat(player, "fhome [friend-name]");
@@ -36,14 +41,11 @@ public class FHome extends CommandAction {
 
     @Override
     protected String initID() {
-        return "fhome";
+        return "";
     }
 
+    private static final String NOT_FHOME_ERROR = "This command is for teleporting to friend's homes";
 
-    private static final String HOME_UNSET_ERROR(String friendName){
-        return (ChatColor.GRAY + friendName
-                + ChatColor.RED + " has not set a home");
-    }
     private static final String NOT_INVITED(String friendName){
         return (ChatColor.RED + "You are not invited to "
                 + ChatColor.GRAY + friendName

@@ -1,6 +1,6 @@
 package com.eclipsekingdom.warpmagic.warps.home;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RelationShips {
@@ -47,10 +47,6 @@ public class RelationShips {
         }
     }
 
-    public void setDependants(List<String> dependants) {
-        this.dependants = dependants;
-    }
-
-    private List<String> requirements = Collections.emptyList();// the requirements of a player are those whose data the player needs
-    private List<String> dependants = Collections.emptyList();//The dependants of a player are those that need the player's data
+    private List<String> requirements = new ArrayList<>();// the requirements of a player are those whose data the player needs
+    private List<String> dependants = new ArrayList<>();//The dependants of a player are those that need the player's data
 }

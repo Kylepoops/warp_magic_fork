@@ -18,11 +18,12 @@ public class Set extends CommandAction {
             if(!homeAlreadySet(player)){
                 Home home = new Home(player.getLocation());
                 homeManager.registerHome(player, home);
-                player.sendMessage(SUCCESSFUL_CLAIM_MESSAGE);
+                Notifications.sendSuccess(player, SUCCESSFUL_CLAIM_MESSAGE);
             }else{
                 Home home = homeManager.getHome(player);
                 home.updateLocation(player.getLocation());
-                player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE);
+                homeManager.trackUnsavedData(player.getDisplayName());
+                Notifications.sendSuccess(player, SUCCESSFUL_UPDATE_MESSAGE);
             }
         }else{
             Notifications.sendWarning(player, locationStatus.message);

@@ -18,7 +18,6 @@ public class FList extends CommandAction {
             player.sendMessage(WarpMagic.themeLight + "Friends:");
             String friendList = getFriendsAsString(home);
             if(friendList.length()>1){
-                player.sendMessage(ChatColor.DARK_AQUA + "*online");
                 player.sendMessage(friendList);
             }else{
                 player.sendMessage(friendList);
@@ -44,16 +43,16 @@ public class FList extends CommandAction {
     }
 
     private String getFriendsAsString(Home home){
-        String friends = ChatColor.GRAY+"";
+        String friends = "";
         for(String friendName: home.getFriends()){
             if(isOnline(friendName)){
                 friends += (", " + ChatColor.DARK_AQUA + friendName);
             }else{
-                friends += (", " + friendName);
+                friends += (", " + ChatColor.GRAY + friendName);
             }
         }
-        if(friends.length() > 4){
-            return friends.substring(4);
+        if(friends.length() > 2){
+            return friends.substring(2);
         }else{
             return "-";
         }

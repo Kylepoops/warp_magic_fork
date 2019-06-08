@@ -4,6 +4,8 @@ import com.eclipsekingdom.warpmagic.util.commands.SummonLootCommand;
 import com.eclipsekingdom.warpmagic.util.data.CacheListener;
 import com.eclipsekingdom.warpmagic.util.data.PluginData;
 import com.eclipsekingdom.warpmagic.util.loot.Loot;
+import com.eclipsekingdom.warpmagic.warps.home.CommandFHome;
+import com.eclipsekingdom.warpmagic.warps.home.CommandHome;
 import com.eclipsekingdom.warpmagic.warps.vortex.CommandVortex;
 import com.eclipsekingdom.warpmagic.warps.vortex.VortexStone;
 import com.eclipsekingdom.warpmagic.warps.warp.CommandWarp;
@@ -25,6 +27,8 @@ public final class WarpMagic extends JavaPlugin {
         new LootListener(this);
         new CacheListener(this);
 
+        this.getCommand("home").setExecutor(CommandHome.getInstance());
+        this.getCommand("fhome").setExecutor(CommandFHome.getInstance());
         this.getCommand("warp").setExecutor(CommandWarp.getInstance());
         this.getCommand("warpstone").setExecutor(new SummonLootCommand() {
             @Override

@@ -14,7 +14,7 @@ public class Del extends CommandAction {
         Home home = homeManager.getHome(player);
         if(home != null) {
             homeManager.removeHome(player);
-            player.sendMessage(SUCCESSFUL_DELETE_MESSAGE);
+            Notifications.sendSuccess(player, SUCCESSFUL_DELETE_MESSAGE);
         }else{
             Notifications.sendWarning(player, HOME_UNSET_ERROR);
         }

@@ -108,7 +108,7 @@ public class HomeManager extends Manager<String,Home> {
 
     @Override
     protected List<String> getRequirements(String playerName) {
-        return relationsManager.getRequirements(playerName);
+        return relationsManager.getReqirements(playerName);
     }
 
     private RelationsManager relationsManager = RelationsManager.getInstance();
