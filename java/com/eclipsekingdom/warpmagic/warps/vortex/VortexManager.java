@@ -2,9 +2,8 @@ package com.eclipsekingdom.warpmagic.warps.vortex;
 
 import com.eclipsekingdom.warpmagic.util.data.DataType;
 import com.eclipsekingdom.warpmagic.util.data.Manager;
-import org.bukkit.Bukkit;
+import com.eclipsekingdom.warpmagic.util.data.StorageString;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -19,25 +18,13 @@ public class VortexManager extends Manager<String, Vortex> {
             @Override
             public void writeTo(String path, Vortex vortex, FileConfiguration config) {
                 config.set(path+".creatorName",vortex.getCreatorName());
-                Location location = vortex.getLocation();
-                config.set(path+".world", location.getWorld().getName());
-                config.set(path+".x", location.getX());
-                config.set(path+".y", location.getY());
-                config.set(path+".z", location.getY());
-                config.set(path+".yaw", location.getYaw());
-                config.set(path+".pitch", location.getPitch());
+                config.set(path+".location", StorageString.from(vortex.getLocation()));
             }
 
             @Override
             public Vortex readFrom(String path, FileConfiguration config) {
-                World world = Bukkit.getWorld(config.getString(path+".world"));
                 String creatorName = config.getString(path+".creatorName");
-                double x = config.getDouble(path+".x");
-                double y = config.getDouble(path+".y");
-                double z = config.getDouble(path+".z");
-                float yaw = (float)config.getDouble(path+".yaw");
-                float pitch = (float)config.getDouble(path+".pitch");
-                Location location = new Location(world, x, y, z, yaw, pitch);
+                Location location = StorageString.convertToLocation(config.getString(path+".location"));
                 if(location != null){
                     return new Vortex(path, location, creatorName);
                 }else{
@@ -59,7 +46,6 @@ public class VortexManager extends Manager<String, Vortex> {
     @Override
     public void load() {
         List<String> paths = database.getAllKeyPaths();
-        Bukkit.getConsoleSender().sendMessage(paths.toString());
         for(String path: paths){
             cache(path);
         }

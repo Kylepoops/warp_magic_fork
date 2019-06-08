@@ -13,3 +13,7 @@ commands:
   warpstone:
   vortex:
   vortexstone:
+  spawn:
+  setspawn:
+  hub:
+  sethub:

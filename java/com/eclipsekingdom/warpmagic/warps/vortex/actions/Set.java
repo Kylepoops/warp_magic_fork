@@ -1,5 +1,6 @@
 package com.eclipsekingdom.warpmagic.warps.vortex.actions;
 
+import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
 import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
@@ -17,7 +18,7 @@ public class Set extends CommandAction {
     public void run(Player player, String[] args) {
 
         if(args.length > 1){
-            if(vortexManager.getUsedVortexCount(player) < vortexNumManager.getUnlockedVortexNum(player)) {
+            if((vortexManager.getUsedVortexCount(player) < vortexNumManager.getUnlockedVortexNum(player)) || Permissions.canBypassLimit(player)) {
                 String vortexName = args[1];
                 NameValidation.Status nameStatus = NameValidation.clean(player, vortexName);
                 if(nameStatus == NameValidation.Status.VALID){

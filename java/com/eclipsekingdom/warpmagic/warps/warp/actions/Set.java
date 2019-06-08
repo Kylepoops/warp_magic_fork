@@ -1,5 +1,6 @@
 package com.eclipsekingdom.warpmagic.warps.warp.actions;
 
+import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.util.commands.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
@@ -17,7 +18,7 @@ public class Set extends CommandAction {
     public void run(Player player, String[] args) {
 
         if(args.length > 1){
-            if(warpManager.getUsedWarpCount(player) < warpNumManager.getUnlockedWarpNum(player)) {
+            if((warpManager.getUsedWarpCount(player) < warpNumManager.getUnlockedWarpNum(player)) || Permissions.canBypassLimit(player)) {
                 String warpName = args[1];
                 NameValidation.Status nameStatus = NameValidation.clean(player, warpName);
                 if(nameStatus == NameValidation.Status.VALID){

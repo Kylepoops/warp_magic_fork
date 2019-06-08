@@ -1,5 +1,6 @@
 package com.eclipsekingdom.warpmagic.util.data;
 
+import com.eclipsekingdom.warpmagic.global.GlobalManager;
 import com.eclipsekingdom.warpmagic.warps.home.HomeManager;
 import com.eclipsekingdom.warpmagic.warps.home.RelationsManager;
 import com.eclipsekingdom.warpmagic.warps.vortex.VortexManager;
@@ -61,6 +62,7 @@ public class PluginData {
         managers.add(HomeManager.getInstance());
         managers.add(VortexManager.getInstance());
         managers.add(RelationsManager.getInstance());
+        managers.add(GlobalManager.getInstance());
         return managers;
     }
 }

@@ -2,9 +2,9 @@ package com.eclipsekingdom.warpmagic.warps.home;
 
 import com.eclipsekingdom.warpmagic.util.data.DataType;
 import com.eclipsekingdom.warpmagic.util.data.Manager;
+import com.eclipsekingdom.warpmagic.util.data.StorageString;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import java.util.List;
@@ -18,13 +18,7 @@ public class HomeManager extends Manager<String,Home> {
         super(new DataType<Home>(null) {
             @Override
             public void writeTo(String path, Home home, FileConfiguration config) {
-                Location location = home.getLocation();
-                config.set(path+".world", location.getWorld().getName());
-                config.set(path+".x", location.getX());
-                config.set(path+".y", location.getY());
-                config.set(path+".z", location.getY());
-                config.set(path+".yaw", location.getYaw());
-                config.set(path+".pitch", location.getPitch());
+                config.set(path+".location", StorageString.from(home.getLocation()));
                 List<String> friends = home.getFriends();
                 if(friends.size() > 0){
                     config.set(path+".friends", friends);
@@ -33,13 +27,7 @@ public class HomeManager extends Manager<String,Home> {
 
             @Override
             public Home readFrom(String path, FileConfiguration config) {
-                World world = Bukkit.getWorld(config.getString(path+".world"));
-                double x = config.getDouble(path+".x");
-                double y = config.getDouble(path+".y");
-                double z = config.getDouble(path+".z");
-                float yaw = (float)config.getDouble(path+".yaw");
-                float pitch = (float)config.getDouble(path+".pitch");
-                Location location = new Location(world, x, y, z, yaw, pitch);
+                Location location = StorageString.convertToLocation(config.getString(path+".location"));
                 List<String> friends = config.getStringList(path+".friends");
                 if(location != null){
                     return new Home(location, friends);
