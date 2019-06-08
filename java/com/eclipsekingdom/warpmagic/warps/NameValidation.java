@@ -40,12 +40,15 @@ public class NameValidation {
 
     private static List<String> buildReservedWordList(){
         List<String> reservedWords = new ArrayList<>();
-        reservedWords.add("list");
-        reservedWords.add("invite");
+        reservedWords.add("help");
         reservedWords.add("set");
         reservedWords.add("del");
+        reservedWords.add("invite");
         reservedWords.add("uninvite");
-        reservedWords.add("help");
+        reservedWords.add("list");
+        reservedWords.add("mylist");
+        reservedWords.add("flist");
+        reservedWords.add("fclear");
         return reservedWords;
     }
 

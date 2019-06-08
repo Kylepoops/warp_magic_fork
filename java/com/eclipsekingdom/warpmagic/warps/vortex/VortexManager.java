@@ -2,7 +2,6 @@ package com.eclipsekingdom.warpmagic.warps.vortex;
 
 import com.eclipsekingdom.warpmagic.util.data.DataType;
 import com.eclipsekingdom.warpmagic.util.data.Manager;
-import com.eclipsekingdom.warpmagic.util.operations.MapOperations;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -19,7 +18,7 @@ public class VortexManager extends Manager<String, Vortex> {
         super(new DataType<Vortex>(null) {
             @Override
             public void writeTo(String path, Vortex vortex, FileConfiguration config) {
-                config.set(path+".creatorID",vortex.getCreatorID());
+                config.set(path+".creatorName",vortex.getCreatorName());
                 Location location = vortex.getLocation();
                 config.set(path+".world", location.getWorld().getName());
                 config.set(path+".x", location.getX());
@@ -27,13 +26,12 @@ public class VortexManager extends Manager<String, Vortex> {
                 config.set(path+".z", location.getY());
                 config.set(path+".yaw", location.getYaw());
                 config.set(path+".pitch", location.getPitch());
-                config.set(path+".world", location.getWorld().getName());
             }
 
             @Override
             public Vortex readFrom(String path, FileConfiguration config) {
                 World world = Bukkit.getWorld(config.getString(path+".world"));
-                UUID creatorID = UUID.fromString(config.getString(path+".creatorID"));
+                String creatorName = config.getString(path+".creatorName");
                 double x = config.getDouble(path+".x");
                 double y = config.getDouble(path+".y");
                 double z = config.getDouble(path+".z");
@@ -41,7 +39,7 @@ public class VortexManager extends Manager<String, Vortex> {
                 float pitch = (float)config.getDouble(path+".pitch");
                 Location location = new Location(world, x, y, z, yaw, pitch);
                 if(location != null){
-                    return new Vortex(path, location, creatorID);
+                    return new Vortex(path, location, creatorName);
                 }else{
                     return null;
                 }
@@ -61,6 +59,7 @@ public class VortexManager extends Manager<String, Vortex> {
     @Override
     public void load() {
         List<String> paths = database.getAllKeyPaths();
+        Bukkit.getConsoleSender().sendMessage(paths.toString());
         for(String path: paths){
             cache(path);
         }
@@ -81,7 +80,7 @@ public class VortexManager extends Manager<String, Vortex> {
     public List<Vortex> getVortexesSetBy(Player player){
         List<Vortex> vortexes = new ArrayList<>();
         for(Vortex vortex: keyToData.values()){
-            if(vortex.getCreatorID().equals(player.getUniqueId())){
+            if(vortex.getCreatorName().equals(player.getDisplayName())){
                 vortexes.add(vortex);
             }
         }
@@ -91,7 +90,7 @@ public class VortexManager extends Manager<String, Vortex> {
     public Vortex getVortexSetBy(Player player, String vortexName) {
         Vortex vortex = keyToData.get(vortexName);
         if(vortex != null){
-            if(vortex.getCreatorID().equals(player.getUniqueId())){
+            if(vortex.getCreatorName().equals(player.getDisplayName())){
                 return vortex;
             }else{
                 return null;
@@ -122,13 +121,13 @@ public class VortexManager extends Manager<String, Vortex> {
     /* --- implementation --- */
 
     @Override
-    protected boolean stillNeeded(String s) {
+    protected boolean stillNeeded(String s, String leavingS) {
         return false;
     }
 
     @Override
     protected List<String> getRequirements(String s) {
-        return null;
+        return Collections.emptyList();
     }
 
 }

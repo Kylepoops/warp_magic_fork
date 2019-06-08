@@ -27,7 +27,7 @@ public class Default extends CommandAction {
 
     @Override
     protected CommandInfo initCommandInfo() {
-        return new CommandInfo("warp [name]", "teleport to [name]");
+        return new CommandInfo("warp [warp-name]", "teleport to [warp-name]");
     }
 
     @Override

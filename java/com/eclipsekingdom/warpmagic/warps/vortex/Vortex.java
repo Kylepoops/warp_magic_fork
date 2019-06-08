@@ -2,14 +2,12 @@ package com.eclipsekingdom.warpmagic.warps.vortex;
 
 import org.bukkit.Location;
 
-import java.util.UUID;
-
 public class Vortex {
 
-    public Vortex(String name, Location location, UUID creatorID){
+    public Vortex(String name, Location location, String creatorName){
         this.name = name;
         this.location = location;
-        this.creatorID = creatorID;
+        this.creatorName = creatorName;
     }
 
     public Location getLocation() {
@@ -20,8 +18,8 @@ public class Vortex {
         this.location = location;
     }
 
-    public UUID getCreatorID(){
-        return creatorID;
+    public String getCreatorName(){
+        return creatorName;
     }
 
     public String getName(){
@@ -39,6 +37,6 @@ public class Vortex {
 
     private final String name;
     private Location location;
-    private final UUID creatorID;
+    private final String creatorName;
 
 }

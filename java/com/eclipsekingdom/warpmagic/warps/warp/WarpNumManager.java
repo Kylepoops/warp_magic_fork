@@ -72,7 +72,7 @@ public class WarpNumManager extends Manager<UUID,Integer> {
     /* --- implementation --- */
 
     @Override
-    protected boolean stillNeeded(UUID uuid) {
+    protected boolean stillNeeded(UUID uuid, UUID leavingUUID) {
         return false;
     }
 

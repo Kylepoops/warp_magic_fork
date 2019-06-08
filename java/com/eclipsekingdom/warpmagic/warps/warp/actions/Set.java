@@ -30,6 +30,7 @@ public class Set extends CommandAction {
                         }else{
                             Warp warp = warpManager.getWarp(player, warpName);
                             warp.updateLocation(player.getLocation());
+                            warpManager.trackUnsavedData(player.getUniqueId());
                             player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(warp.getName()));
                         }
                     }else{

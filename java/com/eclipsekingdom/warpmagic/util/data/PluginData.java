@@ -1,5 +1,9 @@
 package com.eclipsekingdom.warpmagic.util.data;
 
+import com.eclipsekingdom.warpmagic.warps.home.HomeManager;
+import com.eclipsekingdom.warpmagic.warps.home.RelationsManager;
+import com.eclipsekingdom.warpmagic.warps.vortex.VortexManager;
+import com.eclipsekingdom.warpmagic.warps.vortex.VortexNumManager;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
 import org.bukkit.entity.Player;
@@ -53,11 +57,15 @@ public class PluginData {
         List<Manager> managers = new ArrayList<>();
         managers.add(WarpNumManager.getInstance());
         managers.add(WarpManager.getInstance());
+        managers.add(VortexNumManager.getInstance());
+        managers.add(HomeManager.getInstance());
         return managers;
     }
 
     private static List<Manager> buildGlobalManagerList(){
         List<Manager> managers = new ArrayList<>();
+        managers.add(VortexManager.getInstance());
+        managers.add(RelationsManager.getInstance());
         return managers;
     }
 

@@ -1,11 +1,16 @@
 package com.eclipsekingdom.warpmagic.util.loot;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
+import com.eclipsekingdom.warpmagic.warps.vortex.VortexStone;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpStone;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +37,38 @@ public class LootListener implements Listener {
     private final List<Loot> buildLootList(){
         List<Loot> loots = new ArrayList<>();
         loots.add(WarpStone.getInstance());
+        loots.add(VortexStone.getInstance());
         return loots;
+    }
+
+    private final List<Loot> craftProtectList = buildLootList();
+    private final List<Loot> buildCraftPortectList(){
+        List<Loot> loots = new ArrayList<>();
+        return loots;
+    }
+
+
+
+    @EventHandler
+    public void onCraft(CraftItemEvent e){
+        for(ItemStack itemStack: e.getInventory()){
+            for(Loot loot: craftProtectList){
+                if(loot.isInstance(itemStack)){
+                    e.setCancelled(true);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPrepareCraft(PrepareItemCraftEvent e){
+        for(ItemStack itemStack: e.getInventory()){
+            for(Loot loot: craftProtectList){
+                if(loot.isInstance(itemStack)){
+                    e.getInventory().setItem(0, new ItemStack(Material.AIR,1));
+                }
+            }
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PluginConfig {
@@ -35,6 +36,7 @@ public class PluginConfig {
                 startingVortexNum = config.getInt(key+"."+STARTING_VORTEX_NUM_SETTING);
                 maxVortexNum = config.getInt(key+"."+MAX_VORTEX_NUM_SETTING);
                 validWorlds = config.getStringList(key+"."+VALID_WORLDS_SETTING);
+                hiddenVortexNames = config.getStringList(key+"."+HIDDEN_VORTEX_NAMES_SETTING);
                 loadWorlds(validWorlds);
             }catch (Exception e){
                 loadDefaults();
@@ -70,6 +72,10 @@ public class PluginConfig {
         return validWorlds;
     }
 
+    public List<String> getHiddenVortexNames(){
+        return hiddenVortexNames;
+    }
+
 
 
     /* --- implementation --- */
@@ -103,6 +109,10 @@ public class PluginConfig {
     private static final List<String> VALID_WORLDS_DEFAULT = buildWorldDefaults();
     private static List<String> validWorlds;
 
+    private static final String HIDDEN_VORTEX_NAMES_SETTING = "Hidden Vortex Names";
+    private static final List<String> HIDDEN_VORTEX_NAMES_DEFAULT = Collections.emptyList();
+    private static List<String> hiddenVortexNames;
+
 
 
     private static void saveConfig(){
@@ -120,6 +130,7 @@ public class PluginConfig {
         config.set(key+"."+STARTING_VORTEX_NUM_SETTING, STARTING_VORTEX_NUM_DEFAULT);
         config.set(key+"."+MAX_VORTEX_NUM_SETTING, MAX_VORTEX_NUM_DEFAULT);
         config.set(key+"."+VALID_WORLDS_SETTING, VALID_WORLDS_DEFAULT);
+        config.set(key+"."+HIDDEN_VORTEX_NAMES_SETTING, HIDDEN_VORTEX_NAMES_DEFAULT);
         saveConfig();
     }
 
@@ -129,6 +140,7 @@ public class PluginConfig {
         startingVortexNum = STARTING_VORTEX_NUM_DEFAULT;
         maxVortexNum = MAX_VORTEX_NUM_DEFAULT;
         validWorlds = VALID_WORLDS_DEFAULT;
+        hiddenVortexNames = HIDDEN_VORTEX_NAMES_DEFAULT;
     }
 
     private static List<String> buildWorldDefaults(){

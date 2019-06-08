@@ -1,1 +1,2 @@
-* if world not found set null location (will return error message if player tries to go there)
+* respawn at home?
+* those with command perm sees command in help list

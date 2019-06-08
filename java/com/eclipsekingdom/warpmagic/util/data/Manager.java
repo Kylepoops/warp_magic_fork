@@ -38,7 +38,9 @@ public abstract class Manager<KEY, DATA> {
     public void forget(KEY key){
         forgetOne(key);
         for(KEY requiredDataKey: getRequirements(key)){
-            forgetOne(requiredDataKey);
+            if(!stillNeeded(requiredDataKey, key)){
+                forgetOne(requiredDataKey);
+            }
         }
     }
 
@@ -57,7 +59,7 @@ public abstract class Manager<KEY, DATA> {
     protected final Map<KEY,DATA> keyToData = new HashMap<>();
     protected final DATA defaultData;
 
-    protected abstract boolean stillNeeded(KEY key);
+    protected abstract boolean stillNeeded(KEY key, KEY leavingKey);
     protected abstract List<KEY> getRequirements(KEY key);
 
 
@@ -83,14 +85,12 @@ public abstract class Manager<KEY, DATA> {
     }
 
     private void forgetOne(KEY key){
-        if(!stillNeeded(key)){
-            if(unsavedData.contains(key)){
-                database.store(key, keyToData.get(key)); //store even if trivial (to clear out old values)
-                database.save();
-                resolveUnsavedData(key);
-            }
-            keyToData.remove(key);
+        if(unsavedData.contains(key)){
+            database.store(key, keyToData.get(key)); //store even if trivial (to clear out old values)
+            database.save();
+            resolveUnsavedData(key);
         }
+        keyToData.remove(key);
     }
 
     private boolean inCash(KEY key){

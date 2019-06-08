@@ -19,7 +19,7 @@ public class Notifications {
     }
 
     public static void sendNotFound(Player player, String type, String item){
-        player.sendMessage(ChatColor.RED + type + " " + WarpMagic.themeDark + item + ChatColor.RED + " not found" );
+        player.sendMessage(ChatColor.RED + type + " " + ChatColor.GRAY + item + ChatColor.RED + " not found" );
     }
 
     public static void sendSuccess(Player player, String message){

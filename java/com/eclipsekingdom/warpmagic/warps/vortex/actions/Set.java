@@ -24,12 +24,13 @@ public class Set extends CommandAction {
                     LocationValidation.Status locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
                     if(locationStatus == LocationValidation.Status.VALID){
                         if(!vortexAlreadySet(player, vortexName)){
-                            Vortex vortex = new Vortex(vortexName, player.getLocation(), player.getUniqueId());
+                            Vortex vortex = new Vortex(vortexName, player.getLocation(), player.getDisplayName());
                             vortexManager.registerVortex(vortex);
                             player.sendMessage(SUCCESSFUL_CLAIM_MESSAGE(vortex.getName()));
                         }else{
                             Vortex vortex = vortexManager.getVortexSetBy(player, vortexName);
                             vortex.updateLocation(player.getLocation());
+                            vortexManager.trackUnsavedData(vortexName);
                             player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(vortex.getName()));
                         }
                     }else{

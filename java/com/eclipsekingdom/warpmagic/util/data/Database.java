@@ -14,7 +14,6 @@ public class Database<KEY, DATA> {
 
     public Database(DataType dataType, String fileName, String dirName) {
         this.dataType = dataType;
-        this.header = fileName.toUpperCase().charAt(0) + fileName.toLowerCase().substring(1);
         this.fileName = fileName;
         this.dataFile = new File("plugins/WarpMagic"+dirName, fileName+".yml");
         this.dataConfig = YamlConfiguration.loadConfiguration(dataFile);
@@ -49,10 +48,8 @@ public class Database<KEY, DATA> {
 
     public List<String> getAllKeyPaths(){
         List<String> paths = new ArrayList<>();
-        if(dataConfig.contains(header)){
-            for(String path: dataConfig.getConfigurationSection(header).getKeys(false)){
-                paths.add(path);
-            }
+        for(String path: dataConfig.getRoot().getKeys(false)){
+            paths.add(path);
         }
         return paths;
     }
@@ -73,7 +70,6 @@ public class Database<KEY, DATA> {
         }
     }
 
-    private final String header;
     private final String getPath(KEY key){
         return (key.toString());
     }

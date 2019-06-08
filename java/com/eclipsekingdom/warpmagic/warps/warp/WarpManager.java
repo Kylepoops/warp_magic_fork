@@ -28,7 +28,6 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
                     config.set(warpPath+".z", location.getY());
                     config.set(warpPath+".yaw", location.getYaw());
                     config.set(warpPath+".pitch", location.getPitch());
-                    config.set(warpPath+".world", location.getWorld().getName());
                 }
             }
 
@@ -123,7 +122,7 @@ public class WarpManager extends Manager<UUID, List<Warp>> {
     /* --- implementation --- */
 
     @Override
-    protected boolean stillNeeded(UUID uuid) {
+    protected boolean stillNeeded(UUID uuid, UUID leavingUUID) {
         return false;
     }
 

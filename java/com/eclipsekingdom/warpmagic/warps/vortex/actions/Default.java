@@ -27,7 +27,7 @@ public class Default extends CommandAction {
 
     @Override
     protected CommandInfo initCommandInfo() {
-        return new CommandInfo("vortex [name]", "teleport to [name]");
+        return new CommandInfo("vortex [vortex-name]", "teleport to [vortex-name]");
     }
 
     @Override
