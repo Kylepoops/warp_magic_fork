@@ -22,7 +22,10 @@ public class Invite extends CommandAction {
                 if(!targetName.equalsIgnoreCase(player.getDisplayName())){
                     Player friend = getPlayer(targetName);
                     if(friend != null){
-                        processFriendRequest(player,home, friend.getDisplayName());
+                        if(processFriendRequest(player,home, friend.getDisplayName())){ //returns true if process went through
+                            friend.sendMessage(INVITATION_MESSAGE(player.getDisplayName()));
+                            Notifications.sendTip(friend, "fhome " + player.getDisplayName(), "to teleport there");
+                        }
                     }else{
                         OfflinePlayer oFriend = getOfflinePlayer(targetName);
                         if(oFriend != null){
@@ -64,6 +67,12 @@ public class Invite extends CommandAction {
                 + WarpMagic.themeLight + " was invited to your home"
         );
     }
+    private static final String INVITATION_MESSAGE(String hostName){
+        return (WarpMagic.themeLight + "You have been invited to "
+                + WarpMagic.themeDark + hostName
+                + WarpMagic.themeLight + "'s home"
+        );
+    }
 
     private final HomeManager homeManager = HomeManager.getInstance();
     private final RelationsManager relationsManager = RelationsManager.getInstance();
@@ -83,14 +92,16 @@ public class Invite extends CommandAction {
         return oPlayer;
     }
 
-    private void processFriendRequest(Player player, Home home, String friendName){
+    private boolean processFriendRequest(Player player, Home home, String friendName){
         if(!home.getFriends().contains(friendName)){
             home.addFriend(friendName);
             relationsManager.registerFriendAdd(player.getDisplayName(), friendName);
             homeManager.trackUnsavedData(player.getDisplayName());
             player.sendMessage(SUCCESSFUL_INVITE_MESSAGE(friendName));
+            return true;
         }else{
             Notifications.sendWarning(player, ALREADY_FRIEND_ERROR(friendName));
+            return false;
         }
     }
 

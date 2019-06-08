@@ -1,4 +1,6 @@
 package com.eclipsekingdom.warpmagic.requests;
 
-public class requests {
+public enum RequestType{
+    TPA,
+    TPAHERE
 }

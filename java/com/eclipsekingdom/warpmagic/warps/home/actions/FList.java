@@ -11,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class FList extends CommandAction {
+
     @Override
     public void run(Player player, String[] args) {
         Home home = homeManager.getHome(player);

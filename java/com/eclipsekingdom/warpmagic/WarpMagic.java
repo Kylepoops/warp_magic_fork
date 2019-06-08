@@ -4,6 +4,11 @@ import com.eclipsekingdom.warpmagic.global.CommandHub;
 import com.eclipsekingdom.warpmagic.global.CommandSetHub;
 import com.eclipsekingdom.warpmagic.global.CommandSetSpawn;
 import com.eclipsekingdom.warpmagic.global.CommandSpawn;
+import com.eclipsekingdom.warpmagic.requests.CommandTPA;
+import com.eclipsekingdom.warpmagic.requests.CommandTPAHere;
+import com.eclipsekingdom.warpmagic.requests.CommandTPAccept;
+import com.eclipsekingdom.warpmagic.requests.CommandTPDeny;
+import com.eclipsekingdom.warpmagic.util.commands.AutoCompleteListener;
 import com.eclipsekingdom.warpmagic.util.commands.SummonLootCommand;
 import com.eclipsekingdom.warpmagic.util.data.CacheListener;
 import com.eclipsekingdom.warpmagic.util.data.PluginData;
@@ -31,11 +36,14 @@ public final class WarpMagic extends JavaPlugin {
         new LootListener(this);
         new CacheListener(this);
         new RespawnListener(this);
+        new AutoCompleteListener(this);
 
+        this.getCommand("warpmagic").setExecutor(new CommandWarpMagic());
         this.getCommand("spawn").setExecutor(new CommandSpawn());
         this.getCommand("setspawn").setExecutor(new CommandSetSpawn());
         this.getCommand("hub").setExecutor(new CommandHub());
         this.getCommand("sethub").setExecutor(new CommandSetHub());
+
         this.getCommand("home").setExecutor(CommandHome.getInstance());
         this.getCommand("fhome").setExecutor(CommandFHome.getInstance());
         this.getCommand("warp").setExecutor(CommandWarp.getInstance());
@@ -52,6 +60,11 @@ public final class WarpMagic extends JavaPlugin {
                 return VortexStone.getInstance();
             }
         });
+
+        this.getCommand("tpa").setExecutor(new CommandTPA(this));
+        this.getCommand("tpahere").setExecutor(new CommandTPAHere(this));
+        this.getCommand("tpaccept").setExecutor(new CommandTPAccept());
+        this.getCommand("tpdeny").setExecutor(new CommandTPDeny());
     }
 
     @Override

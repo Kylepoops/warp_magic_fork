@@ -23,6 +23,7 @@ public class CommandFHome extends RootCommand {
     protected List<CommandAction> initCommandActions() {
         List<CommandAction> actions = new ArrayList<>();
         actions.add(new FHome());
+        actions.add(new FHList());
         return actions;
     }
 

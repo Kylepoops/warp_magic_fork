@@ -1,5 +1,2 @@
-* those with command perm sees command in help list
+* effects
 * jump/top/bottom
-* command to see homes you are invited to
-* notify player when invited
-* command to reset relations

@@ -7,6 +7,8 @@ description: A teleportation management plugin
 website: eclipsekingdom.com
 
 commands:
+  warpmagic:
+  we:
   home:
   fhome:
   warp:
@@ -17,3 +19,7 @@ commands:
   setspawn:
   hub:
   sethub:
+  tpa:
+  tpdeny:
+  tpaccept:
+  tpahere:
