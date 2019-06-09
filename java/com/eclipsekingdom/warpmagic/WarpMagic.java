@@ -2,6 +2,7 @@ package com.eclipsekingdom.warpmagic;
 
 import com.eclipsekingdom.warpmagic.effect.gui.InputListener;
 import com.eclipsekingdom.warpmagic.effect.list.Bats;
+import com.eclipsekingdom.warpmagic.global.NewPlayerListener;
 import com.eclipsekingdom.warpmagic.util.commands.AutoCompleteListener;
 import com.eclipsekingdom.warpmagic.util.commands.PluginCommands;
 import com.eclipsekingdom.warpmagic.util.data.CacheListener;
@@ -32,6 +33,7 @@ public final class WarpMagic extends JavaPlugin {
         new RespawnListener(this);
         new AutoCompleteListener(this);
         new InputListener(this);
+        new NewPlayerListener(this);
 
         pluginCommands.registerAll();
 

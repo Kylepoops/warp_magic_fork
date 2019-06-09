@@ -56,6 +56,10 @@ public class EffectManager extends Manager<UUID,EffectInfo> {
         if(keyToData.containsKey(playerID)){
             EffectInfo effectInfo = keyToData.get(playerID);
             effectInfo.setCurrentEffect(effect);
+        }else{
+            EffectInfo effectInfo = new EffectInfo();
+            effectInfo.setCurrentEffect(effect);
+            keyToData.put(playerID, effectInfo);
         }
         trackUnsavedData(playerID);
     }

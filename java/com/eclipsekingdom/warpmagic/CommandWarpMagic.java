@@ -33,6 +33,8 @@ public class CommandWarpMagic implements CommandExecutor {
         List<CommandInfo> commandInfoList = new ArrayList<>();
         commandInfoList.add(new CommandInfo("spawn", "teleport to spawn"));
         commandInfoList.add(new CommandInfo("hub", "teleport to hub"));
+        commandInfoList.add(new CommandInfo("tpa [player]", "request to teleport to player"));
+        commandInfoList.add(new CommandInfo("tpahere [player]", "request that a player teleport to you"));
         commandInfoList.add(new CommandInfo("home help", "show home commands"));
         commandInfoList.add(new CommandInfo("warp help", "show warp commands"));
         commandInfoList.add(new CommandInfo("vortex help", "show vortex commands"));
