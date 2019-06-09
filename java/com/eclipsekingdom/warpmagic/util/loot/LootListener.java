@@ -1,6 +1,8 @@
 package com.eclipsekingdom.warpmagic.util.loot;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
+import com.eclipsekingdom.warpmagic.effect.EffectType;
+import com.eclipsekingdom.warpmagic.effect.WarpEffectStone;
 import com.eclipsekingdom.warpmagic.warps.vortex.VortexStone;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpStone;
 import org.bukkit.Material;
@@ -38,6 +40,7 @@ public class LootListener implements Listener {
         List<Loot> loots = new ArrayList<>();
         loots.add(WarpStone.getInstance());
         loots.add(VortexStone.getInstance());
+        loots.add(WarpEffectStone.getInstance());
         return loots;
     }
 

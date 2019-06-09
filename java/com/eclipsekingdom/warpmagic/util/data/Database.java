@@ -66,7 +66,7 @@ public class Database<KEY, DATA> {
         try{
             dataConfig.save(dataFile);
         } catch (Exception e){
-            Bukkit.getConsoleSender().sendMessage("Help saving "+fileName+".yml");
+            Bukkit.getConsoleSender().sendMessage("W_Help saving "+fileName+".yml");
         }
     }
 

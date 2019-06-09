@@ -18,6 +18,10 @@ import java.util.*;
 
 public class WarpStone extends Loot {
 
+    private WarpStone() {
+        super(ChatColor.GREEN + "It appears unstable");
+    }
+
     private static final WarpStone WARP_STONE = new WarpStone();
 
     public static final WarpStone getInstance(){
@@ -37,12 +41,7 @@ public class WarpStone extends Loot {
     }
 
     @Override
-    protected String initUniqueLore() {
-        return ChatColor.GREEN + "it appears unstable";
-    }
-
-    @Override
-    protected ItemStack buildItemStack(String uniqueLore) {
+    protected ItemStack buildItemStack() {
         ItemStack warpStone = new ItemStack(Material.EMERALD);
         ItemMeta meta = warpStone.getItemMeta();
 

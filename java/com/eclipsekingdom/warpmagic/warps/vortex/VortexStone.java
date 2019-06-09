@@ -17,6 +17,10 @@ import java.util.ArrayList;
 
 public class VortexStone extends Loot {
 
+    private VortexStone() {
+        super(ChatColor.GREEN + "It appears only partly grounded in this dimension");
+    }
+
     private static final VortexStone VORTEX_STONE = new VortexStone();
 
     public static final VortexStone getInstance(){
@@ -36,12 +40,7 @@ public class VortexStone extends Loot {
     }
 
     @Override
-    protected String initUniqueLore() {
-        return ChatColor.GREEN + "it is only partly grounded in this dimension";
-    }
-
-    @Override
-    protected ItemStack buildItemStack(String uniqueLore) {
+    protected ItemStack buildItemStack() {
         ItemStack vortexStone = new ItemStack(Material.EMERALD);
         ItemMeta meta = vortexStone.getItemMeta();
 

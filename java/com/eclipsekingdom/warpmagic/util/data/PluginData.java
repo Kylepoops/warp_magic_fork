@@ -1,5 +1,6 @@
 package com.eclipsekingdom.warpmagic.util.data;
 
+import com.eclipsekingdom.warpmagic.effect.EffectManager;
 import com.eclipsekingdom.warpmagic.global.GlobalManager;
 import com.eclipsekingdom.warpmagic.warps.home.HomeManager;
 import com.eclipsekingdom.warpmagic.warps.home.RelationsManager;
@@ -39,6 +40,7 @@ public class PluginData {
         WarpNumManager.getInstance().cache(playerID);
         WarpManager.getInstance().cache(playerID);
         VortexNumManager.getInstance().cache(playerID);
+        EffectManager.getInstance().cache(playerID);
         HomeManager.getInstance().cache(playerName);
     }
 
@@ -48,6 +50,7 @@ public class PluginData {
         WarpNumManager.getInstance().forget(playerID);
         WarpManager.getInstance().forget(playerID);
         VortexNumManager.getInstance().forget(playerID);
+        EffectManager.getInstance().forget(playerID);
         HomeManager.getInstance().forget(playerName);
     }
 
@@ -63,6 +66,7 @@ public class PluginData {
         managers.add(VortexManager.getInstance());
         managers.add(RelationsManager.getInstance());
         managers.add(GlobalManager.getInstance());
+        managers.add(EffectManager.getInstance());
         return managers;
     }
 }

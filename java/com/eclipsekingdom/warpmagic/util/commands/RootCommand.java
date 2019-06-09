@@ -8,11 +8,16 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RootCommand implements CommandExecutor {
+public class RootCommand implements CommandExecutor {
+
+    public RootCommand(CommandAction defaultAction, List<CommandAction> actions){
+        this.defaultAction = defaultAction;
+        this.actions = actions;
+        this.infos = buildCommandInfoList(actions);
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-
 
         if (sender instanceof Player) {
             Player player = (Player) sender;
@@ -26,18 +31,12 @@ public abstract class RootCommand implements CommandExecutor {
         return false;
     }
 
-    public List<CommandInfo> getInfoList() {
-        return infoList;
+    public List<CommandInfo> getInfoList(){
+        return infos;
     }
 
-    protected abstract List<CommandAction> initCommandActions();
-    private final List<CommandAction> actions = initCommandActions();
 
-    protected abstract CommandAction initDefaultAction();
-    private final CommandAction defaultAction = initDefaultAction();
-
-    private List<CommandInfo> infoList = buildCommandInfoList();
-    private List<CommandInfo> buildCommandInfoList(){
+    private List<CommandInfo> buildCommandInfoList(List<CommandAction> actions){
         List<CommandInfo> infoList = new ArrayList<>();
         for(CommandAction action: actions){
             infoList.add(action.getInfo());
@@ -56,5 +55,8 @@ public abstract class RootCommand implements CommandExecutor {
         return action;
     }
 
+    private final CommandAction defaultAction;
+    private final List<CommandAction> actions;
+    private final List<CommandInfo> infos;
 
 }
