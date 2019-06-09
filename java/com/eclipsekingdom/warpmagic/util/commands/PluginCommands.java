@@ -58,7 +58,6 @@ public class PluginCommands {
 
         List<CommandAction> HActions = new ArrayList<>();
         HActions.add(new H_Default(plugin));
-        HActions.add(new FH_Default(plugin));
         HActions.add(new H_Help(plugin));
         HActions.add(new H_Set());
         HActions.add(new H_Del());

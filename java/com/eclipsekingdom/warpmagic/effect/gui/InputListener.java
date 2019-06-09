@@ -32,7 +32,7 @@ public class InputListener implements Listener {
             if (isMenuClick(e)) {
                 ItemStack effectMenuItem = e.getClickedInventory().getItem(e.getSlot());
                 if(isEffectCandidate(effectMenuItem)){
-                    EffectType effectType = EffectType.fromString(effectMenuItem.getItemMeta().getDisplayName().substring(2));
+                    EffectType effectType = EffectType.fromItemName(effectMenuItem.getItemMeta().getDisplayName());
                     if(effectType != EffectType.UNKNOWN){
                         playSound(player);
                         Effect effect = effectType.getEffect();

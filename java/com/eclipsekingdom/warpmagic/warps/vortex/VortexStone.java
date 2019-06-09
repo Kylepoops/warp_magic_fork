@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class VortexStone extends Loot {
 
     private VortexStone() {
-        super(ChatColor.GREEN + "It appears only partly grounded in this dimension");
+        super(ChatColor.GREEN + "Only partly grounded in this dimension");
     }
 
     private static final VortexStone VORTEX_STONE = new VortexStone();

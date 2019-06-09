@@ -179,7 +179,7 @@ public class AutoCompleteListener implements Listener {
         List<String> effect = new ArrayList<>();
         for(EffectType effectType: EffectType.values()){
             if(effectType != EffectType.NONE && effectType != EffectType.UNKNOWN){
-                effect.add(effectType.getEffect().getName().substring(2));
+                effect.add(effectType.name().toLowerCase());
             }
         }
         return effect;

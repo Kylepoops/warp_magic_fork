@@ -11,7 +11,7 @@ public enum EffectType {
     Electric(new Electric()),
     MELTING(new Melting()),
     ENDER(new Ender()),
-    FARORES_WIND(new FaroresWind());
+    FARORES(new FaroresWind());
 
 
     EffectType(Effect effect){
@@ -20,7 +20,16 @@ public enum EffectType {
 
     public static final EffectType fromString(String string){
         for(EffectType effectType: EffectType.values()){
-            if(effectType.getEffect().getName().substring(2).equalsIgnoreCase(string)){
+            if(effectType.name().equalsIgnoreCase(string)){
+                return effectType;
+            }
+        }
+        return UNKNOWN;
+    }
+
+    public static final EffectType fromItemName(String string){
+        for(EffectType effectType: EffectType.values()){
+            if(effectType.getEffect().getName().equalsIgnoreCase(string)){
                 return effectType;
             }
         }

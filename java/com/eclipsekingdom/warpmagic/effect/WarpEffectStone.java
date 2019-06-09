@@ -30,8 +30,8 @@ public class WarpEffectStone extends Loot {
 
     @Override
     public void use(Player player, ItemStack itemStack) {
-        String effectString = itemStack.getItemMeta().getLore().get(2).split("effect: ")[1].substring(2); //substring 2 gets rid of the chat color strings
-        EffectType effectType = EffectType.fromString(effectString);
+        String effectString = itemStack.getItemMeta().getLore().get(2).split("effect: ")[1];
+        EffectType effectType = EffectType.fromItemName(effectString);
         Effect effect = effectType.getEffect();
         if(!effectManager.getEffects(player).contains(effect) && !Permissions.hasAllEffects(player)){
             effectManager.unlockEffect(player, effect);
