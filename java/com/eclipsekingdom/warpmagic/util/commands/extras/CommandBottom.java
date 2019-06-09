@@ -22,6 +22,7 @@ public class CommandBottom implements CommandExecutor {
             if(Permissions.hasExtras(player)){
 
                 Location bottom = player.getLocation();
+                boolean atLeastOneSolidBlock = false;
                 int emptyBlocksInARow = 0;
                 for(int i = 1; i<255;i++){
                     bottom.setY(i);
@@ -29,8 +30,9 @@ public class CommandBottom implements CommandExecutor {
                         emptyBlocksInARow++;
                     }else{
                         emptyBlocksInARow=0;
+                        atLeastOneSolidBlock = true;
                     }
-                    if(emptyBlocksInARow == 2){
+                    if(emptyBlocksInARow == 2 && atLeastOneSolidBlock){
                         break;
                     }
                 }

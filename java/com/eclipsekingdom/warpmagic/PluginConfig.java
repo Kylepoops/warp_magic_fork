@@ -93,7 +93,7 @@ public class PluginConfig {
     private static final int STARTING_WARP_NUM_DEFAULT = 3;
     private static int startingWarpNum;
 
-    private static final String MAX_WARP_NUM_SETTING = "Maximum Plot Amount";
+    private static final String MAX_WARP_NUM_SETTING = "Maximum Warp Amount";
     private static final int MAX_WARP_NUM_DEFAULT = 18;
     private static int maxWarpNum;
     
@@ -101,7 +101,7 @@ public class PluginConfig {
     private static final int STARTING_VORTEX_NUM_DEFAULT = 0;
     private static int startingVortexNum;
 
-    private static final String MAX_VORTEX_NUM_SETTING = "Maximum Plot Amount";
+    private static final String MAX_VORTEX_NUM_SETTING = "Maximum Vortex Amount";
     private static final int MAX_VORTEX_NUM_DEFAULT = 3;
     private static int maxVortexNum;
 
@@ -109,8 +109,8 @@ public class PluginConfig {
     private static final List<String> VALID_WORLDS_DEFAULT = buildWorldDefaults();
     private static List<String> validWorlds;
 
-    private static final String HIDDEN_VORTEX_NAMES_SETTING = "Hidden Vortex Names";
-    private static final List<String> HIDDEN_VORTEX_NAMES_DEFAULT = Collections.emptyList();
+    private static final String HIDDEN_VORTEX_NAMES_SETTING = "Hidden Vortex Owner Names";
+    private static final List<String> HIDDEN_VORTEX_NAMES_DEFAULT = Collections.singletonList("example");
     private static List<String> hiddenVortexNames;
 
 
@@ -129,8 +129,8 @@ public class PluginConfig {
         config.set(key+"."+MAX_WARP_NUM_SETTING, MAX_WARP_NUM_DEFAULT);
         config.set(key+"."+STARTING_VORTEX_NUM_SETTING, STARTING_VORTEX_NUM_DEFAULT);
         config.set(key+"."+MAX_VORTEX_NUM_SETTING, MAX_VORTEX_NUM_DEFAULT);
-        config.set(key+"."+VALID_WORLDS_SETTING, VALID_WORLDS_DEFAULT);
         config.set(key+"."+HIDDEN_VORTEX_NAMES_SETTING, HIDDEN_VORTEX_NAMES_DEFAULT);
+        config.set(key+"."+VALID_WORLDS_SETTING, VALID_WORLDS_DEFAULT);
         saveConfig();
     }
 
