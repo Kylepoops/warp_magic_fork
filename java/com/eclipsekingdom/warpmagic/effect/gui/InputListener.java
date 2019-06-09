@@ -4,7 +4,6 @@ import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.effect.Effect;
 import com.eclipsekingdom.warpmagic.effect.EffectManager;
 import com.eclipsekingdom.warpmagic.effect.EffectType;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.HumanEntity;
@@ -38,6 +37,7 @@ public class InputListener implements Listener {
                         playSound(player);
                         Effect effect = effectType.getEffect();
                         effectManager.setCurrent(player, effect);
+                        effectManager.trackUnsavedData(player.getUniqueId());
                         updateHeaderSlot(e.getClickedInventory(), effect);
                     }
                 }

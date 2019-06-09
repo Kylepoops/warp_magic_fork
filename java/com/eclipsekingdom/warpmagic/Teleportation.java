@@ -4,6 +4,7 @@ import com.eclipsekingdom.warpmagic.effect.Effect;
 import com.eclipsekingdom.warpmagic.effect.EffectManager;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.warps.warp.Warp;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -22,12 +23,23 @@ public class Teleportation {
                 playSound(player);
                 effect.run(player, plugin);
                 player.teleport(location);
-                effect.run(player, plugin);
-                playSound(player);
+
+                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                    @Override
+                    public void run() {
+                        effect.run(player, plugin);
+                        playSound(player);
+                    }
+                }, 1);
             }else{
                 playSound(player);
                 player.teleport(location);
-                playSound(player);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                    @Override
+                    public void run() {
+                        playSound(player);
+                    }
+                }, 1);
             }
         }else{
             if(player.isOnline()){

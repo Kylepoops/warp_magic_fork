@@ -34,6 +34,13 @@ public class Menus {
 
         Effect currentEffect = EffectType.NONE.getEffect();
         List<Effect> effects = Collections.emptyList();
+
+        EffectInfo effectInfo = effectManager.getEffectInfo(player);
+        if(effectInfo != null){
+            currentEffect = effectInfo.getCurrentEffect();
+            effects = effectInfo.getEffects();
+        }
+
         if(Permissions.hasAllEffects(player)){
             List<Effect> allEffects = new ArrayList<>();
             for(EffectType effectType: EffectType.values()){
@@ -42,14 +49,7 @@ public class Menus {
                 }
             }
             effects = allEffects;
-        }else{
-            EffectInfo effectInfo = effectManager.getEffectInfo(player);
-            if(effectInfo != null){
-                currentEffect = effectInfo.getCurrentEffect();
-                effects = effectInfo.getEffects();
-            }
         }
-
 
         addHeader(inventory, WARP_BORDER, createIconWithLore(currentEffect.getMaterial(), ChatColor.GRAY + " - Active Effect - ", currentEffect.getName()));
         inventory.setItem(9,getMenuItem(EffectType.NONE.getEffect()));

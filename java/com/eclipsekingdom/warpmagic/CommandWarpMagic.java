@@ -21,6 +21,9 @@ public class CommandWarpMagic implements CommandExecutor {
             if(Permissions.canSetGlobalPoints(player)){
                 PluginHelp.showSubList(player, setCommandInfos);
             }
+            if(Permissions.canSummonLoot(player)){
+                PluginHelp.showSubList(player, stoneCommandInfos);
+            }
         }
         return false;
     }
@@ -41,6 +44,16 @@ public class CommandWarpMagic implements CommandExecutor {
         List<CommandInfo> commandInfoList = new ArrayList<>();
         commandInfoList.add(new CommandInfo("setspawn", "set spawn location"));
         commandInfoList.add(new CommandInfo("sethub", "set hub location"));
+        return commandInfoList;
+    }
+
+    private static final List<CommandInfo> stoneCommandInfos = buildStoneCommandInfos();
+    private static final List<CommandInfo> buildStoneCommandInfos(){
+        List<CommandInfo> commandInfoList = new ArrayList<>();
+        commandInfoList.add(new CommandInfo("warpstone [integer]", "get warp stone(s)"));
+        commandInfoList.add(new CommandInfo("vortexstone [integer]", "get vortex stone(s)"));
+        commandInfoList.add(new CommandInfo("effectstone [effect-type] [integer]", "get effect stone(s)"));
+        commandInfoList.add(new CommandInfo("effectstone list", "list all effect types"));
         return commandInfoList;
     }
 }

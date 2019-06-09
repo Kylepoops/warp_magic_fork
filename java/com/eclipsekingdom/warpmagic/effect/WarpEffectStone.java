@@ -1,5 +1,6 @@
 package com.eclipsekingdom.warpmagic.effect;
 
+import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.util.communication.Notifications;
 import com.eclipsekingdom.warpmagic.util.loot.Loot;
 import com.eclipsekingdom.warpmagic.util.operations.ItemOperations;
@@ -32,9 +33,10 @@ public class WarpEffectStone extends Loot {
         String effectString = itemStack.getItemMeta().getLore().get(2).split("effect: ")[1].substring(2); //substring 2 gets rid of the chat color strings
         EffectType effectType = EffectType.fromString(effectString);
         Effect effect = effectType.getEffect();
-        if(!effectManager.getEffects(player).contains(effect)){
+        if(!effectManager.getEffects(player).contains(effect) && !Permissions.hasAllEffects(player)){
             effectManager.unlockEffect(player, effect);
             Notifications.sendSuccess(player, "You unlocked " + effect.getName());
+            Notifications.sendTip(player, "we", "to equip an effect");
             ItemOperations.consumeItem(itemStack);
         }else{
             Notifications.sendWarning(player, "You have already unlocked " + effect.getName());
@@ -49,7 +51,7 @@ public class WarpEffectStone extends Loot {
         ItemStack effectStone = new ItemStack(Material.EMERALD);
         ItemMeta meta = effectStone.getItemMeta();
 
-        meta.setDisplayName(ChatColor.DARK_GREEN + "Warp Effect Stone");
+        meta.setDisplayName(ChatColor.DARK_GREEN + "Effect Stone");
         ArrayList<String> loreLines = new ArrayList<>();
         loreLines.add(uniqueLore);
         loreLines.add(ChatColor.RED + "1 use only - click to activate");

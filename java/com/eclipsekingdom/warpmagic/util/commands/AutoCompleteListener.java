@@ -1,6 +1,7 @@
 package com.eclipsekingdom.warpmagic.util.commands;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
+import com.eclipsekingdom.warpmagic.effect.EffectType;
 import com.eclipsekingdom.warpmagic.warps.home.Home;
 import com.eclipsekingdom.warpmagic.warps.home.HomeManager;
 import com.eclipsekingdom.warpmagic.warps.home.RelationsManager;
@@ -26,26 +27,30 @@ public class AutoCompleteListener implements Listener {
     @EventHandler
     public void onComplete(TabCompleteEvent e){
         if(e.getSender() instanceof Player){
+            Player player = (Player) e.getSender();
+            
             if(e.getBuffer().contains("/tpahere ")){
-                e.setCompletions(getRefinedCompletions("/tpahere", e.getBuffer(), tpaCompletions((Player) e.getSender())));
+                e.setCompletions(getRefinedCompletions("/tpahere", e.getBuffer(), tpaCompletions(player)));
             }else if(e.getBuffer().contains("/tpa ")){
-                e.setCompletions(getRefinedCompletions("/tpa", e.getBuffer(), tpaCompletions((Player) e.getSender())));
+                e.setCompletions(getRefinedCompletions("/tpa", e.getBuffer(), tpaCompletions(player)));
             }else if(e.getBuffer().contains("/home invite ")){
-                e.setCompletions(getRefinedCompletions("/home invite", e.getBuffer(),inviteCompletions((Player) e.getSender())));
+                e.setCompletions(getRefinedCompletions("/home invite", e.getBuffer(),inviteCompletions(player)));
             }else if(e.getBuffer().contains("/home uninvite ")){
-                e.setCompletions(getRefinedCompletions("/home uninvite", e.getBuffer(),uninviteCompletions((Player)e.getSender())));
+                e.setCompletions(getRefinedCompletions("/home uninvite", e.getBuffer(),uninviteCompletions(player)));
             }else if(e.getBuffer().contains("/home ")){
                 e.setCompletions(getRefinedCompletions("/home", e.getBuffer(), homeCompletions));
             }else if(e.getBuffer().contains("/warp del ")){
-                e.setCompletions(getRefinedCompletions("/warp del", e.getBuffer(),warpList((Player) e.getSender())));
+                e.setCompletions(getRefinedCompletions("/warp del", e.getBuffer(),warpList(player)));
             }else if(e.getBuffer().contains("/warp ")){
-                e.setCompletions(getRefinedCompletions("/warp", e.getBuffer(),warpCompletions((Player) e.getSender())));
+                e.setCompletions(getRefinedCompletions("/warp", e.getBuffer(),warpCompletions(player)));
             }else if(e.getBuffer().contains("/vortex del ")){
-                e.setCompletions(getRefinedCompletions("/vortex del", e.getBuffer(),vortexSetByList((Player) e.getSender())));
+                e.setCompletions(getRefinedCompletions("/vortex del", e.getBuffer(),vortexSetByList(player)));
             }else if(e.getBuffer().contains("/vortex ")){
                 e.setCompletions(getRefinedCompletions("/vortex", e.getBuffer(),vortexCompletion()));
             }else if(e.getBuffer().contains("/fhome ")){
-                e.setCompletions(getRefinedCompletions("/fhome", e.getBuffer(),fhomeCompletions((Player) e.getSender())));
+                e.setCompletions(getRefinedCompletions("/fhome", e.getBuffer(),fhomeCompletions(player)));
+            }else if(e.getBuffer().contains("/effectstone ")){
+                e.setCompletions(getRefinedCompletions("/effectstone", e.getBuffer(), effectCompletions()));
             }
         }
     }
@@ -168,6 +173,16 @@ public class AutoCompleteListener implements Listener {
             }
         }
         return onlinePlayerName;
+    }
+
+    private static List<String> effectCompletions(){
+        List<String> effect = new ArrayList<>();
+        for(EffectType effectType: EffectType.values()){
+            if(effectType != EffectType.NONE && effectType != EffectType.UNKNOWN){
+                effect.add(effectType.getEffect().getName().substring(2));
+            }
+        }
+        return effect;
     }
 
 

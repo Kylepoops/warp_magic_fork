@@ -21,6 +21,9 @@ public abstract class SummonLootCommand implements CommandExecutor {
                 if(args.length > 0){
                     try{
                         amt = Integer.parseInt(args[0]);
+                        if(amt < 0){
+                            amt = 0;
+                        }
                     }catch (Exception e){
                         //do nothing
                     }
