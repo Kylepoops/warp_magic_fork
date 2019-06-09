@@ -24,3 +24,6 @@ commands:
   tpdeny:
   tpaccept:
   tpahere:
+  jump:
+  top:
+  bottom:

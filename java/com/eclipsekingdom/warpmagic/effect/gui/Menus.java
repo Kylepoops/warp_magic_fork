@@ -1,5 +1,6 @@
 package com.eclipsekingdom.warpmagic.effect.gui;
 
+import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.effect.Effect;
 import com.eclipsekingdom.warpmagic.effect.EffectInfo;
@@ -13,6 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,11 +34,22 @@ public class Menus {
 
         Effect currentEffect = EffectType.NONE.getEffect();
         List<Effect> effects = Collections.emptyList();
-        EffectInfo effectInfo = effectManager.getEffectInfo(player);
-        if(effectInfo != null){
-            currentEffect = effectInfo.getCurrentEffect();
-            effects = effectInfo.getEffects();
+        if(Permissions.hasAllEffects(player)){
+            List<Effect> allEffects = new ArrayList<>();
+            for(EffectType effectType: EffectType.values()){
+                if(effectType != effectType.UNKNOWN && effectType != effectType.NONE){
+                    allEffects.add(effectType.getEffect());
+                }
+            }
+            effects = allEffects;
+        }else{
+            EffectInfo effectInfo = effectManager.getEffectInfo(player);
+            if(effectInfo != null){
+                currentEffect = effectInfo.getCurrentEffect();
+                effects = effectInfo.getEffects();
+            }
         }
+
 
         addHeader(inventory, WARP_BORDER, createIconWithLore(currentEffect.getMaterial(), ChatColor.GRAY + " - Active Effect - ", currentEffect.getName()));
         inventory.setItem(9,getMenuItem(EffectType.NONE.getEffect()));

@@ -12,6 +12,9 @@ import com.eclipsekingdom.warpmagic.requests.CommandTPA;
 import com.eclipsekingdom.warpmagic.requests.CommandTPAHere;
 import com.eclipsekingdom.warpmagic.requests.CommandTPAccept;
 import com.eclipsekingdom.warpmagic.requests.CommandTPDeny;
+import com.eclipsekingdom.warpmagic.util.commands.extras.CommandBottom;
+import com.eclipsekingdom.warpmagic.util.commands.extras.CommandJump;
+import com.eclipsekingdom.warpmagic.util.commands.extras.CommandTop;
 import com.eclipsekingdom.warpmagic.util.loot.Loot;
 import com.eclipsekingdom.warpmagic.warps.home.hactions.*;
 import com.eclipsekingdom.warpmagic.warps.home.hactions.H_Del;
@@ -114,6 +117,10 @@ public class PluginCommands {
         plugin.getCommand("tpdeny").setExecutor(new CommandTPDeny());
         plugin.getCommand("we").setExecutor(new CommandWarpEffect());
         plugin.getCommand("effectstone").setExecutor(new CommandEffectStone());
+
+        plugin.getCommand("jump").setExecutor(new CommandJump(plugin));
+        plugin.getCommand("top").setExecutor(new CommandTop(plugin));
+        plugin.getCommand("bottom").setExecutor(new CommandBottom(plugin));
 
 
     }
