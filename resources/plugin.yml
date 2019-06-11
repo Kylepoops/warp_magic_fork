@@ -6,6 +6,8 @@ authors: [sword]
 description: A teleportation management plugin
 website: eclipsekingdom.com
 
+load: POSTWORLD
+
 commands:
   warpmagic:
   we:

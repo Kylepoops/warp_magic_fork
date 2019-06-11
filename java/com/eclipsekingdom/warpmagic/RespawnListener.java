@@ -3,6 +3,7 @@ package com.eclipsekingdom.warpmagic;
 import com.eclipsekingdom.warpmagic.global.GlobalManager;
 import com.eclipsekingdom.warpmagic.warps.home.Home;
 import com.eclipsekingdom.warpmagic.warps.home.HomeManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,6 +19,7 @@ public class RespawnListener implements Listener {
         Home home = homeManager.getHome(e.getPlayer());
         if(home != null){
             e.setRespawnLocation(home.getLocation());
+            Bukkit.getConsoleSender().sendMessage(home.getLocation().toString());
         }else{
             Location spawn = globalManager.getSpawn();
             if(spawn != null){

@@ -57,11 +57,21 @@ public class GlobalManager extends Manager<GlobalPoint, Location> {
     }
 
     public Location getSpawn(){
-        return keyToData.get(GlobalPoint.SPAWN);
+        Location spawn = keyToData.get(GlobalPoint.SPAWN);
+        if(spawn != null){
+            return spawn.clone();
+        }else{
+            return null;
+        }
     }
 
     public Location getHub(){
-        return keyToData.get(GlobalPoint.HUB);
+        Location hub = keyToData.get(GlobalPoint.HUB);
+        if(hub != null){
+            return hub.clone();
+        }else{
+            return null;
+        }
     }
 
 

@@ -3,9 +3,11 @@ package com.eclipsekingdom.warpmagic.warps.warp;
 import com.eclipsekingdom.warpmagic.PluginConfig;
 import com.eclipsekingdom.warpmagic.util.data.DataType;
 import com.eclipsekingdom.warpmagic.util.data.Manager;
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 
 import java.util.Collections;
 import java.util.List;
@@ -80,5 +82,22 @@ public class WarpNumManager extends Manager<UUID,Integer> {
     protected List<UUID> getRequirements(UUID uuid) {
         return Collections.emptyList();
     }
+
+
+    private int getWarpNumFromPermission(Player player){
+        int warpNum = 0;
+        for(PermissionAttachmentInfo permissionAttachmentInfo: player.getEffectivePermissions()){
+            if(permissionAttachmentInfo.getPermission().contains("warp.start.")){
+                try {
+                    warpNum = Integer.parseInt(permissionAttachmentInfo.getPermission().split("warp.start.")[1]);
+                }catch (Exception e){
+                    //do nothing
+                }
+                break;
+            }
+        }
+        return warpNum;
+    }
+
 
 }

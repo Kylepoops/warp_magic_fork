@@ -11,7 +11,9 @@ public enum EffectType {
     Electric(new Electric()),
     MELTING(new Melting()),
     ENDER(new Ender()),
-    FARORES(new FaroresWind());
+    FARORES(new FaroresWind()),
+    POOF(new Poof()),
+    POOFDARK(new PoofDark());
 
 
     EffectType(Effect effect){

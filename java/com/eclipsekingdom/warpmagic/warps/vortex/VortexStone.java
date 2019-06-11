@@ -7,6 +7,7 @@ import com.eclipsekingdom.warpmagic.util.loot.Loot;
 import com.eclipsekingdom.warpmagic.util.operations.ItemOperations;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -34,6 +35,7 @@ public class VortexStone extends Loot {
             vortexNumManager.incrementVortexCapacity(player);
             Notifications.sendSuccess(player, "+1 vortex");
             ItemOperations.consumeItem(itemStack);
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, (float)1 ,(float)2);
         }else{
             Notifications.sendWarning(player, "You already have the maximum number of vortexes");
         }

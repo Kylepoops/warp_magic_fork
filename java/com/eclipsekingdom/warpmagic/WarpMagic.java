@@ -26,6 +26,7 @@ public final class WarpMagic extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        pluginConfig.load();
         pluginData.load();
 
         new LootListener(this);
@@ -47,6 +48,7 @@ public final class WarpMagic extends JavaPlugin {
     }
 
     private final PluginData pluginData = PluginData.getInstance();
+    private final PluginConfig pluginConfig = PluginConfig.getInstance();
     private final Teleportation teleportation = new Teleportation(this);
     private final PluginCommands pluginCommands = new PluginCommands(this);
 

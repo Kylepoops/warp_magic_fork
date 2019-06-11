@@ -8,6 +8,7 @@ import com.eclipsekingdom.warpmagic.util.operations.ItemOperations;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -35,6 +36,7 @@ public class WarpStone extends Loot {
             warpNumManager.incrementWarpCapacity(player);
             Notifications.sendSuccess(player, "+1 warp");
             ItemOperations.consumeItem(itemStack);
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, (float)1 ,(float)2);
         }else{
             Notifications.sendWarning(player, "You already have the maximum number of warps");
         }
