@@ -19,12 +19,17 @@ public class StorageString {
     public static Location convertToLocation(String string){
         try{
             String[] parts = string.split("_");
-            World world = Bukkit.getWorld(parts[0]);
-            double x = Double.parseDouble(parts[1]);
-            double y = Double.parseDouble(parts[2]);
-            double z = Double.parseDouble(parts[3]);
-            float yaw = Float.parseFloat(parts[4]);
-            float pitch = Float.parseFloat(parts[5]);
+            int partsLength = parts.length;
+            String worldName = parts[0];
+            for(int i=1;i<partsLength-5;i++){
+                worldName += ("_" + parts[i]);
+            }
+            World world = Bukkit.getWorld(worldName);
+            double x = Double.parseDouble(parts[partsLength-5]);
+            double y = Double.parseDouble(parts[partsLength-4]);
+            double z = Double.parseDouble(parts[partsLength-3]);
+            float yaw = Float.parseFloat(parts[partsLength-2]);
+            float pitch = Float.parseFloat(parts[partsLength-1]);
             return new Location(world,x,y,z,yaw,pitch);
         }catch (Exception e){
             return null;

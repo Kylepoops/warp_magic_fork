@@ -19,7 +19,6 @@ public class RespawnListener implements Listener {
         Home home = homeManager.getHome(e.getPlayer());
         if(home != null){
             e.setRespawnLocation(home.getLocation());
-            Bukkit.getConsoleSender().sendMessage(home.getLocation().toString());
         }else{
             Location spawn = globalManager.getSpawn();
             if(spawn != null){

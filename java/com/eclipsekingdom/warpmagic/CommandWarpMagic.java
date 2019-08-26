@@ -38,6 +38,7 @@ public class CommandWarpMagic implements CommandExecutor {
         commandInfoList.add(new CommandInfo("home help", "show home commands"));
         commandInfoList.add(new CommandInfo("warp help", "show warp commands"));
         commandInfoList.add(new CommandInfo("vortex help", "show vortex commands"));
+        commandInfoList.add(new CommandInfo("we", "select a warp effect"));
         return commandInfoList;
     }
 
