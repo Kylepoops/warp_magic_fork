@@ -10,7 +10,6 @@ public class TeleportValidation {
         PLAYER_OFFLINE("player offline"),
         LOCATION_NOT_FOUND("The requested location could not be located");
 
-
         Status(String message){
             this.message = message;
         }

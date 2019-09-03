@@ -11,8 +11,11 @@ import org.bukkit.entity.Player;
 
 public class Teleportation {
 
-    public Teleportation(WarpMagic plugin){
-        this.plugin = plugin;
+    private final EffectManager effectManager = EffectManager.getInstance();
+    private final WarpMagic plugin;
+
+    public Teleportation(){
+        this.plugin = WarpMagic.plugin;
     }
 
     public void sendTo(Player player, Location location){
@@ -20,7 +23,7 @@ public class Teleportation {
         if(status == TeleportValidation.Status.VALID){
             Effect effect = effectManager.getCurrent(player);
             if(effect != null){
-                playSound(player);
+                playSound(player.getLocation());
                 effect.run(player, plugin);
                 player.teleport(location);
 
@@ -28,16 +31,16 @@ public class Teleportation {
                     @Override
                     public void run() {
                         effect.run(player, plugin);
-                        playSound(player);
+                        playSound(player.getLocation());
                     }
                 }, 1);
             }else{
-                playSound(player);
+                playSound(player.getLocation());
                 player.teleport(location);
                 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     @Override
                     public void run() {
-                        playSound(player);
+                        playSound(player.getLocation());
                     }
                 }, 1);
             }
@@ -48,12 +51,25 @@ public class Teleportation {
         }
     }
 
+    public static void playSound(Location location){
+        location.getWorld().playSound(location, Sound.ENTITY_ENDERMAN_TELEPORT, 0.5f, 1.3f);
+    }
 
-    private final EffectManager effectManager = EffectManager.getInstance();
-    private final WarpMagic plugin;
+    public static Location makeSafe(Location location){
+        while(location.clone().add(0,-1,0).getBlock().isPassable()){
+            location.add(0,-1,0);
+        }
+        while(!location.getBlock().isPassable() || !location.clone().add(0,1,0).getBlock().isPassable()){
+            location.add(0,1,0);
+        }
+        return location;
+    }
 
-    private void playSound(Player player){
-        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.5f, 1.3f);
+    public static Location makeNotUnderground(Location location){
+        while(!location.getBlock().isPassable() || !location.clone().add(0,1,0).getBlock().isPassable()){
+            location.add(0,1,0);
+        }
+        return location;
     }
 
 }

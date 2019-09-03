@@ -36,7 +36,7 @@ public class WarpStone extends Loot {
             warpNumManager.incrementWarpCapacity(player);
             Notifications.sendSuccess(player, "+1 warp");
             ItemOperations.consumeItem(itemStack);
-            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, (float)1 ,(float)2);
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, 1f ,2f);
         }else{
             Notifications.sendWarning(player, "You already have the maximum number of warps");
         }

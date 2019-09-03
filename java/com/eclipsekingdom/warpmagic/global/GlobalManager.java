@@ -56,6 +56,26 @@ public class GlobalManager extends Manager<GlobalPoint, Location> {
         trackUnsavedData(GlobalPoint.HUB);
     }
 
+    public void setNorth(Location location){
+        keyToData.put(GlobalPoint.NORTH, location);
+        trackUnsavedData(GlobalPoint.NORTH);
+    }
+
+    public void setSouth(Location location){
+        keyToData.put(GlobalPoint.SOUTH, location);
+        trackUnsavedData(GlobalPoint.SOUTH);
+    }
+
+    public void setEast(Location location){
+        keyToData.put(GlobalPoint.EAST, location);
+        trackUnsavedData(GlobalPoint.EAST);
+    }
+
+    public void setWest(Location location){
+        keyToData.put(GlobalPoint.WEST, location);
+        trackUnsavedData(GlobalPoint.WEST);
+    }
+
     public Location getSpawn(){
         Location spawn = keyToData.get(GlobalPoint.SPAWN);
         if(spawn != null){
@@ -69,6 +89,44 @@ public class GlobalManager extends Manager<GlobalPoint, Location> {
         Location hub = keyToData.get(GlobalPoint.HUB);
         if(hub != null){
             return hub.clone();
+        }else{
+            return null;
+        }
+    }
+
+
+    public Location getNorth(){
+        Location north = keyToData.get(GlobalPoint.NORTH);
+        if(north != null){
+            return north.clone();
+        }else{
+            return null;
+        }
+    }
+
+    public Location getSouth(){
+        Location south = keyToData.get(GlobalPoint.SOUTH);
+        if(south != null){
+            return south.clone();
+        }else{
+            return null;
+        }
+    }
+
+
+    public Location getEast(){
+        Location east = keyToData.get(GlobalPoint.EAST);
+        if(east != null){
+            return east.clone();
+        }else{
+            return null;
+        }
+    }
+
+    public Location getWest(){
+        Location west = keyToData.get(GlobalPoint.WEST);
+        if(west != null){
+            return west.clone();
         }else{
             return null;
         }

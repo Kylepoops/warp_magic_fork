@@ -3,6 +3,9 @@ package com.eclipsekingdom.warpmagic;
 import com.eclipsekingdom.warpmagic.effect.gui.InputListener;
 import com.eclipsekingdom.warpmagic.effect.list.Bats;
 import com.eclipsekingdom.warpmagic.global.NewPlayerListener;
+import com.eclipsekingdom.warpmagic.jinn.CommandJinn;
+import com.eclipsekingdom.warpmagic.jinn.JinnLife;
+import com.eclipsekingdom.warpmagic.jinn.JinnListener;
 import com.eclipsekingdom.warpmagic.util.commands.AutoCompleteListener;
 import com.eclipsekingdom.warpmagic.util.commands.PluginCommands;
 import com.eclipsekingdom.warpmagic.util.data.CacheListener;
@@ -12,6 +15,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class WarpMagic extends JavaPlugin {
+
+    private PluginData pluginData;
+    private PluginConfig pluginConfig;
+    private Teleportation teleportation;
+    private PluginCommands pluginCommands;
 
     public static final ChatColor themeDark = ChatColor.DARK_GREEN;
     public static final ChatColor themeLight = ChatColor.GREEN;
@@ -23,11 +31,19 @@ public final class WarpMagic extends JavaPlugin {
         return pluginCommands;
     }
 
+    public static WarpMagic plugin;
+
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        this.plugin = this;
+
+        pluginConfig = PluginConfig.getInstance();
         pluginConfig.load();
+        pluginData = PluginData.getInstance();
         pluginData.load();
+
+        teleportation = new Teleportation();
+        pluginCommands = new PluginCommands(this);
 
         new LootListener(this);
         new CacheListener(this);
@@ -35,6 +51,9 @@ public final class WarpMagic extends JavaPlugin {
         new AutoCompleteListener(this);
         new InputListener(this);
         new NewPlayerListener(this);
+        new JinnListener();
+
+        this.getCommand("jinn").setExecutor(new CommandJinn());
 
         pluginCommands.registerAll();
 
@@ -42,15 +61,10 @@ public final class WarpMagic extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
         pluginData.save();
         Bats.removeEntities();
+        JinnLife.remvoeAllJinn();
     }
-
-    private final PluginData pluginData = PluginData.getInstance();
-    private final PluginConfig pluginConfig = PluginConfig.getInstance();
-    private final Teleportation teleportation = new Teleportation(this);
-    private final PluginCommands pluginCommands = new PluginCommands(this);
 
 
 }

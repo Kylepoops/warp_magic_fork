@@ -23,7 +23,7 @@ public class CommandHub implements CommandExecutor {
             if(hub != null){
                 plugin.getTeleportation().sendTo(player, hub);
             }else{
-                player.sendMessage(ChatColor.RED + "hub point not set");
+                player.sendMessage(ChatColor.RED + "Hub point not set");
             }
         }
 

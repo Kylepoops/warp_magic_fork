@@ -21,7 +21,7 @@ public class V_VList extends CommandAction {
         List<String> items = new ArrayList<>();
         for(Vortex vortex: vortexManager.getVortexes()){
             String item = WarpMagic.themeDark + vortex.getName();
-            if(!pluginConfig.getHiddenVortexNames().contains(player.getDisplayName())){
+            if(!pluginConfig.getHiddenVortexNames().contains(vortex.getCreatorName())){
                 item += (ChatColor.GRAY + " - " + vortex.getCreatorName());
             }
             items.add(item); //add whitelist check

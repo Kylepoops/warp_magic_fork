@@ -10,7 +10,10 @@ import com.eclipsekingdom.warpmagic.warps.warp.Warp;
 import com.eclipsekingdom.warpmagic.util.commands.CommandAction;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
+import java.io.CharConversionException;
 
 public class W_Set extends CommandAction {
 
@@ -29,10 +32,8 @@ public class W_Set extends CommandAction {
                             warpManager.registerWarp(player, warp);
                             player.sendMessage(SUCCESSFUL_CLAIM_MESSAGE(warp.getName()));
                         }else{
-                            Warp warp = warpManager.getWarp(player, warpName);
-                            warp.updateLocation(player.getLocation());
-                            warpManager.trackUnsavedData(player.getUniqueId());
-                            player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(warp.getName()));
+                            Notifications.sendWarning(player, ALREADY_SET_MESSAGE(warpName));
+                            Notifications.sendTip(player, "warp update [warp-name]", "to update a warp");
                         }
                     }else{
                         Notifications.sendWarning(player, locationStatus.message);
@@ -71,11 +72,8 @@ public class W_Set extends CommandAction {
         );
     }
 
-    private static final String SUCCESSFUL_UPDATE_MESSAGE(String warpName){
-        return (WarpMagic.themeLight + "Warp "
-                + WarpMagic.themeDark + warpName
-                + WarpMagic.themeLight + " updated"
-        );
+    private static final String ALREADY_SET_MESSAGE(String warpName){
+        return ("Warp " + warpName + " is already set");
     }
 
 

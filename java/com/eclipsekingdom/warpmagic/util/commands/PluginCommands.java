@@ -4,10 +4,7 @@ import com.eclipsekingdom.warpmagic.CommandWarpMagic;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.effect.CommandEffectStone;
 import com.eclipsekingdom.warpmagic.effect.CommandWarpEffect;
-import com.eclipsekingdom.warpmagic.global.CommandHub;
-import com.eclipsekingdom.warpmagic.global.CommandSetHub;
-import com.eclipsekingdom.warpmagic.global.CommandSetSpawn;
-import com.eclipsekingdom.warpmagic.global.CommandSpawn;
+import com.eclipsekingdom.warpmagic.global.*;
 import com.eclipsekingdom.warpmagic.requests.CommandTPA;
 import com.eclipsekingdom.warpmagic.requests.CommandTPAHere;
 import com.eclipsekingdom.warpmagic.requests.CommandTPAccept;
@@ -72,6 +69,7 @@ public class PluginCommands {
         VActions.add(new V_Default(plugin));
         VActions.add(new V_Help(plugin));
         VActions.add(new V_Set());
+        VActions.add(new V_Update());
         VActions.add(new V_Del());
         VActions.add(new V_VList());
         VActions.add(new V_MyList());
@@ -83,6 +81,7 @@ public class PluginCommands {
         WActions.add(new W_Default(plugin));
         WActions.add(new W_Help(plugin));
         WActions.add(new W_Set());
+        WActions.add(new W_Update());
         WActions.add(new W_Del());
         WActions.add(new W_List());
 
@@ -105,6 +104,14 @@ public class PluginCommands {
 
 
 
+        plugin.getCommand("north").setExecutor(new CommandNorth());
+        plugin.getCommand("south").setExecutor(new CommandSouth());
+        plugin.getCommand("east").setExecutor(new CommandEast());
+        plugin.getCommand("west").setExecutor(new CommandWest());
+        plugin.getCommand("setnorth").setExecutor(new CommandSetNorth());
+        plugin.getCommand("setsouth").setExecutor(new CommandSetSouth());
+        plugin.getCommand("seteast").setExecutor(new CommandSetEast());
+        plugin.getCommand("setwest").setExecutor(new CommandSetWest());
         plugin.getCommand("warpmagic").setExecutor(new CommandWarpMagic());
         plugin.getCommand("spawn").setExecutor(new CommandSpawn(plugin));
         plugin.getCommand("setspawn").setExecutor(new CommandSetSpawn());

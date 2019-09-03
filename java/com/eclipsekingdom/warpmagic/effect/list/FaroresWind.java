@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class FaroresWind extends Effect {
 
     public FaroresWind() {
-        super(ChatColor.GREEN, "Farore's Wind", Material.EMERALD);
+        super(ChatColor.GREEN, "Farore's WindHurtShieldBuilder", Material.EMERALD);
     }
 
     @Override

@@ -33,6 +33,10 @@ public class CommandWarpMagic implements CommandExecutor {
         List<CommandInfo> commandInfoList = new ArrayList<>();
         commandInfoList.add(new CommandInfo("spawn", "teleport to spawn"));
         commandInfoList.add(new CommandInfo("hub", "teleport to hub"));
+        commandInfoList.add(new CommandInfo("north", "teleport to the north warp point"));
+        commandInfoList.add(new CommandInfo("south", "teleport to the south warp point"));
+        commandInfoList.add(new CommandInfo("east", "teleport to the east warp point"));
+        commandInfoList.add(new CommandInfo("west", "teleport to the west warp point"));
         commandInfoList.add(new CommandInfo("tpa [player]", "request to teleport to player"));
         commandInfoList.add(new CommandInfo("tpahere [player]", "request that a player teleport to you"));
         commandInfoList.add(new CommandInfo("home help", "show home commands"));
@@ -47,6 +51,10 @@ public class CommandWarpMagic implements CommandExecutor {
         List<CommandInfo> commandInfoList = new ArrayList<>();
         commandInfoList.add(new CommandInfo("setspawn", "set spawn location"));
         commandInfoList.add(new CommandInfo("sethub", "set hub location"));
+        commandInfoList.add(new CommandInfo("setnorth", "set north location"));
+        commandInfoList.add(new CommandInfo("setsouth", "set south location"));
+        commandInfoList.add(new CommandInfo("seteast", "set east location"));
+        commandInfoList.add(new CommandInfo("setwest", "set west location"));
         return commandInfoList;
     }
 

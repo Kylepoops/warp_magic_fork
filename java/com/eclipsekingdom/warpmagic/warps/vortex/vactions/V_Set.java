@@ -10,9 +10,15 @@ import com.eclipsekingdom.warpmagic.warps.NameValidation;
 import com.eclipsekingdom.warpmagic.warps.vortex.Vortex;
 import com.eclipsekingdom.warpmagic.warps.vortex.VortexManager;
 import com.eclipsekingdom.warpmagic.warps.vortex.VortexNumManager;
+import com.eclipsekingdom.warpmagic.warps.warp.Warp;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpManager;
+import com.eclipsekingdom.warpmagic.warps.warp.WarpNumManager;
 import org.bukkit.entity.Player;
 
 public class V_Set extends CommandAction {
+
+    private final VortexNumManager vortexNumManager = VortexNumManager.getInstance();
+    private final VortexManager vortexManager = VortexManager.getInstance();
 
     @Override
     public void run(Player player, String[] args) {
@@ -24,15 +30,13 @@ public class V_Set extends CommandAction {
                 if(nameStatus == NameValidation.Status.VALID){
                     LocationValidation.Status locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
                     if(locationStatus == LocationValidation.Status.VALID){
-                        if(!vortexAlreadySet(player, vortexName)){
+                        if(!vortexAlreadySet(vortexName)){
                             Vortex vortex = new Vortex(vortexName, player.getLocation(), player.getDisplayName());
                             vortexManager.registerVortex(vortex);
                             player.sendMessage(SUCCESSFUL_CLAIM_MESSAGE(vortex.getName()));
                         }else{
-                            Vortex vortex = vortexManager.getVortexSetBy(player, vortexName);
-                            vortex.updateLocation(player.getLocation());
-                            vortexManager.trackUnsavedData(vortexName);
-                            player.sendMessage(SUCCESSFUL_UPDATE_MESSAGE(vortex.getName()));
+                            Notifications.sendWarning(player, ALREADY_SET_MESSAGE(vortexName));
+                            Notifications.sendTip(player, "vortex update [vortex-name]", "to update a vortex");
                         }
                     }else{
                         Notifications.sendWarning(player, locationStatus.message);
@@ -69,25 +73,19 @@ public class V_Set extends CommandAction {
         );
     }
 
-    private static final String SUCCESSFUL_UPDATE_MESSAGE(String vortexName){
-        return (WarpMagic.themeLight + "Vortex "
-                + WarpMagic.themeDark + vortexName
-                + WarpMagic.themeLight + " updated"
-        );
-    }
-
-
-    private final VortexNumManager vortexNumManager = VortexNumManager.getInstance();
-
-    private final VortexManager vortexManager = VortexManager.getInstance();
-
-    private boolean vortexAlreadySet(Player player, String name){
-        for(Vortex vortex: vortexManager.getVortexesSetBy(player)){
+    private boolean vortexAlreadySet(String name){
+        for(Vortex vortex: vortexManager.getVortexes()){
             if(vortex.getName().equalsIgnoreCase(name)){
                 return true;
             }
         }
         return false;
     }
+
+    private static final String ALREADY_SET_MESSAGE(String vortexName){
+        return ("Warp " + vortexName + " is already set");
+    }
+
+
 
 }

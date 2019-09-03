@@ -8,31 +8,28 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandSpawn implements CommandExecutor {
+public class CommandSouth implements CommandExecutor {
 
-    public CommandSpawn(WarpMagic plugin){
-        this.plugin = plugin;
+    private static GlobalManager globalManager = GlobalManager.getInstance();
+    private WarpMagic plugin;
+
+    public CommandSouth(){
+        this.plugin = WarpMagic.plugin;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 
-
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            Location spawn = globalManager.getSpawn();
-            if(spawn != null){
-                plugin.getTeleportation().sendTo(player, spawn);
+            Location south = globalManager.getSouth();
+            if(south != null){
+                plugin.getTeleportation().sendTo(player, south);
             }else{
-                player.sendMessage(ChatColor.RED + "Spawn point not set");
+                player.sendMessage(ChatColor.RED + "South point not set");
             }
         }
 
         return false;
     }
-
-    private GlobalManager globalManager = GlobalManager.getInstance();
-
-    private final WarpMagic plugin;
-
 }

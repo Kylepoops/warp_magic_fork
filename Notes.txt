@@ -1,3 +1,5 @@
-* poof effect
-* stone crackle
-* better melting effect
+* better storage & mySQL option
+* warp stone texture
+* remote /give command for console and admins
+* Jinn drop gui
+* fall protection code

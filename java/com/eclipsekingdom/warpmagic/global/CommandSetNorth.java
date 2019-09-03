@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandSetHub implements CommandExecutor {
+public class CommandSetNorth implements CommandExecutor {
 
     private GlobalManager globalManager = GlobalManager.getInstance();
 
@@ -17,8 +17,8 @@ public class CommandSetHub implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if(Permissions.canSetGlobalPoints(player)){
-                globalManager.setHub(player.getLocation());
-                Notifications.sendSuccess(player, "hub set");
+                globalManager.setNorth(player.getLocation());
+                Notifications.sendSuccess(player, "north set");
             }else{
                 Notifications.sendWarning(player, "You do not have permission for this command");
             }
@@ -26,6 +26,4 @@ public class CommandSetHub implements CommandExecutor {
 
         return false;
     }
-
-
 }

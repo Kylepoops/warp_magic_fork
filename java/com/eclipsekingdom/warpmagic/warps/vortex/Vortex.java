@@ -4,10 +4,24 @@ import org.bukkit.Location;
 
 public class Vortex {
 
+    private final String name;
+    private Location location;
+    private final String creatorName;
+    private boolean hideName;
+
+    public Vortex(String name, Location location, String creatorName, boolean hideName){
+        this.name = name;
+        this.location = location;
+        this.creatorName = creatorName;
+        this.hideName = hideName;
+    }
+
+
     public Vortex(String name, Location location, String creatorName){
         this.name = name;
         this.location = location;
         this.creatorName = creatorName;
+        this.hideName = false;
     }
 
     public Location getLocation() {
@@ -26,6 +40,14 @@ public class Vortex {
         return name;
     }
 
+    public boolean isHideName(){
+        return hideName;
+    }
+
+    public void setHideName(boolean hideName){
+        this.hideName = hideName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if(o instanceof String){
@@ -34,9 +56,5 @@ public class Vortex {
             return super.equals(o);
         }
     }
-
-    private final String name;
-    private Location location;
-    private final String creatorName;
 
 }

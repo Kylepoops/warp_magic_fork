@@ -19,6 +19,14 @@ commands:
   vortex:
   vortexstone:
   spawn:
+  north:
+  south:
+  east:
+  west:
+  setnorth:
+  setsouth:
+  seteast:
+  setwest:
   setspawn:
   hub:
   sethub:
@@ -29,3 +37,4 @@ commands:
   jump:
   top:
   bottom:
+  jinn:
