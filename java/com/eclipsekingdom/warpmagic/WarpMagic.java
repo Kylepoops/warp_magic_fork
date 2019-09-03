@@ -4,6 +4,7 @@ import com.eclipsekingdom.warpmagic.effect.gui.InputListener;
 import com.eclipsekingdom.warpmagic.effect.list.Bats;
 import com.eclipsekingdom.warpmagic.global.NewPlayerListener;
 import com.eclipsekingdom.warpmagic.jinn.CommandJinn;
+import com.eclipsekingdom.warpmagic.jinn.JinnConfig;
 import com.eclipsekingdom.warpmagic.jinn.JinnLife;
 import com.eclipsekingdom.warpmagic.jinn.JinnListener;
 import com.eclipsekingdom.warpmagic.util.commands.AutoCompleteListener;
@@ -18,18 +19,12 @@ public final class WarpMagic extends JavaPlugin {
 
     private PluginData pluginData;
     private PluginConfig pluginConfig;
+    private JinnConfig jinnConfig;
     private Teleportation teleportation;
     private PluginCommands pluginCommands;
 
     public static final ChatColor themeDark = ChatColor.DARK_GREEN;
     public static final ChatColor themeLight = ChatColor.GREEN;
-
-    public Teleportation getTeleportation(){
-        return teleportation;
-    }
-    public PluginCommands getPluginCommands(){
-        return pluginCommands;
-    }
 
     public static WarpMagic plugin;
 
@@ -41,6 +36,8 @@ public final class WarpMagic extends JavaPlugin {
         pluginConfig.load();
         pluginData = PluginData.getInstance();
         pluginData.load();
+        jinnConfig = new JinnConfig();
+        jinnConfig.load();
 
         teleportation = new Teleportation();
         pluginCommands = new PluginCommands(this);
@@ -64,6 +61,18 @@ public final class WarpMagic extends JavaPlugin {
         pluginData.save();
         Bats.removeEntities();
         JinnLife.remvoeAllJinn();
+    }
+
+    public Teleportation getTeleportation(){
+        return teleportation;
+    }
+
+    public PluginCommands getPluginCommands(){
+        return pluginCommands;
+    }
+
+    public JinnConfig getJinnConfig(){
+        return jinnConfig;
     }
 
 

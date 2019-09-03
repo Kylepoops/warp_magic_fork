@@ -59,8 +59,8 @@ public class JinnLife extends BukkitRunnable {
             if(jinn.isValid()){
 
                 Vector direction = aggro.getLocation().getDirection();
-               // body.teleport(body.getLocation().setDirection(direction));
-               // tail.teleport(tail.getLocation().setDirection(direction));
+                body.teleport(body.getLocation().setDirection(direction));
+                tail.teleport(tail.getLocation().setDirection(direction));
 
                 if(lifeClock % 100 == 0){
                     if(random.nextDouble() <= 0.55){

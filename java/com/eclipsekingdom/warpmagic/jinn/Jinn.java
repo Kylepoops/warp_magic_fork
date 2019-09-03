@@ -10,15 +10,14 @@ import com.eclipsekingdom.warpmagic.jinn.head.JinnHead;
 import com.eclipsekingdom.warpmagic.jinn.shield.JinnShield;
 import com.eclipsekingdom.warpmagic.jinn.theme.JinnTheme;
 import com.eclipsekingdom.warpmagic.util.CustomSpawn;
+import com.eclipsekingdom.warpmagic.warps.vortex.VortexStone;
 import com.eclipsekingdom.warpmagic.warps.warp.WarpStone;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -152,15 +151,32 @@ public class Jinn {
         anatomy.destroyComponents();
     }
 
-    public void dropLoot(Random random, int lootingLevel){
+    public void dropLoot(Random random, int lootingLevel, JinnConfig jinnConfig){
 
         World world = getWorld();
         Location location = getLocation();
         world.playSound(location, Sound.ENTITY_BLAZE_DEATH, 0.7f, 0.5f);
         world.playSound(location, Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, 2f ,2f);
 
-        if(random.nextDouble() <= 1){
-            world.dropItemNaturally(location, WarpStone.getInstance().asItem());
+        double warpRate = jinnConfig.getVortexRate();
+        if(warpRate > 0){
+            if(random.nextDouble() <= warpRate + (0.03 * lootingLevel)){
+                world.dropItemNaturally(location, WarpStone.getInstance().asItem());
+            }
+        }
+        double vortexRate = jinnConfig.getVortexRate();
+        if(vortexRate > 0){
+            if(random.nextDouble() <= vortexRate + (0.02 * lootingLevel)){
+                world.dropItemNaturally(location, VortexStone.getInstance().asItem());
+            }
+        }
+        int perlAmount = random.nextInt(4 + (1*lootingLevel));
+        if(perlAmount > 0){
+            world.dropItemNaturally(location, new ItemStack(Material.ENDER_PEARL,perlAmount));
+        }
+        int slimeAmount = random.nextInt(5 + (1*lootingLevel));
+        if(slimeAmount > 0){
+            world.dropItemNaturally(location, new ItemStack(Material.SLIME_BALL,slimeAmount));
         }
 
         ExperienceOrb experienceOrb = (ExperienceOrb) location.getWorld().spawnEntity(location, EntityType.EXPERIENCE_ORB);

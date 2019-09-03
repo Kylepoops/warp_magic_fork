@@ -5,11 +5,12 @@ import com.eclipsekingdom.warpmagic.jinn.entity.JinnAnatomy;
 import com.eclipsekingdom.warpmagic.jinn.entity.Transportation;
 import com.eclipsekingdom.warpmagic.jinn.theme.JinnTheme;
 import com.eclipsekingdom.warpmagic.util.CustomSpawn;
+import com.eclipsekingdom.warpmagic.util.KnockBack;
 import com.google.common.collect.ImmutableSet;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Biome;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
@@ -23,6 +24,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
 import java.util.*;
@@ -31,9 +33,11 @@ public class JinnListener implements Listener {
 
     private Random random = new Random();
     private WarpMagic plugin;
+    private JinnConfig jinnConfig;
 
     public JinnListener(){
         this.plugin = WarpMagic.plugin;
+        this.jinnConfig = plugin.getJinnConfig();
         plugin.getServer().getPluginManager().registerEvents(this, WarpMagic.plugin);
     }
 
@@ -54,7 +58,7 @@ public class JinnListener implements Listener {
                             if(e instanceof EntityDamageByEntityEvent){
                                 lootingLevel = getLootingLevel((EntityDamageByEntityEvent)e);
                             }
-                            jinn.dropLoot(random, lootingLevel);
+                            jinn.dropLoot(random, lootingLevel, jinnConfig);
                             jinn.remove();
                         }
                     }
@@ -65,15 +69,33 @@ public class JinnListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e){
         Entity entity = e.getEntity();
         if(JinnAnatomy.isAnatomy(entity)){
             Jinn jinn = JinnAnatomy.getJinn(entity);
-            LivingEntity livingEntity = getLivingEntity(e);
-            if(jinn != null && jinn.isValid() && livingEntity != null){
-                if(random.nextDouble() <= jinnTeleportAttackerChance)
-                jinn.teleportAttacker(livingEntity, random);
+            if(jinn != null && jinn.isValid()){
+                LivingEntity livingEntity = getLivingEntity(e);
+                if(livingEntity != null){
+                    if(random.nextDouble() <= jinnTeleportAttackerChance){
+                        jinn.teleportAttacker(livingEntity, random);
+                    }
+                }
+                if(e.getDamager() instanceof LivingEntity || e.getDamager() instanceof Projectile){
+                    KnockBack.applyKnockback(jinn.getTransportation().getCurrentTransporter(), e.getDamager(), 0.66);
+                }
+            }
+        }
+    }
+
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void projectileHitEvent(ProjectileHitEvent e){
+        if(e.getHitEntity() != null && JinnAnatomy.isAnatomy(e.getHitEntity())){
+            Jinn jinn = JinnAnatomy.getJinn(e.getHitEntity());
+            if(jinn != null && jinn.isValid()){
+                if(e.getEntity() instanceof AbstractArrow){
+                    e.getEntity().remove();
+                }
             }
         }
     }
@@ -133,35 +155,33 @@ public class JinnListener implements Listener {
         Entity entity = e.getEntity();
         if(CustomSpawn.locations.contains(e.getLocation())){
             entity.setMetadata(CustomSpawn.customKey, new FixedMetadataValue(plugin, true));
-        }else if((entity.getType() == EntityType.ZOMBIE || entity.getType() == EntityType.HUSK) && !CustomSpawn.spawningJinn && !alreadyConverting.contains(entity.getUniqueId())){
-            /*
+        }else if(entity.getType() == EntityType.ENDERMAN && !CustomSpawn.spawningJinn && !alreadyConverting.contains(entity.getUniqueId())){
+
             Location location = entity.getLocation();
             Biome biome = location.getWorld().getBiome(location.getBlockX(), location.getBlockZ());
 
-            double spawnRate = dovaConfig.getSpawnRate();
+            double spawnRate = jinnConfig.getSpawnRate();
 
-            if(mountains.contains(biome) && location.getY() >= 70){
+            if(jinnRegions.contains(biome)){
                 if(random.nextDouble() <= spawnRate){
-                    convertToDragon(entity, DovaTheme.random());
+                    convertToJinn(entity, JinnTheme.from(JinnTheme.JinnThemeType.WIND));
                 }
-            }else{
-                spawnRate *= 0.1;
-                if(random.nextDouble() <= spawnRate){
-                    if(fireBiomes.contains(biome)){
-                        convertToDragon(entity, DovaTheme.from(DovaTheme.DovaThemeType.FIRE));
-                    }else if(iceBiomes.contains(biome)){
-                        convertToDragon(entity, DovaTheme.from(DovaTheme.DovaThemeType.ICE));
-                    }else if(poisonBiomes.contains(biome)){
-                        convertToDragon(entity, DovaTheme.from(DovaTheme.DovaThemeType.POISON));
-                    }
+            }else if(lesserJinnRegions.contains(biome)){
+                if(random.nextDouble() <= spawnRate * 0.3){
+                    convertToJinn(entity, JinnTheme.from(JinnTheme.JinnThemeType.WIND));
                 }
             }
-            */
         }
     }
 
     private ImmutableSet<Biome> jinnRegions = new ImmutableSet.Builder<Biome>()
             .add(Biome.DARK_FOREST)
+            .add(Biome.DARK_FOREST_HILLS)
+            .add(Biome.FLOWER_FOREST)
+            .build();
+
+    private ImmutableSet<Biome> lesserJinnRegions = new ImmutableSet.Builder<Biome>()
+            .add(Biome.FOREST)
             .build();
 
 

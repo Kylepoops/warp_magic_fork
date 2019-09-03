@@ -3,3 +3,5 @@
 * remote /give command for console and admins
 * Jinn drop gui
 * fall protection code
+* jinn cloak (teleport)
+* jinn shield (teleport)
