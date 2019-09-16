@@ -1,6 +1,7 @@
 package com.eclipsekingdom.warpmagic.jinn;
 
-import com.eclipsekingdom.warpmagic.Teleportation;
+import com.eclipsekingdom.warpmagic.loot.LootType;
+import com.eclipsekingdom.warpmagic.warp.Teleportation;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.jinn.attack.Attacks;
 import com.eclipsekingdom.warpmagic.jinn.cloak.JinnCloak;
@@ -9,9 +10,7 @@ import com.eclipsekingdom.warpmagic.jinn.entity.Transportation;
 import com.eclipsekingdom.warpmagic.jinn.head.JinnHead;
 import com.eclipsekingdom.warpmagic.jinn.shield.JinnShield;
 import com.eclipsekingdom.warpmagic.jinn.theme.JinnTheme;
-import com.eclipsekingdom.warpmagic.util.CustomSpawn;
-import com.eclipsekingdom.warpmagic.warps.vortex.VortexStone;
-import com.eclipsekingdom.warpmagic.warps.warp.WarpStone;
+import com.eclipsekingdom.warpmagic.jinn.util.CustomSpawn;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -161,13 +160,13 @@ public class Jinn {
         double warpRate = jinnConfig.getVortexRate();
         if(warpRate > 0){
             if(random.nextDouble() <= warpRate + (0.03 * lootingLevel)){
-                world.dropItemNaturally(location, WarpStone.getInstance().asItem());
+                world.dropItemNaturally(location, LootType.WARP_STONE.getLoot().buildGeneric());
             }
         }
         double vortexRate = jinnConfig.getVortexRate();
         if(vortexRate > 0){
             if(random.nextDouble() <= vortexRate + (0.02 * lootingLevel)){
-                world.dropItemNaturally(location, VortexStone.getInstance().asItem());
+                world.dropItemNaturally(location, LootType.VORTEX_STONE.getLoot().buildGeneric());
             }
         }
         int perlAmount = random.nextInt(4 + (1*lootingLevel));

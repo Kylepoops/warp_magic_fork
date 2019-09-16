@@ -61,7 +61,6 @@ public class JinnConfig {
     }
 
     private void createDefault(){
-        config.options().header("Dragons spawn by replacing spawning zombies. All dragons have a chance to spawn on mountain tops. Dragons also have a chance to spawn in elemental associated biomes.");
         config.set(spawnRateSetting, spawnRateDefault);
         config.set(warpRateSetting, warpRateDefault);
         config.set(vortexRateSetting, vortexRateDefault);

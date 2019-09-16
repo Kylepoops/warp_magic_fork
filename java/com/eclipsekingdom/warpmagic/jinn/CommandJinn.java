@@ -1,7 +1,7 @@
 package com.eclipsekingdom.warpmagic.jinn;
 
 import com.eclipsekingdom.warpmagic.jinn.theme.JinnTheme;
-import com.eclipsekingdom.warpmagic.util.CustomSpawn;
+import com.eclipsekingdom.warpmagic.jinn.util.CustomSpawn;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

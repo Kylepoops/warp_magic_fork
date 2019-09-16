@@ -1,7 +1,9 @@
-* better storage & mySQL option
+* mySQL option
 * warp stone texture
 * remote /give command for console and admins
 * Jinn drop gui
-* fall protection code
 * jinn cloak (teleport)
 * jinn shield (teleport)
+* dynmap
+* 1.13 support
+* bonus warp/vortex perm

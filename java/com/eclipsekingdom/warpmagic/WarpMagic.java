@@ -1,27 +1,37 @@
 package com.eclipsekingdom.warpmagic;
 
-import com.eclipsekingdom.warpmagic.effect.gui.InputListener;
-import com.eclipsekingdom.warpmagic.effect.list.Bats;
-import com.eclipsekingdom.warpmagic.global.NewPlayerListener;
+import com.eclipsekingdom.warpmagic.data.GlobalCache;
+import com.eclipsekingdom.warpmagic.data.UserCache;
+import com.eclipsekingdom.warpmagic.data.VortexCache;
+import com.eclipsekingdom.warpmagic.loot.CommandEffectStone;
+import com.eclipsekingdom.warpmagic.loot.CommandVortexStone;
+import com.eclipsekingdom.warpmagic.loot.CommandWarpStone;
+import com.eclipsekingdom.warpmagic.warp.*;
+import com.eclipsekingdom.warpmagic.warp.effect.CommandWarpEffect;
+import com.eclipsekingdom.warpmagic.warp.effect.gui.InputListener;
+import com.eclipsekingdom.warpmagic.warp.effect.list.Bats;
 import com.eclipsekingdom.warpmagic.jinn.CommandJinn;
 import com.eclipsekingdom.warpmagic.jinn.JinnConfig;
 import com.eclipsekingdom.warpmagic.jinn.JinnLife;
 import com.eclipsekingdom.warpmagic.jinn.JinnListener;
-import com.eclipsekingdom.warpmagic.util.commands.AutoCompleteListener;
-import com.eclipsekingdom.warpmagic.util.commands.PluginCommands;
-import com.eclipsekingdom.warpmagic.util.data.CacheListener;
-import com.eclipsekingdom.warpmagic.util.data.PluginData;
-import com.eclipsekingdom.warpmagic.util.loot.LootListener;
+import com.eclipsekingdom.warpmagic.loot.LootListener;
+import com.eclipsekingdom.warpmagic.warp.requests.CommandTPA;
+import com.eclipsekingdom.warpmagic.warp.requests.CommandTPAHere;
+import com.eclipsekingdom.warpmagic.warp.requests.CommandTPAccept;
+import com.eclipsekingdom.warpmagic.warp.requests.CommandTPDeny;
+import com.eclipsekingdom.warpmagic.util.AutoCompleteListener;
+import com.eclipsekingdom.warpmagic.warp.extras.CommandBottom;
+import com.eclipsekingdom.warpmagic.warp.extras.CommandJump;
+import com.eclipsekingdom.warpmagic.warp.extras.CommandTop;
+import com.eclipsekingdom.warpmagic.warp.global.CommandSetPoint;
+import com.eclipsekingdom.warpmagic.warp.global.CommandToPoint;
+import com.eclipsekingdom.warpmagic.warp.global.GlobalPoint;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class WarpMagic extends JavaPlugin {
 
-    private PluginData pluginData;
-    private PluginConfig pluginConfig;
     private JinnConfig jinnConfig;
-    private Teleportation teleportation;
-    private PluginCommands pluginCommands;
 
     public static final ChatColor themeDark = ChatColor.DARK_GREEN;
     public static final ChatColor themeLight = ChatColor.GREEN;
@@ -32,47 +42,80 @@ public final class WarpMagic extends JavaPlugin {
     public void onEnable() {
         this.plugin = this;
 
-        pluginConfig = PluginConfig.getInstance();
-        pluginConfig.load();
-        pluginData = PluginData.getInstance();
-        pluginData.load();
+        new PluginConfig();
         jinnConfig = new JinnConfig();
         jinnConfig.load();
 
-        teleportation = new Teleportation();
-        pluginCommands = new PluginCommands(this);
+        new GlobalCache();
+        new UserCache();
+        new VortexCache();
 
-        new LootListener(this);
-        new CacheListener(this);
-        new RespawnListener(this);
-        new AutoCompleteListener(this);
-        new InputListener(this);
-        new NewPlayerListener(this);
-        new JinnListener();
-
-        this.getCommand("jinn").setExecutor(new CommandJinn());
-
-        pluginCommands.registerAll();
+        registerListeners();
+        registerCommands();
 
     }
 
     @Override
     public void onDisable() {
-        pluginData.save();
+        UserCache.save();
+        VortexCache.save();
+        GlobalCache.save();
         Bats.removeEntities();
         JinnLife.remvoeAllJinn();
     }
 
-    public Teleportation getTeleportation(){
-        return teleportation;
-    }
-
-    public PluginCommands getPluginCommands(){
-        return pluginCommands;
-    }
-
-    public JinnConfig getJinnConfig(){
+    public JinnConfig getJinnConfig() {
         return jinnConfig;
+    }
+
+    private void registerListeners() {
+        new LootListener(this);
+        new RespawnListener();
+        new AutoCompleteListener();
+        new InputListener(this);
+        new JinnListener();
+    }
+
+    private void registerCommands() {
+
+        getCommand("warpmagic").setExecutor(new CommandWarpMagic());
+
+        getCommand("home").setExecutor(new CommandHome());
+        getCommand("fhome").setExecutor(new CommandFHome());
+        getCommand("warp").setExecutor(new CommandWarp());
+        getCommand("vortex").setExecutor(new CommandVortex());
+
+        getCommand("jinn").setExecutor(new CommandJinn());
+
+        getCommand("warpstone").setExecutor(new CommandWarpStone());
+        getCommand("vortexstone").setExecutor(new CommandVortexStone());
+        getCommand("effectstone").setExecutor(new CommandEffectStone());
+
+        getCommand("we").setExecutor(new CommandWarpEffect());
+
+        getCommand("north").setExecutor(new CommandToPoint(GlobalPoint.NORTH));
+        getCommand("south").setExecutor(new CommandToPoint(GlobalPoint.SOUTH));
+        getCommand("east").setExecutor(new CommandToPoint(GlobalPoint.EAST));
+        getCommand("west").setExecutor(new CommandToPoint(GlobalPoint.WEST));
+        getCommand("spawn").setExecutor(new CommandToPoint(GlobalPoint.SPAWN));
+        getCommand("hub").setExecutor(new CommandToPoint(GlobalPoint.HUB));
+
+        getCommand("setnorth").setExecutor(new CommandSetPoint(GlobalPoint.NORTH));
+        getCommand("setsouth").setExecutor(new CommandSetPoint(GlobalPoint.SOUTH));
+        getCommand("seteast").setExecutor(new CommandSetPoint(GlobalPoint.EAST));
+        getCommand("setwest").setExecutor(new CommandSetPoint(GlobalPoint.WEST));
+        getCommand("setspawn").setExecutor(new CommandSetPoint(GlobalPoint.SPAWN));
+        getCommand("sethub").setExecutor(new CommandSetPoint(GlobalPoint.HUB));
+
+        getCommand("tpa").setExecutor(new CommandTPA());
+        getCommand("tpahere").setExecutor(new CommandTPAHere());
+        getCommand("tpaccept").setExecutor(new CommandTPAccept());
+        getCommand("tpdeny").setExecutor(new CommandTPDeny());
+
+
+        getCommand("jump").setExecutor(new CommandJump());
+        getCommand("top").setExecutor(new CommandTop());
+        getCommand("bottom").setExecutor(new CommandBottom());
     }
 
 

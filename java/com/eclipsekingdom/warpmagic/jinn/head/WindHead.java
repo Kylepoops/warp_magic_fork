@@ -1,6 +1,6 @@
 package com.eclipsekingdom.warpmagic.jinn.head;
 
-import com.eclipsekingdom.warpmagic.util.Heads;
+import com.eclipsekingdom.warpmagic.jinn.util.Heads;
 
 public class WindHead extends JinnHead {
 

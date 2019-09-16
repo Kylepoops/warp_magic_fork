@@ -2,7 +2,7 @@ package com.eclipsekingdom.warpmagic.jinn.entity;
 
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.jinn.Jinn;
-import com.eclipsekingdom.warpmagic.util.CustomSpawn;
+import com.eclipsekingdom.warpmagic.jinn.util.CustomSpawn;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
