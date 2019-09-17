@@ -14,6 +14,6 @@ public class Melting extends Effect {
 
     @Override
     public void run(Player player) {
-        player.getWorld().spawnParticle(Particle.FALLING_WATER,player.getLocation().add(0,1,0),35,0.5,0.77,0.5,2f);
+        player.getWorld().spawnParticle(Particle.WATER_DROP,player.getLocation().add(0,1,0),35,0.5,0.77,0.5,2f);
     }
 }

@@ -5,5 +5,4 @@
 * jinn cloak (teleport)
 * jinn shield (teleport)
 * dynmap
-* 1.13 support
 * bonus warp/vortex perm

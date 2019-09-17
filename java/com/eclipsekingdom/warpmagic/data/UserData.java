@@ -115,6 +115,10 @@ public class UserData {
         unlockedWarps++;
     }
 
+    public void incrementUnlockedWarps(int amount){
+        unlockedWarps += amount;
+    }
+
     public int getUnlockedWarps(){
         return unlockedWarps;
     }
@@ -125,6 +129,10 @@ public class UserData {
 
     public void incrementUnlockedVortexes(){
         unlockedVortexes++;
+    }
+
+    public void incrementUnlockedVortexes(int amount){
+        unlockedVortexes += amount;
     }
 
     public int getUnlockedVortexes(){

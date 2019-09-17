@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 public class ConsoleSender {
 
     public static void sendMessage(String message) {
-        Bukkit.getConsoleSender().sendMessage("[WarpMagic]" + message);
+        Bukkit.getConsoleSender().sendMessage("[WarpMagic] " + message);
     }
 
 }

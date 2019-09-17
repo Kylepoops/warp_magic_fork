@@ -14,10 +14,10 @@ import java.util.List;
 public class VortexFlatFile {
 
     private static String header = "Vortexes";
-    File file = new File("plugins/WarpMagic", "vortex.yml");
-    FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+    private static File file = new File("plugins/WarpMagic", "vortex.yml");
+    private static FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-    public List<Vortex> fetch(){
+    public static List<Vortex> fetch(){
         ArrayList<Vortex> vortexes = new ArrayList<>();
         if(config.contains(header)){
             for(String name: config.getConfigurationSection(header).getKeys(false)){
@@ -32,7 +32,7 @@ public class VortexFlatFile {
         return vortexes;
     }
 
-    public void store(Collection<Vortex> vortexes){
+    public static void store(Collection<Vortex> vortexes){
         config.set(header, null);
         for(Vortex vortex: vortexes){
             String key = header + "." + vortex.getName();
@@ -42,7 +42,15 @@ public class VortexFlatFile {
         save();
     }
 
-    private void save(){
+    public static void store(Vortex vortex){
+        String key = header + "." + vortex.getName();
+        config.set(key +".location", StorageString.from(vortex.getLocation()));
+        config.set(key + ".creatorName", vortex.getCreatorName());
+        save();
+    }
+
+
+    private static void save(){
         try{
             config.save(file);
         } catch (Exception e){

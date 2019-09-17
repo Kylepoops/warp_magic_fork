@@ -2,6 +2,9 @@ package com.eclipsekingdom.warpmagic;
 
 import com.eclipsekingdom.warpmagic.util.ConsoleSender;
 import com.google.common.collect.ImmutableList;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.WorldCreator;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -10,6 +13,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class PluginConfig {
+
+    private static String header = "Magic Options";
 
     private static File file = new File("plugins/WarpMagic", "config.yml");
     private static FileConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -38,8 +43,8 @@ public class PluginConfig {
             .build();
     private static List<String> validWorlds;
 
-    private static String HIDDEN_VORTEX_NAMES_SETTING = "Hidden Vortex Owner Names";
-    private static List<String> HIDDEN_VORTEX_NAMES_DEFAULT = Collections.singletonList("example");
+    private static String hiddenVortexNamesString = "Hidden Vortex Owner Names";
+    private static List<String> hiddenVortexNamesDefault = Collections.singletonList("example");
     private static List<String> hiddenVortexNames;
 
     public PluginConfig() {
@@ -49,12 +54,12 @@ public class PluginConfig {
     private void load() {
         if (file.exists()) {
             try {
-                startingWarpNum = config.getInt(startingWarpNumString);
-                maxWarpNum = config.getInt(maxWarpNumString);
-                startingVortexNum = config.getInt(startingVortexNumString);
-                maxVortexNum = config.getInt(maxVortexNumString);
-                validWorlds = config.getStringList(validWorldsString);
-                hiddenVortexNames = config.getStringList(HIDDEN_VORTEX_NAMES_SETTING);
+                startingWarpNum = config.getInt(header + "."+startingWarpNumString);
+                maxWarpNum = config.getInt(header + "."+maxWarpNumString);
+                startingVortexNum = config.getInt(header + "."+startingVortexNumString);
+                maxVortexNum = config.getInt(header + "."+maxVortexNumString);
+                validWorlds = config.getStringList(header + "."+validWorldsString);
+                hiddenVortexNames = config.getStringList(header + "."+hiddenVortexNamesString);
             } catch (Exception e) {
                 loadDefaults();
             }
@@ -98,12 +103,12 @@ public class PluginConfig {
     }
 
     private static void createDefault() {
-        config.set(startingWarpNumString, startingWarpNumDefault);
-        config.set(maxWarpNumString, maxWarpNumDefault);
-        config.set(startingVortexNumString, startingVortexNumDefault);
-        config.set(maxVortexNumString, maxVortexNumDefault);
-        config.set(HIDDEN_VORTEX_NAMES_SETTING, HIDDEN_VORTEX_NAMES_DEFAULT);
-        config.set(validWorldsString, validWorldsDefault);
+        config.set(header + "."+startingWarpNumString, startingWarpNumDefault);
+        config.set(header + "."+maxWarpNumString, maxWarpNumDefault);
+        config.set(header + "."+startingVortexNumString, startingVortexNumDefault);
+        config.set(header + "."+maxVortexNumString, maxVortexNumDefault);
+        config.set(header + "."+hiddenVortexNamesString, hiddenVortexNamesDefault);
+        config.set(header + "."+validWorldsString, validWorldsDefault);
         saveConfig();
     }
 
@@ -113,7 +118,16 @@ public class PluginConfig {
         startingVortexNum = startingVortexNumDefault;
         maxVortexNum = maxVortexNumDefault;
         validWorlds = validWorldsDefault;
-        hiddenVortexNames = HIDDEN_VORTEX_NAMES_DEFAULT;
+        hiddenVortexNames = hiddenVortexNamesDefault;
+    }
+
+    public static void loadWorlds(){
+        for(String worldString: validWorlds){
+            if(Bukkit.getWorld(worldString)  == null){
+                World world = Bukkit.getServer().createWorld(new WorldCreator(worldString));
+                Bukkit.getServer().getWorlds().add(world);
+            }
+        }
     }
 
 }

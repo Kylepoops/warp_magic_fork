@@ -20,7 +20,7 @@ public class UserFlatFile {
 
     private static String header = "UserData";
 
-    public UserData fetch(UUID playerID){
+    public static UserData fetch(UUID playerID){
         File file = new File("plugins/WarpMagic/Users", playerID + ".yml");
         if(file.exists()){
             FileConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -79,12 +79,11 @@ public class UserFlatFile {
 
             return userData;
         }else{
-            Bukkit.getConsoleSender().sendMessage("initial");
             return new UserData();
         }
     }
 
-    public void store(UUID playerID, UserData userData){
+    public static void store(UUID playerID, UserData userData){
         File file = new File("plugins/WarpMagic/Users", playerID + ".yml");
         if(!userData.isEmpty() || file.exists()){
             FileConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -132,7 +131,7 @@ public class UserFlatFile {
         }
     }
 
-    private void save(FileConfiguration config, File file){
+    private static void save(FileConfiguration config, File file){
         try{
             config.save(file);
         } catch (Exception e){

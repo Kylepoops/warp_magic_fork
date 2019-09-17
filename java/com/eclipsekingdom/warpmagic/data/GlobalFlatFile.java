@@ -13,10 +13,10 @@ import java.util.Map;
 public class GlobalFlatFile {
 
     private static String header = "Global Points";
-    File file = new File("plugins/WarpMagic", "global.yml");
-    FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+    private static File file = new File("plugins/WarpMagic", "globalpoints.yml");
+    private static FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-    public Map<GlobalPoint, Location> fetch(){
+    public static Map<GlobalPoint, Location> fetch(){
         Map<GlobalPoint, Location> pointToLocation = new HashMap<>();
         if(config.contains(header)){
             for(String pointString: config.getConfigurationSection(header).getKeys(false)){
@@ -30,7 +30,7 @@ public class GlobalFlatFile {
         return pointToLocation;
     }
 
-    public void store(Map<GlobalPoint, Location> pointToLocation){
+    public static void store(Map<GlobalPoint, Location> pointToLocation){
         config.set(header, null);
         for(Map.Entry<GlobalPoint,Location> entry: pointToLocation.entrySet()){
             config.set(header +"."+ entry.getKey().toString(), StorageString.from(entry.getValue()));
@@ -38,7 +38,7 @@ public class GlobalFlatFile {
         save();
     }
 
-    private void save(){
+    private static void save(){
         try{
             config.save(file);
         } catch (Exception e){

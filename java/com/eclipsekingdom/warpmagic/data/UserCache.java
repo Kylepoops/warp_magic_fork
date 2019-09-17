@@ -16,7 +16,6 @@ import java.util.UUID;
 public class UserCache implements Listener {
 
     private static HashMap<UUID, UserData> userToData = new HashMap<>();
-    private static UserFlatFile userFlatFile = new UserFlatFile();
 
     public UserCache(){
         WarpMagic plugin = WarpMagic.plugin;
@@ -36,7 +35,7 @@ public class UserCache implements Listener {
 
     public static void save(){
         for(Map.Entry<UUID,UserData> entry: userToData.entrySet()){
-            userFlatFile.store(entry.getKey(), entry.getValue());
+            UserFlatFile.store(entry.getKey(), entry.getValue());
         }
     }
 
@@ -52,7 +51,7 @@ public class UserCache implements Listener {
 
     public static void cache(UUID playerID){
         if(!userToData.containsKey(playerID)){
-            UserData userData = userFlatFile.fetch(playerID);
+            UserData userData = UserFlatFile.fetch(playerID);
             userToData.put(playerID, userData);
         }
     }
@@ -90,7 +89,7 @@ public class UserCache implements Listener {
     public static void forget(UUID playerID){
         if(userToData.containsKey(playerID)){
             UserData userData = userToData.get(playerID);
-            userFlatFile.store(playerID, userData);
+            UserFlatFile.store(playerID, userData);
             userToData.remove(playerID);
         }
     }

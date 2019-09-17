@@ -17,7 +17,7 @@ public class CommandWarpStone implements CommandExecutor {
             Player player = (Player) sender;
             if(Permissions.canSummonLoot(player)){
                 ItemStack item = LootType.WARP_STONE.getLoot().buildGeneric();
-                int amount = args.length > 1 ? Amount.parse(args[0]): 1;
+                int amount = args.length > 0 ? Amount.parse(args[0]): 1;
                 item.setAmount(amount);
                 player.getInventory().addItem(item);
             }else{

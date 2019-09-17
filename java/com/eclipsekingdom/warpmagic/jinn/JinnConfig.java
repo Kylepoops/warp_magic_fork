@@ -37,7 +37,11 @@ public class JinnConfig {
         return vortexRate;
     }
 
-    public void load(){
+    public JinnConfig(){
+        load();
+    }
+
+    private void load(){
         if(config.contains(spawnRateSetting)){
             try{
                 spawnRate = config.getDouble(spawnRateSetting);

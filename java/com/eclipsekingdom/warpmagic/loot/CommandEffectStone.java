@@ -23,11 +23,11 @@ public class CommandEffectStone implements CommandExecutor {
                         EffectType effectType = EffectType.fromString(args[0]);
                         if(validEffectType(effectType)){
                             ItemStack itemStack = WarpEffectStone.build(effectType);
-                            int amount = args.length > 1 ? Amount.parse(args[0]): 1;
+                            int amount = args.length > 1 ? Amount.parse(args[1]): 1;
                             itemStack.setAmount(amount);
                             player.getInventory().addItem(itemStack);
                         }else{
-                            player.sendMessage(Message.ERROR_EFFECT_NOT_FOUND.get());
+                            player.sendMessage(Message.ERROR_EFFECT_NOT_FOUND.getFromEffect(args[0]));
                         }
                     }else{
                         player.sendMessage(getEffectsAsString());

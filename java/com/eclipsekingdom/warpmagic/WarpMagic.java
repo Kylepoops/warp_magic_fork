@@ -1,11 +1,13 @@
 package com.eclipsekingdom.warpmagic;
 
+import com.eclipsekingdom.warpmagic.data.DataUpdater;
 import com.eclipsekingdom.warpmagic.data.GlobalCache;
 import com.eclipsekingdom.warpmagic.data.UserCache;
 import com.eclipsekingdom.warpmagic.data.VortexCache;
 import com.eclipsekingdom.warpmagic.loot.CommandEffectStone;
 import com.eclipsekingdom.warpmagic.loot.CommandVortexStone;
 import com.eclipsekingdom.warpmagic.loot.CommandWarpStone;
+import com.eclipsekingdom.warpmagic.util.language.Language;
 import com.eclipsekingdom.warpmagic.warp.*;
 import com.eclipsekingdom.warpmagic.warp.effect.CommandWarpEffect;
 import com.eclipsekingdom.warpmagic.warp.effect.gui.InputListener;
@@ -42,9 +44,12 @@ public final class WarpMagic extends JavaPlugin {
     public void onEnable() {
         this.plugin = this;
 
+        new Language();
         new PluginConfig();
+        PluginConfig.loadWorlds();
         jinnConfig = new JinnConfig();
-        jinnConfig.load();
+
+        DataUpdater.convert();
 
         new GlobalCache();
         new UserCache();
