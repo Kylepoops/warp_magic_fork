@@ -9,6 +9,7 @@ import com.eclipsekingdom.warpmagic.data.VortexCache;
 import com.eclipsekingdom.warpmagic.loot.Amount;
 import com.eclipsekingdom.warpmagic.util.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.InfoList;
+import com.eclipsekingdom.warpmagic.util.PluginBase;
 import com.eclipsekingdom.warpmagic.util.PluginHelp;
 import com.eclipsekingdom.warpmagic.util.language.Message;
 import com.eclipsekingdom.warpmagic.warp.validation.LocationValidation;
@@ -66,6 +67,9 @@ public class CommandVortex implements CommandExecutor {
                         if(VortexCache.getVortex(vortexName) == null){
                             Vortex vortex = new Vortex(vortexName, player.getLocation(), player.getName());
                             VortexCache.registerVortex(vortex);
+                            if(PluginBase.isUsingDynmap()){
+                                PluginBase.getDynmap().setVortexIcon(vortex);
+                            }
                             player.sendMessage(Message.SUCCESS_WARP_SET.getFromWarp(vortex.getName()));
                         }else{
                             player.sendMessage(Message.ERROR_VORTEX_ALREADY_SET.getFromWarp(vortexName));
@@ -94,6 +98,9 @@ public class CommandVortex implements CommandExecutor {
                     LocationStatus locationStatus = LocationValidation.canWarpPointBePlacedAt(player.getLocation());
                     if(locationStatus == LocationStatus.VALID){
                         vortex.updateLocation(player.getLocation());
+                        if(PluginBase.isUsingDynmap()){
+                            PluginBase.getDynmap().setVortexIcon(vortex);
+                        }
                         player.sendMessage(Message.SUCCESS_VORTEX_UPDATE.getFromWarp(vortex.getName()));
                     }else{
                         player.sendMessage(locationStatus.message);
@@ -116,6 +123,9 @@ public class CommandVortex implements CommandExecutor {
             if(vortex != null){
                 if(vortex.getCreatorName().equals(player.getName())){
                     VortexCache.removeVortex(vortex);
+                    if(PluginBase.isUsingDynmap()){
+                        PluginBase.getDynmap().removeVortexIcon(vortex.getName());
+                    }
                     player.sendMessage(Message.SUCCESS_VORTEX_DEL.getFromWarp(vortex.getName()));
                 }else{
                     player.sendMessage(Message.ERROR_VORTEX_NOT_OWNER.getFromWarp(vortex.getName()));
@@ -142,7 +152,7 @@ public class CommandVortex implements CommandExecutor {
         infoList.displayTo(player, page);
     }
 
-    private static String LIST_TITLE = WarpMagic.themeLight + "Vortexes:";
+    private String LIST_TITLE = WarpMagic.themeLight + "Vortexes:";
 
     private void processMyList(Player player, String[] args){
         List<String> items = new ArrayList<>();

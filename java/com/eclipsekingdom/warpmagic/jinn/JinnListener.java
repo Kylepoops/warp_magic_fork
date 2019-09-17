@@ -29,11 +29,9 @@ public class JinnListener implements Listener {
 
     private Random random = new Random();
     private WarpMagic plugin;
-    private JinnConfig jinnConfig;
 
     public JinnListener(){
         this.plugin = WarpMagic.plugin;
-        this.jinnConfig = plugin.getJinnConfig();
         plugin.getServer().getPluginManager().registerEvents(this, WarpMagic.plugin);
     }
 
@@ -54,7 +52,7 @@ public class JinnListener implements Listener {
                             if(e instanceof EntityDamageByEntityEvent){
                                 lootingLevel = getLootingLevel((EntityDamageByEntityEvent)e);
                             }
-                            jinn.dropLoot(random, lootingLevel, jinnConfig);
+                            jinn.dropLoot(random, lootingLevel);
                             jinn.remove();
                         }
                     }
@@ -156,7 +154,7 @@ public class JinnListener implements Listener {
             Location location = entity.getLocation();
             Biome biome = location.getWorld().getBiome(location.getBlockX(), location.getBlockZ());
 
-            double spawnRate = jinnConfig.getSpawnRate();
+            double spawnRate = JinnConfig.getSpawnRate();
 
             if(jinnRegions.contains(biome)){
                 if(random.nextDouble() <= spawnRate){

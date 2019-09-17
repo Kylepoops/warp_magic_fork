@@ -34,6 +34,7 @@ public enum  Message {
     SUCCESS_VORTEX_UPDATE("Success - vortex update", "§avortex §2%w §aupdated"),
     SUCCESS_VORTEX_DEL("Success - vortex delete", "§avortex §2%w §awas deleted"),
     SUCCESS_GLOBAL_SET("Success - global set", "§a%w point set"),
+    SUCCESS_GLOBAL_DEL("Success - global delete", "§a%w point deleted"),
     SUCCESS_EFFECT_UNLOCK("Success - effect unlock", "§aYou unlocked §2%e"),
     SUCCESS_DENY_TPA("Success - deny tpa", "§arequest denied"),
 

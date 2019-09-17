@@ -31,4 +31,8 @@ public class GlobalCache {
         return pointToLocation.get(globalPoint);
     }
 
+    public static void delete(GlobalPoint globalPoint){
+        pointToLocation.remove(globalPoint);
+    }
+
 }

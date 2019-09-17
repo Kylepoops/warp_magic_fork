@@ -150,20 +150,20 @@ public class Jinn {
         anatomy.destroyComponents();
     }
 
-    public void dropLoot(Random random, int lootingLevel, JinnConfig jinnConfig){
+    public void dropLoot(Random random, int lootingLevel){
 
         World world = getWorld();
         Location location = getLocation();
         world.playSound(location, Sound.ENTITY_BLAZE_DEATH, 0.7f, 0.5f);
         world.playSound(location, Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, 2f ,2f);
 
-        double warpRate = jinnConfig.getVortexRate();
+        double warpRate = JinnConfig.getVortexRate();
         if(warpRate > 0){
             if(random.nextDouble() <= warpRate + (0.03 * lootingLevel)){
                 world.dropItemNaturally(location, LootType.WARP_STONE.getLoot().buildGeneric());
             }
         }
-        double vortexRate = jinnConfig.getVortexRate();
+        double vortexRate = JinnConfig.getVortexRate();
         if(vortexRate > 0){
             if(random.nextDouble() <= vortexRate + (0.02 * lootingLevel)){
                 world.dropItemNaturally(location, LootType.VORTEX_STONE.getLoot().buildGeneric());

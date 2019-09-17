@@ -139,8 +139,10 @@ public class DataUpdater {
 
     private static void convertVortex(){
 
+        boolean fileFound = false;
         if(legacyVortexNum.exists() || legacyVortex.exists()){
             ConsoleSender.sendMessage("Legacy vortex data detected. Beginning conversion.");
+            fileFound = true;
         }
 
         if (legacyVortex.exists()) {
@@ -182,7 +184,7 @@ public class DataUpdater {
             }
         }
 
-        if(!legacyVortex.exists() && !legacyVortexNum.exists()){
+        if(fileFound && !legacyVortex.exists() && !legacyVortexNum.exists()){
             legacyVortexDir.delete();
             ConsoleSender.sendMessage("Vortex data converted");
         }
@@ -191,8 +193,10 @@ public class DataUpdater {
 
     private static void convertWarp(){
 
+        boolean fileFound = false;
         if(legacyWarpNum.exists() || legacyWarp.exists()){
             ConsoleSender.sendMessage("Legacy warp data detected. Beginning conversion.");
+            fileFound = true;
         }
 
         if (legacyWarp.exists()) {
@@ -239,7 +243,7 @@ public class DataUpdater {
             }
         }
 
-        if(!legacyWarp.exists() && !legacyWarpNum.exists()){
+        if(fileFound && !legacyWarp.exists() && !legacyWarpNum.exists()){
             legacyWarpDir.delete();
             ConsoleSender.sendMessage("Warp data converted");
         }

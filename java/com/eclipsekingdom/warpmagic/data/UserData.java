@@ -2,6 +2,7 @@ package com.eclipsekingdom.warpmagic.data;
 
 import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.PluginConfig;
+import com.eclipsekingdom.warpmagic.data.group.Groups;
 import com.eclipsekingdom.warpmagic.warp.effect.EffectType;
 import com.eclipsekingdom.warpmagic.warp.Friend;
 import com.eclipsekingdom.warpmagic.warp.Home;
@@ -124,7 +125,7 @@ public class UserData {
     }
 
     public int getTotalWarpNumber(Player player){
-        return unlockedWarps + PluginConfig.getStartingWarpNum() + Permissions.getBonusWarps(player);
+        return unlockedWarps + PluginConfig.getStartingWarpNum() + Groups.getBonusWarps(player);
     }
 
     public void incrementUnlockedVortexes(){
@@ -140,7 +141,7 @@ public class UserData {
     }
 
     public int getTotalVortexNumber(Player player){
-        return unlockedWarps + PluginConfig.getStartingVortexNum() + Permissions.getBonusVortexes(player);
+        return unlockedWarps + PluginConfig.getStartingVortexNum() + Groups.getBonusVortexes(player);
     }
 
     public List<Friend> getFriends(){

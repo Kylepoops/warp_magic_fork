@@ -1,5 +1,5 @@
 name: WarpMagic
-version: ${project.version}
+version: 1.7
 main: com.eclipsekingdom.warpmagic.WarpMagic
 api-version: 1.13
 authors: [sword]
@@ -9,31 +9,125 @@ load: POSTWORLD
 
 commands:
   warpmagic:
+    description: display plugin help
   we:
+    description: select a warp effect
   effectstone:
+    description: summon effect stone(s)
+    permission: warpmagic.loot
   home:
+    description: teleport home
   fhome:
+    description: teleport to friend's home
   warp:
+    description: teleport to warp
+  warps:
+    description: list warps
   warpstone:
+    description: summon warp stones(s)
+    permission: warpmagic.loot
   vortex:
+    description: teleport to vortex
+  vortexes:
+    description: list vortexes
   vortexstone:
+    description: summon vortex stone(s)
+    permission: warpmagic.loot
   spawn:
-  north:
-  south:
-  east:
-  west:
-  setnorth:
-  setsouth:
-  seteast:
-  setwest:
-  setspawn:
+    description: teleport to spawn point
   hub:
+    description: teleport to hub point
+  north:
+    description: teleport to north point
+  south:
+    description: teleport to south point
+  east:
+    description: teleport to east point
+  west:
+    description: teleport to west point
+  setnorth:
+    description: set north point
+    permission: warpmagic.set
+  setsouth:
+    description: set south point
+    permission: warpmagic.set
+  seteast:
+    description: set east point
+    permission: warpmagic.set
+  setwest:
+    description: set west point
+    permission: warpmagic.set
+  setspawn:
+    description: set spawn point
+    permission: warpmagic.set
   sethub:
+    description: set hub point
+    permission: warpmagic.set
+  delnorth:
+    description: delete north point
+    permission: warpmagic.set
+  delsouth:
+    description: delete south point
+    permission: warpmagic.set
+  deleast:
+    description: delete east point
+    permission: warpmagic.set
+  delwest:
+    description: delete west point
+    permission: warpmagic.set
+  delspawn:
+    description: delete spawn point
+    permission: warpmagic.set
+  delhub:
+    description: delete hub point
+    permission: warpmagic.set
   tpa:
+    description: send a teleport request
   tpdeny:
+    description: deny a teleport request
   tpaccept:
+    description: accept a teleport request
   tpahere:
+    description: send a teleport request
   jump:
+    description: jump to target block
+    permission: warpmagic.extras
   top:
+    description: jump to highest block
+    permission: warpmagic.extras
   bottom:
+    description: jump to lowest block
+    permission: warpmagic.extras
   jinn:
+    description: summon jinn
+    permission: warpmagic.jinn
+
+
+permissions:
+  warpmagic.loot:
+    description: grants access to /warpstone, /vortexstone, and /effectstone
+    default: op
+  warpmagic.bypass:
+    description: set infinite warps and vortexes
+    default: op
+  warpmagic.extras:
+    description: grants access to /jump, /top, and /bottom
+    default: op
+  warpmagic.effects:
+    description: unlocks all teleportation effects
+    default: op
+  warp.nolimit:
+    description: removes maximum warp limit
+    default: op
+  warpmagic.set:
+    description: edit global points
+    default: op
+  vortex.nolimit:
+    description: removes maximum vortex limit
+    default: op
+  warpmagic.jinn:
+    description: grants access to /jinn
+    default: op
+  warpmagic.*:
+    description: grants all permissions
+    default: op

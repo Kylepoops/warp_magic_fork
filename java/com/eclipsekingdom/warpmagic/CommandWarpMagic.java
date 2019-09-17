@@ -22,6 +22,9 @@ public class CommandWarpMagic implements CommandExecutor {
             if (Permissions.canSummonLoot(player)) {
                 PluginHelp.showSubList(player, stoneCommandInfos);
             }
+            if(Permissions.canSummonJinn(player)){
+                PluginHelp.showSubList(player, jinnCommandInfos);
+            }
         }
         return false;
     }
@@ -48,6 +51,12 @@ public class CommandWarpMagic implements CommandExecutor {
             .add(new CommandInfo("setsouth", "set south location"))
             .add(new CommandInfo("seteast", "set east location"))
             .add(new CommandInfo("setwest", "set west location"))
+            .add(new CommandInfo("delspawn", "del spawn location"))
+            .add(new CommandInfo("delhub", "del hub location"))
+            .add(new CommandInfo("delnorth", "del north location"))
+            .add(new CommandInfo("delsouth", "del south location"))
+            .add(new CommandInfo("deleast", "del east location"))
+            .add(new CommandInfo("delwest", "del west location"))
             .build();
 
     private static final ImmutableList<CommandInfo> stoneCommandInfos = ImmutableList.<CommandInfo>builder()
@@ -55,6 +64,11 @@ public class CommandWarpMagic implements CommandExecutor {
             .add(new CommandInfo("vortexstone [integer]", "get vortex stone(s)"))
             .add(new CommandInfo("effectstone [effect-type] [integer]", "get effect stone(s)"))
             .add(new CommandInfo("effectstone list", "list all effect types"))
+            .build();
+
+
+    private static final ImmutableList<CommandInfo> jinnCommandInfos = ImmutableList.<CommandInfo>builder()
+            .add(new CommandInfo("jinn", "summon a jinn"))
             .build();
 
 }

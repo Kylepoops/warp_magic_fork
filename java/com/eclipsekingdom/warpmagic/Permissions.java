@@ -11,6 +11,7 @@ public class Permissions {
     private static final String SET_GLOBAL_PERM = "warpmagic.set";
     private static final String EXTRAS_PERM = "warpmagic.extras";
     private static final String EFFECTS_PERM = "warpmagic.effects";
+    private static final String JINN_PERM = "warpmagic.jinn";
 
     public static boolean canSummonLoot(Player player) {
         return hasPermission(player, LOOT_PERM);
@@ -40,18 +41,10 @@ public class Permissions {
         return hasPermission(player, EFFECTS_PERM);
     }
 
+    public static boolean canSummonJinn(Player player) { return hasPermission(player, JINN_PERM);}
+
     private static boolean hasPermission(Player player, String permString) {
         return (player.hasPermission("warpmagic.*") || player.hasPermission(permString));
     }
-
-    public static int getBonusWarps(Player player) {
-        return 0;
-    }
-
-    public static int getBonusVortexes(Player player) {
-        return 0;
-    }
-
-    //Bukkit.getServer().getPluginManager().addPermission(new Permission("warpmagic.","does thing"));
 
 }

@@ -11,6 +11,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class PluginConfig {
 
@@ -67,6 +68,7 @@ public class PluginConfig {
             loadDefaults();
             createDefault();
         }
+        loadWorlds();
     }
 
     public static int getStartingWarpNum() {
@@ -121,7 +123,7 @@ public class PluginConfig {
         hiddenVortexNames = hiddenVortexNamesDefault;
     }
 
-    public static void loadWorlds(){
+    private static void loadWorlds(){
         for(String worldString: validWorlds){
             if(Bukkit.getWorld(worldString)  == null){
                 World world = Bukkit.getServer().createWorld(new WorldCreator(worldString));
