@@ -28,7 +28,12 @@ public class GlobalCache {
     }
 
     public static Location get(GlobalPoint globalPoint){
-        return pointToLocation.get(globalPoint);
+        Location location = pointToLocation.get(globalPoint);
+        if(location != null){
+            return location.clone();
+        }else{
+            return null;
+        }
     }
 
     public static void delete(GlobalPoint globalPoint){

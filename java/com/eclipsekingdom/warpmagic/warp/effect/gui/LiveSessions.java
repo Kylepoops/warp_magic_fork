@@ -1,39 +1,33 @@
 package com.eclipsekingdom.warpmagic.warp.effect.gui;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class LiveSessions {
 
-    private final List<UUID> playersWithSession = new ArrayList<>();
+    private static Set<UUID> playersWithSession = new HashSet<>();
 
-    private LiveSessions(){}
-
-    private static final LiveSessions LIVE_SESSIONS = new LiveSessions();
-
-    public static final LiveSessions getInstance(){
-        return LIVE_SESSIONS;
+    public static void disable(){
+        for(Player player: Bukkit.getOnlinePlayers()){
+            playersWithSession.remove(player.getUniqueId());
+            player.closeInventory();
+        }
     }
 
-
-    public void launch(Player player){
+    public static void launch(Player player){
         end(player);
         playersWithSession.add(player.getUniqueId());
         player.openInventory(Menus.buildPlayerEffectMenu(player));
     }
 
-    public void end(Player player){
-        UUID ownerID = player.getUniqueId();
-        while(playersWithSession.contains(ownerID)){
-            playersWithSession.remove(ownerID);
-        }
+    public static void end(Player player){
+        playersWithSession.remove(player.getUniqueId());
     }
-    public boolean hasSession(Player player){
-        UUID ownerID = player.getUniqueId();
-        return playersWithSession.contains(ownerID);
+
+    public static boolean hasSession(Player player){
+        return playersWithSession.contains(player.getUniqueId());
     }
 
 }

@@ -1,12 +1,11 @@
 package com.eclipsekingdom.warpmagic.data;
 
-import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.PluginConfig;
 import com.eclipsekingdom.warpmagic.data.group.Groups;
-import com.eclipsekingdom.warpmagic.warp.effect.EffectType;
 import com.eclipsekingdom.warpmagic.warp.Friend;
 import com.eclipsekingdom.warpmagic.warp.Home;
 import com.eclipsekingdom.warpmagic.warp.Warp;
+import com.eclipsekingdom.warpmagic.warp.effect.EffectType;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

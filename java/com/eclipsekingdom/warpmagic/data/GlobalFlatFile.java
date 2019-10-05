@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class GlobalFlatFile {
 
-    private static String header = "Global Points";
+    public static String header = "Global Points";
     private static File file = new File("plugins/WarpMagic", "globalpoints.yml");
     private static FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
@@ -38,7 +38,7 @@ public class GlobalFlatFile {
         save();
     }
 
-    private static void save(){
+    public static void save(){
         try{
             config.save(file);
         } catch (Exception e){

@@ -11,7 +11,6 @@ public class LiveRequests {
         targetToRequester.put(target.getUniqueId(), request);
     }
 
-
     public static void resolveRequest(Player target){
         targetToRequester.remove(target.getUniqueId());
     }

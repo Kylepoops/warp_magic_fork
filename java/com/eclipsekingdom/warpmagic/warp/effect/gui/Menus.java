@@ -21,7 +21,7 @@ import java.util.List;
 
 public class Menus {
 
-    private static final int INVENTORY_SIZE = 9 * 6;
+    private static final int INVENTORY_SIZE = 9 * 2;
 
     public static Inventory buildPlayerEffectMenu(Player player){
         Inventory inventory = Bukkit.createInventory(null, INVENTORY_SIZE, WarpMagic.themeDark+""+ChatColor.BOLD + "Warp Effects");

@@ -21,8 +21,6 @@ import java.util.Collections;
 
 public class InputListener implements Listener {
 
-    private final LiveSessions liveSessions = LiveSessions.getInstance();
-
     public InputListener(WarpMagic plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -51,8 +49,8 @@ public class InputListener implements Listener {
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
         if(e.getPlayer() instanceof Player) {
-            if (liveSessions.hasSession((Player) e.getPlayer())) {
-                liveSessions.end((Player) e.getPlayer());
+            if (LiveSessions.hasSession((Player) e.getPlayer())) {
+                LiveSessions.end((Player) e.getPlayer());
             }
         }
     }
@@ -68,7 +66,7 @@ public class InputListener implements Listener {
     }
     private boolean hasSession(HumanEntity humanEntity){
         if(humanEntity instanceof Player){
-            return liveSessions.hasSession((Player) humanEntity);
+            return LiveSessions.hasSession((Player) humanEntity);
         }else{
             return false;
         }

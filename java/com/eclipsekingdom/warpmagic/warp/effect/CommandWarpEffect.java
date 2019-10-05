@@ -8,14 +8,12 @@ import org.bukkit.entity.Player;
 
 public class CommandWarpEffect implements CommandExecutor {
 
-    private LiveSessions liveSessions = LiveSessions.getInstance();
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if(sender instanceof Player){
             Player player = (Player) sender;
-            liveSessions.launch(player);
+            LiveSessions.launch(player);
         }
 
 

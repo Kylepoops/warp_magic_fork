@@ -1,12 +1,18 @@
 * mySQL option
 * warp stone texture - malachite!
 * remote /give command for console and admins
+* world spawns
+* more effects
+* finish lang file
+* poof to white
+
+-- jinn --
 * Jinn drop gui
 * Jinn death event
 * top chat title
 * jinn cloak (teleport)
 * jinn shield (teleport)
-* inactive jinn despawn on chunk load
-* world spawns
-* more effects
-* finish lang file
+* inactive jinn despawn on chunk load!!! --- better reload jinn removal
+
+
+-- update log --

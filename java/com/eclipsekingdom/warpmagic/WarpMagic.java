@@ -20,6 +20,7 @@ import com.eclipsekingdom.warpmagic.util.language.Language;
 import com.eclipsekingdom.warpmagic.warp.*;
 import com.eclipsekingdom.warpmagic.warp.effect.CommandWarpEffect;
 import com.eclipsekingdom.warpmagic.warp.effect.gui.InputListener;
+import com.eclipsekingdom.warpmagic.warp.effect.gui.LiveSessions;
 import com.eclipsekingdom.warpmagic.warp.effect.list.Bats;
 import com.eclipsekingdom.warpmagic.warp.extras.CommandBottom;
 import com.eclipsekingdom.warpmagic.warp.extras.CommandJump;
@@ -34,6 +35,8 @@ import com.eclipsekingdom.warpmagic.warp.requests.CommandTPAccept;
 import com.eclipsekingdom.warpmagic.warp.requests.CommandTPDeny;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.awt.*;
 
 public final class WarpMagic extends JavaPlugin {
 
@@ -72,6 +75,7 @@ public final class WarpMagic extends JavaPlugin {
         GlobalCache.save();
         Bats.removeEntities();
         JinnLife.remvoeAllJinn();
+        LiveSessions.disable();
         PluginBase.disableDependencies();
     }
 

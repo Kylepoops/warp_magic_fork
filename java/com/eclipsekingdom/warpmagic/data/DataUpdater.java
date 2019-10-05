@@ -7,6 +7,7 @@ import com.eclipsekingdom.warpmagic.warp.Home;
 import com.eclipsekingdom.warpmagic.warp.Vortex;
 import com.eclipsekingdom.warpmagic.warp.Warp;
 import com.eclipsekingdom.warpmagic.warp.effect.EffectType;
+import com.eclipsekingdom.warpmagic.warp.global.GlobalPoint;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -16,9 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.Location;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class DataUpdater {
 
@@ -36,7 +35,6 @@ public class DataUpdater {
     private static File legacyWarp = new File("plugins/WarpMagic/data/warp", "warps.yml");
     private static File legacyWarpNum = new File("plugins/WarpMagic/data/warp", "warpNum.yml");
     private static File legacyWarpDir = new File("plugins/WarpMagic/data/warp");
-
 
     private static File dataDir = new File("plugins/WarpMagic/data");
 
@@ -249,7 +247,6 @@ public class DataUpdater {
         }
 
     }
-
 
 
 }
