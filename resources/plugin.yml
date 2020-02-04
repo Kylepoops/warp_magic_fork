@@ -1,11 +1,12 @@
 name: WarpMagic
-version: 1.1
+version: 1.8.0
 main: com.eclipsekingdom.warpmagic.WarpMagic
 api-version: 1.13
 authors: [sword]
 description: A teleportation management plugin
 website: eclipsekingdom.com
 load: POSTWORLD
+softdepend: [dynmap]
 
 commands:
   warpmagic:
@@ -129,5 +130,5 @@ permissions:
     description: grants access to /jinn
     default: op
   warpmagic.*:
-    description: grants all permissions
+    description: grants all user
     default: op

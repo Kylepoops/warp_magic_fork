@@ -6,6 +6,8 @@
 * finish lang file
 * poof to white
 
+* update if player changes name
+
 -- jinn --
 * Jinn drop gui
 * Jinn death event
@@ -16,3 +18,4 @@
 
 
 -- update log --
+* added dynmap soft depend

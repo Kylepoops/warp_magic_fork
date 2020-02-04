@@ -103,7 +103,7 @@ public class UserData {
         return currentEffect != null;
     }
 
-    public void setCurentEffect(EffectType effect){
+    public void setCurrentEffect(EffectType effect){
         currentEffect = effect;
     }
 

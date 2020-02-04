@@ -4,7 +4,7 @@ import com.eclipsekingdom.warpmagic.Permissions;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.data.UserCache;
 import com.eclipsekingdom.warpmagic.data.UserData;
-import com.eclipsekingdom.warpmagic.loot.Amount;
+import com.eclipsekingdom.warpmagic.util.Amount;
 import com.eclipsekingdom.warpmagic.util.CommandInfo;
 import com.eclipsekingdom.warpmagic.util.InfoList;
 import com.eclipsekingdom.warpmagic.util.PluginHelp;

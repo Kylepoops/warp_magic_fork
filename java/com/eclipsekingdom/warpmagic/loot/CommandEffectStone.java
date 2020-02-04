@@ -1,6 +1,7 @@
 package com.eclipsekingdom.warpmagic.loot;
 
 import com.eclipsekingdom.warpmagic.Permissions;
+import com.eclipsekingdom.warpmagic.util.Amount;
 import com.eclipsekingdom.warpmagic.util.language.Message;
 import com.eclipsekingdom.warpmagic.warp.effect.EffectType;
 import org.bukkit.ChatColor;

@@ -3,7 +3,7 @@ package com.eclipsekingdom.warpmagic.warp;
 import com.eclipsekingdom.warpmagic.PluginConfig;
 import com.eclipsekingdom.warpmagic.WarpMagic;
 import com.eclipsekingdom.warpmagic.data.VortexCache;
-import com.eclipsekingdom.warpmagic.loot.Amount;
+import com.eclipsekingdom.warpmagic.util.Amount;
 import com.eclipsekingdom.warpmagic.util.InfoList;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

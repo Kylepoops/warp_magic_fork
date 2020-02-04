@@ -37,7 +37,7 @@ public class InputListener implements Listener {
                     if(effectType != EffectType.UNKNOWN){
                         playSound(player);
                         UserData userData = UserCache.getData(player);
-                        userData.setCurentEffect(effectType);
+                        userData.setCurrentEffect(effectType);
                         Effect effect = effectType.getEffect();
                         updateHeaderSlot(e.getClickedInventory(), effect);
                     }

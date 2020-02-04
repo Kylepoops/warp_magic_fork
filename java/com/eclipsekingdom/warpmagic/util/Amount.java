@@ -1,4 +1,4 @@
-package com.eclipsekingdom.warpmagic.loot;
+package com.eclipsekingdom.warpmagic.util;
 
 public class Amount {
 

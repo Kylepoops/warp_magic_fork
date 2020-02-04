@@ -1,6 +1,7 @@
 package com.eclipsekingdom.warpmagic.loot;
 
 import com.eclipsekingdom.warpmagic.Permissions;
+import com.eclipsekingdom.warpmagic.util.Amount;
 import com.eclipsekingdom.warpmagic.util.language.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

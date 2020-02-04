@@ -59,7 +59,7 @@ public class DataUpdater {
                     UserData userData = UserFlatFile.fetch(playerID);
                     if(!userData.hasCurrentEffect()){
                         EffectType current = EffectType.fromString(config.getString(playerIDString + ".current"));
-                        userData.setCurentEffect(current);
+                        userData.setCurrentEffect(current);
                     }
                     for (String string : config.getStringList(playerIDString + ".effects")) {
                         EffectType effect = EffectType.fromString(string);
