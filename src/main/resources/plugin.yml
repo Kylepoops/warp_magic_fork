@@ -1,0 +1,74 @@
+name: WarpMagic
+version: 1.9.2
+main: com.eclipsekingdom.warpmagic.WarpMagic
+api-version: 1.13
+authors: [sword]
+description: A teleportation system
+website: eclipsekingdom.com
+load: POSTWORLD
+softdepend: [dynmap]
+
+commands:
+  warpmagic:
+    description: display plugin help
+  home:
+    description: teleport home
+  fhome:
+    description: teleport to friend's home
+  warp:
+    description: teleport to warp
+  warpstone:
+    description: summon warp stones
+    permission: warpmagic.loot
+  vortex:
+    description: teleport to vortex
+  vortexstone:
+    description: summon vortex stones
+    permission: warpmagic.loot
+  spawn:
+    description: teleport to spawn point
+  hub:
+    description: teleport to hub point
+  setspawn:
+    description: set spawn point
+    permission: warpmagic.global
+  delspawn:
+    description: delete spawn point
+    permission: warpmagic.global
+  sethub:
+    description: set hub point
+    permission: warpmagic.global
+  delhub:
+    description: delete hub point
+    permission: warpmagic.global
+  tpa:
+    description: send a teleport request
+  tpdeny:
+    description: deny a teleport request
+  tpaccept:
+    description: accept a teleport request
+  tpahere:
+    description: send a teleport request
+  jump:
+    description: teleport to target block
+    permission: warpmagic.extras
+  top:
+    description: teleport to highest block
+    permission: warpmagic.extras
+  bottom:
+    description: teleport to lowest block
+    permission: warpmagic.extras
+
+permissions:
+  warpmagic.loot:
+    description: grants access to /warpstone and /vortexstone
+    default: op
+  warpmagic.extras:
+    description: grants access to /jump, /top, and /bottom
+    default: op
+  warpmagic.global:
+    description: allows spawn, hub, and server vortex editing
+    default: op
+  warpmagic.*:
+    description: grants all permissions
+    default: op

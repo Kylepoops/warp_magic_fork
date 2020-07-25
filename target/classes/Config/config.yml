@@ -1,0 +1,15 @@
+Language file: en
+# Default Values
+Base Warp Amount: 3
+Maximum Warp Amount: 18
+Base Vortex Amount: 0
+Maximum Vortex Amount: 3
+Teleport Charge Up Seconds: 0
+Teleport Cooldown Seconds: 10
+Teleport Request Cooldown Seconds: 10
+# Teleport Effects
+Play Sound: true
+Play Particles: true
+# Dynmap
+Use dynmap: true
+Show Warp Markers by Default:  true

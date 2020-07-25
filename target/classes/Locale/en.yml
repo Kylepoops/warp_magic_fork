@@ -1,0 +1,113 @@
+Help - spawn: teleport to spawn
+Help - hub: teleport to hub
+Help - tpa: request to teleport to player
+Help - tpahere: request that a player teleport to you
+Help - home: show home commands
+Help - warp: show warp commands
+Help - vortex: show vortex commands
+Help - setspawn: set spawn point
+Help - sethub: set hub point
+Help - delspawn: delete spawn point
+Help - delhub: delete hub point
+Help - warpstone: give player warp stones
+Help - vortexstone: give player vortex stones
+Help - to warp: teleport to warp
+Help - warp set: set or update warp
+Help - warp del: delete warp
+Help - warp list: list warps
+Help - to vortex: teleport to vortex
+Help - vortex set: set or update vortex
+Help - vortex setserver: set or update server vortex
+Help - vortex del: delete vortex
+Help - vortex list: list all vortexes
+Help - vortex mylist: list vortexes set by you
+Help - to home: teleport home
+Help - home set: set or update home
+Help - home del: delete home
+Help - home invite: invite player to home
+Help - home uninvite: uninvite player from home
+Help - home flist: list home friends
+Help - home fclear: clear home friends
+Help - to fhome: teleport to friend's home
+Help - fhome list: list homes you are invited to
+Help - jump: teleport to target block
+Help - top: teleport to highest block
+Help - bottom: teleport to lowest block
+
+Arg - player: player
+Arg - amount: amount
+
+Label - friends: Friends
+Label - friend homes: Friend Homes
+Label - page: Page
+Label - commands: Commands
+
+Invalid - special characters: Names must consist of only a-z, A-Z, 0-9, _, and -
+Invalid - too long: Names must be 20 characters or less
+Invalid - reserved word: The name you selected is reserved by WarpMagic
+
+Request - tpa: '%player% has requested to teleport to you.'
+Request - tpahere: You have been requested to teleport to %player%.
+Request - commands: Use /tpaccept to accept or /tpdeny to deny the request.
+Request - timeout: Request is valid for %seconds% seconds.
+Request - send: Request sent to %player%.
+
+Success - home set: home set
+Success - home update: home updated
+Success - home delete: home deleted
+Success - home invite: '%player% was invited to your home'
+Success - home invitation: You have been invited to %player%'s home
+Success - home uninvite: '%player% was uninvited to your home'
+Success - home fclear: Uninvited all friends from home
+Success - warp set: Warp %warp% set
+Success - warp update: Warp %warp% updated
+Success - warp delete: Warp %warp% deleted
+Success - vortex set: Vortex %warp% set
+Success - vortex update: vortex %warp% updated
+Success - vortex delete: vortex %warp% deleted
+Success - global set: '%warp% point set'
+Success - global delete: '%warp% point deleted'
+Success - deny tpa: request denied
+Success - items sent: items sent to %player%
+
+Console - plugin detected: '%plugin% detected'
+Console - file error: Error saving %file%
+
+Misc - format: Format is %format%
+Misc - teleporting: Teleportation in progress.
+Misc - tp focus: Maintain focus for %seconds% seconds.
+Misc - tp cancelled: Teleport cancelled.
+Misc - one use: 1 use only - click to activate
+
+Warn - request cooldown: Please wait another %seconds% seconds before sending another request.
+Warn - invalid location: The requested location could not be located.
+Warn - teleport cooldown: Please wait another %seconds% seconds before teleporting again.
+Warn - add self: You can't invite yourself!
+Warn - remove self: You can't uninvite yourself!
+Warn - player not found: Player %player% not found
+Warn - already friend: '%player% is already invited to your home'
+Warn - not friend: '%player% is not invited to your home'
+Warn - not home: This command is for teleporting to friend's homes
+Warn - not invited: You are not invited to %player%'s home
+Warn - Home unset: home not set
+Warn - friend home unset: '%player% has not set a home'
+Warn - warp limit: Warp limit reached
+Warn - warp not found: '%warp% not found'
+Warn - vortex limit: Vortex limit reached
+Warn - vortex not server: '%warp% belongs to a player'
+Warn - vortex not found: '%warp% not found'
+Warn - vortex not owner: You are not the owner of %warp%
+Warn - global not set: '%warp% point not set'
+Warn - not allowed: You do not have permission for this command
+Warn - max warps: You already have the maximum number of warps
+Warn - max vortexes: You already have the maximum number of vortexes
+Warn - tpa self: You are already at your current location
+Warn - no pending tpa: You do not have any pending teleport requests
+Warn - requester not online: Requester is no longer online
+Warn - request not recognized: Request type not recognized
+
+Item - warp stone: Warp Stone
+Item - vortex stone: Vortex Stone
+
+Lore - warp stone: It appears unstable
+Lore - vortex stone: It vibrates unpredictably
